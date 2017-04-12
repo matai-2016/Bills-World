@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import rootReducer from '../reducers'
 
-export default function configureStore(preloadedState) {
+export default function configureStore (preloadedState) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
     rootReducer,
