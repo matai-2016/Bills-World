@@ -16,7 +16,7 @@ export default class AuthService {
       //   primaryColor: "#b81b1c"
       // },
       languageDictionary: {
-        title: 'React Redux Auth0 Kit'
+        title: 'Bill\'s World'
       }
     })
     // binds login functions to keep this context
