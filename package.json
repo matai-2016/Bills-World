@@ -5,29 +5,14 @@
   "repository": "https://github.com/dev-academy-challenges/boilerplate-react-webpack.git",
   "main": "server/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --content-base public/ --hot --inline",
-    "start": "nodemon --watch server server/index & webpack --watch",
+    "dev": "nodemon --watch server server/index & webpack --watch",
+    "start": "node server",
+    "postinstall": "knex migrate:latest && webpack",
     "test": "tape -r babel-register 'test/**/*.test.js' | tap-spec",
     "watch": "nodemon -e js,jsx -x npm test"
   },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-2"
-    ]
-  },
   "author": "EDA",
   "license": "ISC",
-  "devDependencies": {
-    "enzyme": "^2.7.0",
-    "jsx-loader": "^0.13.2",
-    "nodemon": "^1.11.0",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.3",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
-  },
   "dependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -49,5 +34,24 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "superagent": "^3.5.2"
+  },
+  "devDependencies": {
+    "enzyme": "^2.7.0",
+    "jsx-loader": "^0.13.2",
+    "nodemon": "^1.11.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-2"
+    ]
+  },
+  "engines": {
+    "node": ">=7.0.0"
   }
 }
