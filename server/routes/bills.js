@@ -6,6 +6,7 @@ const bills = require('../lib/bills')
 const router = express.Router()
 router.use(bodyParser.json())
 
+// gets all bills and there vote count
 router.get('/', (req, res) => {
   Promise.all([bills.getBills(), votes.getVotes()])
     .then(([bills, votes]) => {
@@ -34,30 +35,5 @@ router.get('/', (req, res) => {
       res.send(billsToSend)
     })
 })
-
-// router.post('/', (req, res) => {
-//   orders.createOrder(req.body)
-//     .then(function (result) {
-//       const order = result[0]
-//       res.send({
-//         message: 'New order created',
-//         id: order.id,
-//         date: order.date,
-//         pickup_time: order.pickup_time,
-//         collector_id: order.collector_id,
-//         status: order.status
-//       })
-//     })
-// })
-//
-// router.delete('/:id', (req, res) => {
-//   orders.deleteOrder(req.params.id)
-//     .then((number) => {
-//       res.send({
-//         message: 'No coffee for you then',
-//         rowsAffected: number
-//         })
-//     })
-// })
 
 module.exports = router
