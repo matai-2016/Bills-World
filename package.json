@@ -5,6 +5,7 @@
   "repository": "https://github.com/matai-2016/Bills-World",
   "main": "server/index.js",
   "scripts": {
+    "knex": "knex",
     "dev": "nodemon --watch server server/index & webpack --watch",
     "postinstall": "knex migrate:latest && webpack",
     "start": "node server",
@@ -34,15 +35,16 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "superagent": "^3.5.2",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^1.14.0"
   },
   "devDependencies": {
     "enzyme": "^2.7.0",
     "jsx-loader": "^0.13.2",
     "nodemon": "^1.11.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "sqlite3": "^3.1.8",
+    "webpack-dev-server": "^1.16.2"
   },
   "babel": {
     "presets": [
