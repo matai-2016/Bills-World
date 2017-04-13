@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
 
-const reducers = combineReducers({
+import test from './test'
 
+const reducers = combineReducers({
+  test
 })
 
 export default reducers
