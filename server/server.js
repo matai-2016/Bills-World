@@ -32,11 +32,11 @@ app.get('/scrape', (req, res) => {
 
         const introduction_date = $(this).children('td').children('div').children('body').children('div').children('table').children('tbody:nth-child(1)').children('tr:nth-child(5)').children('td').text()
         const introductionDate = introduction_date.replace(/(\r\n|\n|\r|\t|\s)/gm, '')
-        obj.introductionDate = introductionDate
+        obj.introduction_date = introductionDate
 
         const member = $(this).children('td').children('div').children('body').children('div').children('table').children('tbody:nth-child(1)').children('tr:nth-child(1)').children('td').text()
         const memberInCharge = member.replace(/(\r\n|\n|\r|\t|\s+)/gm, ' ')
-        obj.memberInCharge = memberInCharge
+        obj.member_in_charge = memberInCharge
 
         const type = $(this).children('td').children('div').children('body').children('div').children('table').children('tbody:nth-child(1)').children('tr:nth-child(2)').children('td').text()
         const newType = type.replace(/(\r\n|\n|\r|\t|\s)/gm, '')
@@ -44,7 +44,7 @@ app.get('/scrape', (req, res) => {
 
         const bill_number = $(this).children('td').children('div').children('body').children('div').children('table').children('tbody:nth-child(1)').children('tr:nth-child(4)').children('td').text()
         const billNumber = bill_number.replace(/(\r\n|\n|\r|\t|\s)/gm, '')
-        obj.billNumber = billNumber
+        obj.bill_number = billNumber
 
         $(this).children('td').children('div').children('body').children('div').children('table').empty()
         const summary = $(this).children('td').children('div').children('body').children('div').not('table').text()
