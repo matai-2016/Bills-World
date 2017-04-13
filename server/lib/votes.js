@@ -2,10 +2,10 @@ const config = require('../../knexfile')[process.env.NODE_ENV || 'development']
 const knex = require('knex')(config)
 
 module.exports = {
-  getUsers
+  getVotes
 }
 
-function getUsers () {
-  return knex('users')
+function getVotes () {
+  return knex('votes')
   .select()
 }

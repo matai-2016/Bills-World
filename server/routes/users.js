@@ -12,5 +12,12 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  users.getUsers()
+    .then(function (result) {
+      res.send(result)
+    })
+})
+
 
 module.exports = router
