@@ -1,10 +1,10 @@
 
 import request from 'superagent'
 
-export function getBillInfo(id) {
+export function getBillInfo(billNumber) {
   return dispatch => {
     return request
-      .get(`bill/${id}`)
+      .get(`bill/${billNumber}`)
       .end((err, res) => {
         if (err) {
           return console.error(err.message, 'Receive BillInfo failed')

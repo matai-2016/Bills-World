@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer'
 
 class BillPage extends React.Component {
   componentDidMount () {
-    const billNumber = this.props.match.params.id
+    const billNumber = this.props.match.params.bill_number
     this.props.getBillInfo(billNumber)
   }
 
