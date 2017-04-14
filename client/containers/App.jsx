@@ -34,6 +34,7 @@ class App extends Component {
         <Route path='/summary' component={Summary} />
         <Route path='/discussion' component={Discussion} />
         <Route path='/sourcelink' component={SourceLink} />
+        <Route path='/share' component={Share} />
       </div>
     )
   }
