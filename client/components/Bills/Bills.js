@@ -1,5 +1,5 @@
 import React from 'react'
-import Bill from './Bill'
+import Bill from '../Bill/Bill'
 
 const Bills = () => {
   return (
