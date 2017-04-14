@@ -19,6 +19,15 @@ class Discussion extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    email: state.auth.email,
+    password: state.auth.password,
+    message: state.auth.message,
+    authenticated: state.auth.authenticated
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     updateCommentForm: (name, value) => {
@@ -34,12 +43,3 @@ export default connect(null, mapDispatchToProps)(Discussion)
 
 // saveComment: (details) => {
 //   return dispatch(loginUser(creds))
-
-// const mapStateToProps = (state) => {
-//   return {
-//     email: state.auth.email,
-//     password: state.auth.password,
-//     message: state.auth.message,
-//     authenticated: state.auth.authenticated
-//   }
-// }

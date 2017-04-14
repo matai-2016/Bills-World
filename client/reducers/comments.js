@@ -13,4 +13,3 @@ export default function auth (state = initialState, action) {
       return state
   }
 }
-Contact GitHub API Training Shop Blog About
