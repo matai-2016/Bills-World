@@ -7,16 +7,12 @@ import { testButton, checkLogin, loginRequest, logoutSuccess } from '../actions'
 class Login extends Component {
   constructor(props) {
     super(props)
-    this.props.checkLogin(this.props.history) // check is Auth0 lock is authenticating after login callback
+    this.props.checkLogin(this.props.history)
   }
 
   render () {
     return (
       <div>
-        <button onClick={() => this.props.testButton()} >
-        Redux Test Button
-        </button>
-        { this.props.clicked && <h4>Redux is working!</h4> }
         {
           !this.props.isAuthenticated
           ? (
@@ -40,7 +36,6 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    clicked: state.test.clicked,
     isAuthenticated: state.auth.isAuthenticated,
     profile: state.auth.profile,
     error: state.auth.error
