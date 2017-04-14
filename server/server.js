@@ -8,11 +8,11 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../public')))
 
 //routes
-const usersRoutes = require('./routes/users')
+const authRoutes = require('./routes/auth')
 const billsRoutes = require('./routes/bills')
 const billRoutes = require('./routes/bill')
 
-app.use('/users', usersRoutes)
+app.use('/auth', authRoutes)
 app.use('/bills', billsRoutes)
 app.use('/bill', billRoutes)
 

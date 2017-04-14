@@ -18,8 +18,6 @@ router.get('/', (req, res) => {
           type: bill.type,
           member_in_charge: bill.member_in_charge,
           introduction_date: bill.introduction_date,
-          submissions_due: bill.submissions_due,
-          stage: bill.stage,
           votes_for: votes
             .filter(vote => vote.bill_id === bill.id)
             .reduce(function(total, vote) {

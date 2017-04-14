@@ -6,6 +6,7 @@ const votes = require('../lib/votes')
 const router = express.Router()
 router.use(bodyParser.json())
 
+// get single bill and vote count
 router.get('/:id', (req, res) => {
   Promise.all([bill.getBill(req.params.id), votes.getVotes()])
     .then(([bill, votes]) => {
@@ -18,8 +19,6 @@ router.get('/:id', (req, res) => {
         type: curBill.type,
         member_in_charge: curBill.member_in_charge,
         introduction_date: curBill.introduction_date,
-        submissions_due: curBill.submissions_due,
-        stage: curBill.stage,
         votes_for: votes
         .filter(vote => vote.bill_id === curBill.id)
         .reduce(function(total, vote) {
@@ -34,11 +33,6 @@ router.get('/:id', (req, res) => {
       res.send(result)
     })
 })
-//   bill.getBill(req.params.id)
-//     .then(function (result) {
-//       res.send(result[0])
-//     })
-// })
 
 router.delete('/:id', (req, res) => {
   bill.deleteBill(req.params.id)
