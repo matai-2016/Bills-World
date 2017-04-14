@@ -19,7 +19,6 @@ export function checkLogin(history) {
           return dispatch(loginError(error))
         AuthService.setToken(authResult.idToken) // static method
         AuthService.setProfile(profile) // static method
-        console.log(profile)
         dispatch(checkUserInDatabase(profile))
         return dispatch(loginSuccess(history, profile))
       })
