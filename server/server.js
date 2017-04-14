@@ -13,12 +13,12 @@ app.use(express.static(path.join(__dirname, '../public')))
 const authRoutes = require('./routes/auth')
 const billsRoutes = require('./routes/bills')
 const billRoutes = require('./routes/bill')
-const voteRoutes = require('./routes/votes')
+const votesRoutes = require('./routes/votes')
 
 app.use('/auth', authRoutes)
 app.use('/bills', billsRoutes)
 app.use('/bill', billRoutes)
-// app.use('/votes', voteRoutes)
+app.use('/votes', votesRoutes)
 
 app.get('/scrape', (req, res) => {
   webScraper(function (err, data) {
