@@ -9,8 +9,8 @@
     "dev": "nodemon --watch server server/index & webpack --watch",
     "postinstall": "knex migrate:latest && webpack",
     "start": "node server",
-    "test": "tape -r babel-register 'test/**/*.test.js' | tap-spec",
-    "linter": "standard",
+    "test": "NODE_ENV=test ava -v test/**/*.test.js",
+    "linter": "standard --fix --verbose | snazzy",
     "watch": "nodemon -e js,jsx -x npm test"
   },
   "author": "EDA",
@@ -64,6 +64,16 @@
       "stage-2"
     ]
   },
+  "ava": {
+   "babel": {
+     "presets": [
+       "es2015",
+       "react",
+       "stage-2"
+     ]
+   },
+   "require": ["babel-register"]
+ },
   "engines": {
     "node": ">=7.0.0"
   }
