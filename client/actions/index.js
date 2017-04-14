@@ -44,9 +44,11 @@ export function checkUserInDatabase (profile) {
       }
       console.log(res)
       return
-    }
+    })
   }
 }
+
+
 
 export function loginRequest() {
   authService.login()
