@@ -39,16 +39,30 @@ export function checkUserInDatabase (profile) {
         console.error(err.message)
         return
       }
-      if (res === 'User does not exist') {
+      if (res.body.message === 'User does not exist') {
+        console.log('User does not exist')
         dispatch(addUsertoDatabase(profile))
       }
-      console.log(res)
       return
     })
   }
 }
 
-
+export function addUsertoDatabase (profile) {
+  return dispatch => {
+    return request
+    .post('/auth/register')
+    .send(profile)
+    .end((err, res) => {
+      if (err) {
+        console.error(err.message)
+        return
+      }
+      console.log('User has been added to database')
+      return
+    })
+  }
+}
 
 export function loginRequest() {
   authService.login()
