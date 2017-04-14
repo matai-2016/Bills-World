@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, '../public')))
 const authRoutes = require('./routes/auth')
 const billsRoutes = require('./routes/bills')
 const billRoutes = require('./routes/bill')
-// const voteRoutes = require('./routes/votes')
+const voteRoutes = require('./routes/votes')
 
 app.use('/auth', authRoutes)
 app.use('/bills', billsRoutes)

@@ -53,32 +53,4 @@ router.get('/:id', (req, res) => {
 //     })
 // })
 
-router.delete('/:id', (req, res) => {
-  bill.deleteBill(req.params.id)
-  .then((row) => {
-    console.log('Deleted', res.body)
-    res.send({
-      message: 'Order item deleted',
-      rowsAffected: row
-    })
-  })
-})
-
-// router.post('/', (req, res) => {
-//   orderItems.createOrderItem(req.body)
-//     .then(function (result) {
-//       const orderItem = result[0]
-//       res.send({
-//         message: 'New order item created',
-//         id: orderItem.id,
-//         type: orderItem.type,
-//         order_id: orderItem.order_id,
-//         user_id: orderItem.user_id,
-//         modifiers: orderItem.modifiers,
-//         sugars: orderItem.sugars,
-//         size: orderItem.size
-//       })
-//     })
-// })
-
 module.exports = router
