@@ -6,7 +6,7 @@ const bills = require('../lib/bills')
 const router = express.Router()
 router.use(bodyParser.json())
 
-// gets all bills and there vote count
+// gets all bills and their vote count
 router.get('/', (req, res) => {
   Promise.all([bills.getBills(), votes.getVotes()])
     .then(([bills, votes]) => {
