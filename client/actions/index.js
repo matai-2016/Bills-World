@@ -21,7 +21,6 @@ export function checkLogin(history) {
         AuthService.setProfile(profile) // static method
         console.log(profile)
         dispatch(checkUserInDatabase(profile))
-        console.log('got past function')
         return dispatch(loginSuccess(history, profile))
       })
     })
@@ -31,10 +30,8 @@ export function checkLogin(history) {
 }
 
 export function checkUserInDatabase (profile) {
-  console.log('got to dispatch')
   return dispatch => {
     const clientID = profile.clientID
-    console.log(clientID)
     return request
     .get(`/auth/${clientID}`)
     .end((err, res) => {
@@ -42,10 +39,7 @@ export function checkUserInDatabase (profile) {
         console.error(err.message)
         return
       }
-      console.log('no error from server yet')
       if (res.body.message === 'User does not exist') {
-        console.log('User does not exist')
-        console.log('Got here')
         dispatch(addUserToDatabase(profile))
       }
       return
@@ -54,7 +48,6 @@ export function checkUserInDatabase (profile) {
 }
 
 export function addUserToDatabase (profile) {
-  console.log(profile)
   return dispatch => {
     return request
     .post('/auth/register')
