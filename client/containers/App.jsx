@@ -7,6 +7,7 @@ import Login from '../components/Login'
 import Bills from '../components/Bills'
 import Bill from '../components/Bill'
 import Footer from '../components/Footer'
+import BillPage from '../components/BillPage'
 
 class App extends Component {
   render () {
@@ -18,6 +19,7 @@ class App extends Component {
         <Route path='/bills' component={Bills} />
         <Route path='/bill' component={Bill} />
         <Route path='/footer' component={Footer} />
+        <Route path='/billId' component={BillPage} />
       </div>
     )
   }
