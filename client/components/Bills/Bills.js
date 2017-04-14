@@ -10,10 +10,6 @@ class Bills extends React.Component {
     this.props.getBills()
   }
 
-  handleClick (id) {
-    this.props.getBills()
-  }
-
   render () {
     return (
       <div className='container'>
@@ -29,7 +25,7 @@ class Bills extends React.Component {
                 billNumber={bill.bill_number}
                 summary={bill.summary}
               />
-              <Link to={`./bill/${bill.bill_number}`}><button className='view-bill-button'>View Bill</button></Link>
+              <Link to={`./${bill.bill_number}`}><button className='view-bill-button'>View Bill</button></Link>
             </div>
           )
         })}
@@ -38,10 +34,6 @@ class Bills extends React.Component {
   }
 }
 
-// Bills.propTypes = {
-//   bills: React.PropTypes.array,
-//   getBills: React.PropTypes.func
-// }
 const mapStateToProps = state => {
   return {
     bills: state.bills
