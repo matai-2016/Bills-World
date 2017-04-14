@@ -27,7 +27,7 @@ router.get('/:clientID', (req, res) => {
         res.send({ message: 'User exists'})
       } else {
         console.log('User does not exist')
-        res.status(404).send({ message: 'User does not exist'})
+        res.send({ message: 'User does not exist'})
       }
     })
     .catch((err) => {
