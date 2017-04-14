@@ -1,9 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-const Bill = () => {
+const Bill = (props) => {
   return (
-    <li><Link to='/billid'>[Bill]</Link></li>
+    <div className='bill'>
+      <h3>Title: {props.title}</h3>
+      <p>Introduction date: {props.introductionDate}</p>
+      <p>Member in charge: {props.memberInCharge}</p>
+      <p>Type: {props.type}</p>
+      <p>Bill number: {props.billNumber}</p>
+      <p>Summary: {props.summary}</p>
+    </div>
   )
 }
 
