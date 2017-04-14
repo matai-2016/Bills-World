@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import Login from '../components/Login'
 import Bills from '../components/Bills'
 import Bill from '../components/Bill'
+import Footer from '../components/Footer'
 
 class App extends Component {
   render () {
@@ -16,6 +17,7 @@ class App extends Component {
         <Route path='/login' component={Login} />
         <Route path='/bills' component={Bills} />
         <Route path='/bill' component={Bill} />
+        <Route path='/footer' component={Footer} />
       </div>
     )
   }
