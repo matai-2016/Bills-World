@@ -5,7 +5,9 @@ const Bills = () => {
   return (
     <div>
       <h2>[Bills Container]</h2>
-      <Bill />
+      <ul>
+        <Bill />
+      </ul>
     </div>
   )
 }
