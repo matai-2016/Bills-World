@@ -16,13 +16,7 @@ const BillPage = () => {
     <div>
       <Header />
       <Login />
-      <Title />
-      <Vote />
       <BillInfo />
-      <Summary />
-      <Discussion />
-      <SourceLink />
-      <Share />
       <Footer />
     </div>
   )
