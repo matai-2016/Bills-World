@@ -9,7 +9,8 @@
     "dev": "nodemon --watch server server/index & webpack --watch",
     "postinstall": "knex migrate:latest && webpack",
     "start": "node server",
-    "test": "standard --fix --verbose | snazzy && tape -r babel-register 'test/**/*.test.js' | tap-spec",
+    "test": "tape -r babel-register 'test/**/*.test.js' | tap-spec",
+    "linter": "standard",
     "watch": "nodemon -e js,jsx -x npm test"
   },
   "author": "EDA",

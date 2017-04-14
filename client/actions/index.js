@@ -6,6 +6,7 @@ export function testButton () {
     type: 'TEST_BUTTON'
   }
 }
+
 const authService = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN)
 
 // Listen to authenticated event from AuthService and get the profile of the user
