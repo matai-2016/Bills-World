@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Bills from './Bills'
-import Login from './Login'
-import Header from './Header'
-import Footer from './Footer'
+import Bills from '../Bills/Bills'
+import Login from '../Login/Login'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 
 const Home = () => {
   return (
