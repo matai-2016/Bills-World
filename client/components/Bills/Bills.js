@@ -1,9 +1,9 @@
 import React from 'react'
-import Bill from './Bill'
+import Bill from '../Bill/Bill'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { getBills } from '../actions/bills.js'
+import { getBills } from '../../actions/bills.js'
 
 class Bills extends React.Component {
   componentDidMount () {
