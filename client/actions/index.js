@@ -1,6 +1,11 @@
 import request from 'superagent'
 import AuthService from '../utils/AuthService'
 
+export function testButton () {
+  return {
+    type: 'TEST_BUTTON',
+  }
+}
 const authService = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN)
 
 // Listen to authenticated event from AuthService and get the profile of the user
@@ -16,6 +21,7 @@ export function checkLogin(history) {
         AuthService.setProfile(profile) // static method
         console.log(profile)
         dispatch(checkUserInDatabase(profile))
+        console.log('got past function')
         return dispatch(loginSuccess(history, profile))
       })
     })
@@ -25,8 +31,10 @@ export function checkLogin(history) {
 }
 
 export function checkUserInDatabase (profile) {
+  console.log('got to dispatch')
   return dispatch => {
     const clientID = profile.clientID
+    console.log(clientID)
     return request
     .get(`/auth/${clientID}`)
     .end((err, res) => {
@@ -34,10 +42,29 @@ export function checkUserInDatabase (profile) {
         console.error(err.message)
         return
       }
-      if (res === 'User does not exist') {
-        dispatch(addUsertoDatabase(profile))
+      console.log('no error from server yet')
+      if (res.body.message === 'User does not exist') {
+        console.log('User does not exist')
+        console.log('Got here')
+        dispatch(addUserToDatabase(profile))
       }
-      console.log(res)
+      return
+    })
+  }
+}
+
+export function addUserToDatabase (profile) {
+  console.log(profile)
+  return dispatch => {
+    return request
+    .post('/auth/register')
+    .send(profile)
+    .end((err, res) => {
+      if (err) {
+        console.error(err.message)
+        return
+      }
+      console.log('User has been added to database')
       return
     })
   }
