@@ -1,11 +1,6 @@
 import request from 'superagent'
 import AuthService from '../utils/AuthService'
 
-export function testButton () {
-  return {
-    type: 'TEST_BUTTON',
-  }
-}
 const authService = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN)
 
 // Listen to authenticated event from AuthService and get the profile of the user
@@ -19,11 +14,32 @@ export function checkLogin(history) {
           return dispatch(loginError(error))
         AuthService.setToken(authResult.idToken) // static method
         AuthService.setProfile(profile) // static method
+        console.log(profile)
+        dispatch(checkUserInDatabase(profile))
         return dispatch(loginSuccess(history, profile))
       })
     })
     // Add callback for lock's `authorization_error` event
     authService.lock.on('authorization_error', (error) => dispatch(loginError(error)))
+  }
+}
+
+export function checkUserInDatabase (profile) {
+  return dispatch => {
+    const clientID = profile.clientID
+    return request
+    .get(`/auth/${clientID}`)
+    .end((err, res) => {
+      if (err) {
+        console.error(err.message)
+        return
+      }
+      if (res === 'User does not exist') {
+        dispatch(addUsertoDatabase(profile))
+      }
+      console.log(res)
+      return
+    })
   }
 }
 

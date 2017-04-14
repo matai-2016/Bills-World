@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { testButton, checkLogin, loginRequest, logoutSuccess } from '../actions'
+import { checkLogin, loginRequest, logoutSuccess } from '../actions'
 
 class Login extends Component {
   constructor(props) {
@@ -44,9 +44,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    testButton: () => {
-      return dispatch(testButton())
-    },
     checkLogin: (history) => {
       return dispatch(checkLogin(history))
     },
