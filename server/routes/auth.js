@@ -23,11 +23,11 @@ router.get('/:clientID', (req, res) => {
   users.exists(req.params.clientID)
     .then(exists => {
       if (exists) {
-        console.log('User Exists')
-        res.send({ message: 'User Exists'})
+        console.log('User exists')
+        res.send({ message: 'User exists'})
       } else {
-        console.log('User Does Not Exist')
-        res.send({ message: 'User Does Not Exist'})
+        console.log('User does not exist')
+        res.send({ message: 'User does not exist'})
       }
     })
 })
