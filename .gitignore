@@ -1,6 +1,8 @@
 node_modules
 dev.sqlite3
 .secret
+.DS_Store
+npm-debug.log
 *.pem
 .env
 bundle*
