@@ -7,6 +7,6 @@ module.exports = {
 
 function getBill (id) {
   return knex('bills')
-  .where('id', id)
+  .where('bill_number', id)
   .select()
 }
