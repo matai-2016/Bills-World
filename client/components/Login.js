@@ -7,7 +7,7 @@ import { testButton, checkLogin, loginRequest, logoutSuccess } from '../actions'
 class Login extends Component {
   constructor(props) {
     super(props)
-    this.props.checkLogin(this.props.history) // check is Auth0 lock is authenticating after login callback
+    this.props.checkLogin(this.props.history) 
   }
 
   render () {
