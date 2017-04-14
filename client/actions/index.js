@@ -33,7 +33,7 @@ export function checkUserInDatabase (profile) {
   return dispatch => {
     const clientID = profile.clientID
     return request
-    .get(`/users/${clientID}`)
+    .get(`/auth/${clientID}`)
     .end((err, res) => {
       if (err) {
         console.error(err.message)
