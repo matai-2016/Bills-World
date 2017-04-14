@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const app = express()
 
 const webScraper = require('./web-scraper')
-const saveScrape = require('./save-scrape')
+const writeScrapedDataToDb = require('./save-scrape')
 
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../public')))
@@ -25,7 +25,7 @@ app.get('/scrape', (req, res) => {
       return console.log('Web Scraper Error')
     }
     res.send(data)
-    saveScrape(data)
+    writeScrapedDataToDb(data)
   })
 })
 

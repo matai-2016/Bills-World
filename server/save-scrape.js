@@ -3,7 +3,7 @@ const knex = require('knex')(config)
 
 module.exports = saveScrape
 
-function saveScrape (data) {
+function writeScrapedDataToDb (data) {
   console.log('Save Scraper')
   data.map((bill) => {
     return knex('bills')
