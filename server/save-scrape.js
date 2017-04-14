@@ -8,16 +8,15 @@ function saveScrape (data) {
   data.map((bill) => {
     return knex('bills')
       .select('bill_number')
-      .then((billNumber) => {
-        let billNumberFiltered = billNumber.filter((number) => {
-          return number.bill_number === bill.bill_number
+      .then((billNumbers) => {
+        let filtered = billNumbers.filter((billNumber) => {
+          return billNumber.bill_number === bill.bill_number
         })
-        if (billNumberFiltered.length === 0) {
+        if (filtered.length === 0) {
           return knex('bills').insert(bill)
-        } else if (billNumberFiltered.length > 0) {
-          return knex('bills').where(billNumberFiltered[0], bill.bill_number).update(bill)
+        } else if (filtered.length > 0) {
+          return knex('bills').where(filtered[0], bill.bill_number).update(bill)
         }
-        console.log(billNumberFiltered)
       })
       .catch(function (err) {
         console.error(err)
