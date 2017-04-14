@@ -1,15 +1,59 @@
 import React from 'react'
 import Bill from './Bill'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const Bills = () => {
-  return (
-    <div>
-      <h2>[Bills Container]</h2>
-      <ul>
-        <Bill />
-      </ul>
-    </div>
-  )
+import { getBills } from '../actions/bills.js'
+
+class Bills extends React.Component {
+  componentDidMount () {
+    this.props.getBills()
+  }
+
+  handleClick (id) {
+    this.props.getBills()
+  }
+
+  render () {
+    return (
+      <div className='container'>
+        {this.props.bills.map((bill, i) => {
+          return (
+            <div className='bill-container' key={i}>
+              <Bill
+                id={bill.id}
+                title={bill.title}
+                introductionDate={bill.introduction_date}
+                memberInCharge={bill.member_in_charge}
+                type={bill.type}
+                billNumber={bill.bill_number}
+                summary={bill.summary}
+              />
+              <Link to={`./bill/${bill.bill_number}`}><button className='view-bill-button'>View Bill</button></Link>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
 }
 
-export default Bills
+// Bills.propTypes = {
+//   bills: React.PropTypes.array,
+//   getBills: React.PropTypes.func
+// }
+const mapStateToProps = state => {
+  return {
+    bills: state.bills
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getBills: () => {
+      dispatch(getBills())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bills)
