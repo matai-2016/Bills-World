@@ -27,53 +27,48 @@ router.get('/:clientID', (req, res) => {
         res.send({ message: 'User exists'})
       } else {
         console.log('User does not exist')
-        res.send({ message: 'User does not exist'})
+        res.status(404).send({ message: 'User does not exist'})
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+        return
       }
     })
 })
 
-// router.post('/register',
-//   register,
-//   registerFail
-// )
-//
-// function register (req, res, next) {
-//   users.exists(req.body.profile.clientID)
-//     .then(exists => {
-//       if (exists) {
-//         res.send({ message: 'User Exists'})
-//       }
-//
-//       users.createUser(req.body.profile.clientID, req.body.profile.username, req.body.profile.email)
-//         .then(() => users.getByClientId(req.body.profile.clientID))
-//         .then((users) => {
-//           const user = users[0]
-//           req.login(user, (err) => {
-//             if (err) {
-//               return res.send({ message: err })
-//             }
-//             res.send({
-//               message: 'Authentication Successful',
-//               authenticated: true,
-//               id: user.id,
-//               name: user.name,
-//               email: user.email,
-//               phone: user.phone
-//             })
-//           })
-//         })
-//     })
-//     .catch((err) => {
-//       if (err) {
-//         console.error(err.message)
-//         return
-//       }
-//       next()
-//     })
-// }
-//
-// function registerFail (req, res) {
-//   res.send({ message: 'Couldnt add user' })
-// }
+router.post('/register',
+  register,
+  registerFail
+)
+
+function register (req, res, next) {
+  users.exists(req.body.clientID)
+    .then(exists => {
+      if (exists) {
+        console.log('USER EXISTS')
+        next()
+        return
+      }
+      users.createUser(req.body.clientID, req.body.username, req.body.email)
+        .then(() => users.getByClientId(req.body.clientID))
+        .then(function (result) {
+          res.send(result[0])
+          return
+        })
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+        next()
+        return
+      }
+    })
+}
+
+function registerFail (req, res) {
+  res.send({ message: 'Couldn\'t add user' })
+}
 
 module.exports = router

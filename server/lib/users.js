@@ -36,6 +36,6 @@ function exists (client_id, testDb) {
 function getByClientId (client_id, testDb) {
   const connection = testDb || knex
   return connection('users')
-    .select()
     .where('client_id', client_id)
+    .select()
 }
