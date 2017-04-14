@@ -5,7 +5,7 @@ import BillPage from './BillPage'
 
 const Bill = () => {
   return (
-    <li><Link to='/billId'>[Bill]</Link></li>
+    <li><Link to='/billid'>[Bill]</Link></li>
   )
 }
 
