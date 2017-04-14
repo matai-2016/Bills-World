@@ -1,7 +1,7 @@
 const config = require('../knexfile')[process.env.NODE_ENV || 'development']
 const knex = require('knex')(config)
 
-module.exports = saveScrape
+module.exports = writeScrapedDataToDb
 
 function writeScrapedDataToDb (data) {
   console.log('Save Scraper')
