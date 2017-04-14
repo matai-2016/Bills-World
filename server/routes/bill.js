@@ -21,13 +21,13 @@ router.get('/:id', (req, res) => {
         introduction_date: curBill.introduction_date,
         votes_for: votes
         .filter(vote => vote.bill_id === curBill.id)
-        .reduce(function(total, vote) {
-          return vote.voted_for ? total+1 : total
+        .reduce(function (total, vote) {
+          return vote.voted_for ? total + 1 : total
         }, 0),
         votes_against: votes
         .filter(vote => vote.bill_id === curBill.id)
-        .reduce(function(total, vote) {
-          return vote.voted_against ? total+1 : total
+        .reduce(function (total, vote) {
+          return vote.voted_against ? total + 1 : total
         }, 0)
       }
       res.send(result)
@@ -61,6 +61,5 @@ router.delete('/:id', (req, res) => {
 //       })
 //     })
 // })
-
 
 module.exports = router

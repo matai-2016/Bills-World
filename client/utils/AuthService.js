@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode'
 // import LogoImg from 'images/test-icon.png';
 
 export default class AuthService {
-  constructor(clientId, domain) {
+  constructor (clientId, domain) {
     // Configure Auth0 lock
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
@@ -26,12 +26,12 @@ export default class AuthService {
   // ======================================================
   // Public methods
   // ======================================================
-  login() {
+  login () {
     // Call the show method to display the widget.
     this.lock.show()
   }
 
-  logout(){
+  logout () {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token')
     localStorage.removeItem('profile')
@@ -40,19 +40,19 @@ export default class AuthService {
   // ======================================================
   // Static methods
   // ======================================================
-  static getProfile() {
+  static getProfile () {
     // Retrieves the profile data from localStorage
     const profile = localStorage.getItem('profile')
     return profile ? JSON.parse(localStorage.profile) : {}
   }
 
-  static loggedIn() {
+  static loggedIn () {
     // Checks if there is a saved token and it's still valid
     const token = AuthService.getToken()
     return !!token && !AuthService.isTokenExpired(token)
   }
 
-  static setProfile(profile) {
+  static setProfile (profile) {
     // Saves profile data to localStorage
     localStorage.setItem('profile', JSON.stringify(profile))
     // Triggers profile_updated event to update the UI
@@ -64,20 +64,20 @@ export default class AuthService {
   //   return profile ? JSON.parse(localStorage.profile) : {}
   // }
 
-  static setToken(idToken) {
+  static setToken (idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken)
   }
 
-  static getToken() {
+  static getToken () {
     // Retrieves the user token from localStorage
     return localStorage.getItem('id_token')
   }
 
-  static getTokenExpirationDate() {
+  static getTokenExpirationDate () {
     const token = AuthService.getToken()
     const decoded = jwtDecode(token)
-    if(!decoded.exp) {
+    if (!decoded.exp) {
       return null
     }
 
@@ -86,7 +86,7 @@ export default class AuthService {
     return date
   }
 
-  static isTokenExpired() {
+  static isTokenExpired () {
     const token = AuthService.getToken()
     if (!token) return true
     const date = AuthService.getTokenExpirationDate(token)

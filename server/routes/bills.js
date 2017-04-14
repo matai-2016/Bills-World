@@ -20,13 +20,13 @@ router.get('/', (req, res) => {
           introduction_date: bill.introduction_date,
           votes_for: votes
             .filter(vote => vote.bill_id === bill.id)
-            .reduce(function(total, vote) {
-              return vote.voted_for ? total+1 : total
+            .reduce(function (total, vote) {
+              return vote.voted_for ? total + 1 : total
             }, 0),
           votes_against: votes
             .filter(vote => vote.bill_id === bill.id)
-            .reduce(function(total, vote) {
-              return vote.voted_against ? total+1 : total
+            .reduce(function (total, vote) {
+              return vote.voted_against ? total + 1 : total
             }, 0)
         }
       })
