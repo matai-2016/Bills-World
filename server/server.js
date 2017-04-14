@@ -10,14 +10,13 @@ const app = express()
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../public')))
 
-//  routes
-const usersRoutes = require('./routes/users')
-// const billsRoutes = require('./routes/bills')
-// const billRoutes = require('./routes/bill')
+const authRoutes = require('./routes/auth')
+const billsRoutes = require('./routes/bills')
+const billRoutes = require('./routes/bill')
 
-app.use('/users', usersRoutes)
-// app.use('/bills', billsRoutes)
-// app.use('/bill', billRoutes)
+app.use('/auth', authRoutes)
+app.use('/bills', billsRoutes)
+app.use('/bill', billRoutes)
 
 app.get('/scrape', (req, res) => {
   const data = []
