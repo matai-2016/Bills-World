@@ -24,16 +24,15 @@ router.get('/:clientID', (req, res) => {
     .then(exists => {
       if (exists) {
         console.log('User exists')
-        res.send({ message: 'User exists'})
+        res.send({message: 'User exists'})
       } else {
         console.log('User does not exist')
-        res.send({ message: 'User does not exist'})
+        res.send({message: 'User does not exist'})
       }
     })
     .catch((err) => {
       if (err) {
         console.error(err.message)
-        return
       }
     })
 })
@@ -55,14 +54,12 @@ function register (req, res, next) {
         .then(() => users.getByClientId(req.body.clientID))
         .then(function (result) {
           res.send(result[0])
-          return
         })
     })
     .catch((err) => {
       if (err) {
         console.error(err.message)
         next()
-        return
       }
     })
 }

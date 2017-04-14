@@ -3,20 +3,19 @@ import AuthService from '../utils/AuthService'
 
 export function testButton () {
   return {
-    type: 'TEST_BUTTON',
+    type: 'TEST_BUTTON'
   }
 }
 const authService = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN)
 
 // Listen to authenticated event from AuthService and get the profile of the user
 // Done on every page startup
-export function checkLogin(history) {
+export function checkLogin (history) {
   return (dispatch) => {
     // Add callback for lock's `authenticated` event
     authService.lock.on('authenticated', (authResult) => {
       authService.lock.getProfile(authResult.idToken, (error, profile) => {
-        if (error)
-          return dispatch(loginError(error))
+        if (error) { return dispatch(loginError(error)) }
         AuthService.setToken(authResult.idToken) // static method
         AuthService.setProfile(profile) // static method
         dispatch(checkUserInDatabase(profile))
@@ -41,7 +40,6 @@ export function checkUserInDatabase (profile) {
       if (res.body.message === 'User does not exist') {
         dispatch(addUserToDatabase(profile))
       }
-      return
     })
   }
 }
@@ -57,19 +55,18 @@ export function addUserToDatabase (profile) {
         return
       }
       console.log('User has been added to database')
-      return
     })
   }
 }
 
-export function loginRequest() {
+export function loginRequest () {
   authService.login()
   return {
     type: 'LOGIN_REQUEST'
   }
 }
 
-export function loginSuccess(history, profile) {
+export function loginSuccess (history, profile) {
   history.push('/')
   return {
     type: 'LOGIN_SUCCESS',
@@ -77,14 +74,14 @@ export function loginSuccess(history, profile) {
   }
 }
 
-export function loginError(error) {
+export function loginError (error) {
   return {
     type: 'LOGIN_ERROR',
     error
   }
 }
 
-export function logoutSuccess(history) {
+export function logoutSuccess (history) {
   authService.logout()
   history.push('/')
   return {

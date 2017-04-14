@@ -19,7 +19,7 @@ function createUser (client_id, username, email, testDb) {
     .insert({
       client_id: client_id,
       username: username,
-      email: email,
+      email: email
     })
 }
 

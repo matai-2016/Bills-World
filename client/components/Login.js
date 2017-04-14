@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { checkLogin, loginRequest, logoutSuccess } from '../actions'
 
 class Login extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.props.checkLogin(this.props.history)
   }
@@ -20,7 +20,7 @@ class Login extends Component {
           )
           : (
             <div>
-              <img src={this.props.profile.picture} height="40px" />
+              <img src={this.props.profile.picture} height='40px' />
               <span>Welcome, {this.props.profile.nickname}</span>
               <button onClick={() => this.props.onLogoutClick(this.props.history)}>Logout</button>
             </div>
