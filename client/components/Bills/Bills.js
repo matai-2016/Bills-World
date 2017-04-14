@@ -25,7 +25,7 @@ class Bills extends React.Component {
                 billNumber={bill.bill_number}
                 summary={bill.summary}
               />
-              <Link to={`./bill/${bill.bill_number}`}><button className='view-bill-button'>View Bill</button></Link>
+              <Link to={`./${bill.bill_number}`}><button className='view-bill-button'>View Bill</button></Link>
             </div>
           )
         })}

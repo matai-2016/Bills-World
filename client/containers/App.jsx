@@ -26,7 +26,7 @@ class App extends Component {
         <Route path='/bills' component={Bills} />
         <Route path='/bill' component={Bill} />
         <Route path='/footer' component={Footer} />
-        <Route path='/bill/:id' component={BillPage} />
+        <Route path='/:id' component={BillPage} />
         <Route path='/title' component={Title} />
         <Route path='/vote' component={Vote} />
         <Route path='/title' component={Title} />
