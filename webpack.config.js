@@ -1,4 +1,4 @@
-var DotenvPlugin = require('webpack-dotenv-plugin');
+var DotenvPlugin = require('webpack-dotenv-plugin')
 
 module.exports = {
   entry: './client/index.js',
