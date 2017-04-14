@@ -1,15 +1,15 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const bill = require('../lib/bill')
-const votes = require('../lib/votes')
+// const votes = require('../lib/votes')
 
 const router = express.Router()
 router.use(bodyParser.json())
 
 // get single bill and vote count
 
-router.get('/:id', (req, res) => {
-  bill.getBill(req.params.id)
+router.get('/:bill_number', (req, res) => {
+  bill.getBill(req.params.bill_number)
     .then((bill) => {
       console.log('BILL: ', bill[0])
       const curBill = bill[0]
