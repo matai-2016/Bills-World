@@ -1,5 +1,6 @@
 import test from 'ava'
+import {loginRequest} from '../../client/actions/index.js'
 
-test('my passing test2', t => {
-  t.pass()
+test('loginRequest returns object with type LOGIN_REQUEST', t => {
+  t.deepEqual(loginRequest(), { type: 'LOGIN_REQUEST' })
 })

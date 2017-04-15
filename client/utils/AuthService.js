@@ -7,7 +7,6 @@ import jwtDecode from 'jwt-decode'
 
 export default class AuthService {
   constructor (clientId, domain) {
-    console.log(clientId)
     // Configure Auth0 lock
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {

@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "enzyme": "^2.7.0",
+    "jsdom": "^9.12.0",
     "json-loader": "^0.5.4",
     "jsx-loader": "^0.13.2",
     "nodemon": "^1.11.0",
@@ -65,15 +66,17 @@
     ]
   },
   "ava": {
-   "babel": {
-     "presets": [
-       "es2015",
-       "react",
-       "stage-2"
-     ]
-   },
-   "require": ["babel-register"]
- },
+    "babel": {
+      "presets": [
+        "es2015",
+        "react",
+        "stage-2"
+      ]
+    },
+    "require": [
+      "babel-register"
+    ]
+  },
   "engines": {
     "node": ">=7.0.0"
   }
