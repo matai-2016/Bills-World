@@ -11,7 +11,6 @@ import Footer from '../Footer/Footer'
 
 import './billPage.css'
 
-
 class BillPage extends React.Component {
   componentDidMount () {
     const billNumber = this.props.match.params.bill_number
@@ -51,6 +50,5 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillPage)
