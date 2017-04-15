@@ -13,29 +13,29 @@ function getUsers () {
   .select()
 }
 
-function createUser (client_id, username, email, testDb) {
+function createUser (clientId, username, email, testDb) {
   const connection = testDb || knex
   return connection('users')
     .insert({
-      client_id: client_id,
+      client_id: clientId,
       username: username,
       email: email
     })
 }
 
-function exists (client_id, testDb) {
+function exists (clientId, testDb) {
   const connection = testDb || knex
   return connection('users')
     .count('id as n')
-    .where('client_id', client_id)
+    .where('client_id', clientId)
     .then(count => {
       return count[0].n > 0
     })
 }
 
-function getByClientId (client_id, testDb) {
+function getByClientId (clientId, testDb) {
   const connection = testDb || knex
   return connection('users')
-    .where('client_id', client_id)
+    .where('client_id', clientId)
     .select()
 }

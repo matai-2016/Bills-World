@@ -1,6 +1,6 @@
 import React, { Component }  from 'react'
 import { connect } from 'react-redux'
-import './Discussion.css'
+import './discussion.css'
 
 import { updateCommentForm, saveComment } from '../../actions/comments.js'
 
@@ -51,4 +51,20 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(Discussion)
+
+// <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
+
+// saveComment: (details) => {
+//   return dispatch(loginUser(creds))
+//
+// const mapStateToProps = (state) => {
+//   return {
+//     email: state.auth.email,
+//     password: state.auth.password,
+//     message: state.auth.message,
+//     authenticated: state.auth.authenticated
+//   }
+// }
+>>>>>>> 5bb7b0517a84378e45a06e857fd5d5e00649c2e9

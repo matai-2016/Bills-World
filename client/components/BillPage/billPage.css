@@ -1,0 +1,10 @@
+.bill-info-container {
+  padding: 15px;
+  border-style: groove;
+  border-width: 3px;
+  border-radius: 10px;
+  background-color: #FEE7B9;
+  border-color: #FEE7B9;
+  opacity: 0.7;
+  margin-top: 50px;
+}
