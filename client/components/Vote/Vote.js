@@ -1,4 +1,5 @@
 import React from 'react'
+import { calculatePercentage } from '../../utils/calculations'
 // import Bill from '../Bill/Bill'
 // import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -13,23 +14,19 @@ class Vote extends React.Component {
   render () {
     return (
       <div className='votes-container'>
-        <p>Bill Number: {this.props.billInfo.bill_number} </p>
         <p className='votes-for'>Votes For: {this.props.votes.votes_for} </p>
         <p className='votes-against'>Votes Against: {this.props.votes.votes_against} </p>
+        <p className='votes-result'>Percentage: {this.props.percentage}</p>
       </div>
     )
   }
 }
 
-// Votes.propTypes = {
-//   bills: React.PropTypes.array,
-//   getBills: React.PropTypes.func
-// }
-
 const mapStateToProps = state => {
   return {
     billInfo: state.billInfo,
-    votes: state.votes
+    votes: state.votes,
+    percentage: calculatePercentage(state.votes.votes_for, state.votes.votes_against)
   }
 }
 
