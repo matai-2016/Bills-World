@@ -15,22 +15,28 @@ class Discussion extends Component {
         {errorMessage &&
           <p>{errorMessage}</p>
         }
+        {
+
+        }
       </div>
     )
   }
-  handleSubmit (event) {
-      const clientID = this.props.clientID
-      const comment = this.props.comment
-      const commentDetails = { clientID: clientID, comment: comment }
-      this.props.saveComment(commentDetails)
-    }
+handleSubmit (event) {
+    const clientID = this.props.clientID
+    const comment = this.props.comment
+    const commentDetails = { clientID: clientID, comment: comment }
+    this.props.saveComment(commentDetails).then(() => {
+      displayComments(this.props.commentList)
+    })
+  }
 }
 
 
 const mapStateToProps = (state) => {
   return {
     clientID: state.auth.clientID,
-    comment: state.comments.comment
+    comment: state.comments.comment,
+    commentList: state.comments.commentList
   }
 }
 
