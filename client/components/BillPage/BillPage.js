@@ -6,6 +6,7 @@ import { getBillInfo } from '../../actions/billInfo'
 import Login from '../Login/Login'
 import Header from '../Header/Header'
 import BillInfo from '../BillInfo/BillInfo'
+import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
 
 import './billPage.css'
@@ -30,6 +31,7 @@ class BillPage extends React.Component {
           billNumber={this.props.billInfo.bill_number}
           summary={this.props.billInfo.summary}
         />
+        <Discussion />
         <Footer />
       </div>
     )

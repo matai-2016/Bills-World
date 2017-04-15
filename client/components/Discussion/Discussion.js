@@ -23,8 +23,9 @@ class Discussion extends Component {
   }
 handleSubmit (event) {
     const clientID = this.props.clientID
+    const billNumber = this.props.billNumber
     const comment = this.props.comment
-    const commentDetails = { clientID: clientID, comment: comment }
+    const commentDetails = { client_id: clientID, bill_number: billNumber, comment: comment }
     this.props.saveComment(commentDetails).then(() => {
       displayComments(this.props.commentList)
     })
@@ -35,6 +36,7 @@ handleSubmit (event) {
 const mapStateToProps = (state) => {
   return {
     clientID: state.auth.clientID,
+    billNumber: state.billInfo.bill_number,
     comment: state.comments.comment,
     commentList: state.comments.commentList
   }
