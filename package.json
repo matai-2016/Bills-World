@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-react-webpack",
+  "name": "bills-world",
   "version": "0.1.1",
   "description": "Bills-World",
   "repository": "https://github.com/matai-2016/Bills-World",
@@ -47,13 +47,16 @@
     "webpack-dotenv-plugin": "^2.0.0"
   },
   "devDependencies": {
+    "css-loader": "^0.28.0",
     "enzyme": "^2.7.0",
     "jsdom": "^9.12.0",
     "json-loader": "^0.5.4",
     "jsx-loader": "^0.13.2",
     "nodemon": "^1.11.0",
+    "postcss-loader": "^1.3.3",
     "sqlite3": "^3.1.8",
     "standard": "^10.0.1",
+    "style-loader": "^0.16.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
     "webpack-dev-server": "^1.16.2"
