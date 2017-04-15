@@ -1,0 +1,9 @@
+.bill-border {
+  padding: 15px;
+  border-style: groove;
+  border-width: 3px;
+  min-height: 340px;
+  border-radius: 5px;
+  background-color: #90BDBC;
+  border-color: #567373;
+}

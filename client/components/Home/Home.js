@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer'
 
 const Home = () => {
   return (
-    <div>
+    <div className='container'>
       <Header />
       <h1>Home Page</h1>
       <Login />

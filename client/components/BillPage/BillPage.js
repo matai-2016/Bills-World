@@ -8,7 +8,7 @@ import Header from '../Header/Header'
 import BillInfo from '../BillInfo/BillInfo'
 import Footer from '../Footer/Footer'
 
-
+import './billPage.css'
 
 
 class BillPage extends React.Component {
