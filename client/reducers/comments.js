@@ -3,7 +3,7 @@ const initialState = {
   commentList: ''
 }
 
-export default function auth (state = initialState, action) {
+export default function comments (state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_COMMENT_FORM':
       return {

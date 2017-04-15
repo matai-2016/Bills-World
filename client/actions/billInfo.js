@@ -1,7 +1,7 @@
 
 import request from 'superagent'
 
-export function getBillInfo(billNumber) {
+export function getBillInfo (billNumber) {
   return dispatch => {
     return request
       .get(`bill/${billNumber}`)
@@ -14,7 +14,7 @@ export function getBillInfo(billNumber) {
   }
 }
 
-export function receiveBillInfo(billInfo) {
+export function receiveBillInfo (billInfo) {
   return {
     type: 'RECEIVE_BILL_INFO',
     billInfo

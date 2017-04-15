@@ -1,11 +1,5 @@
 import request from 'superagent'
 
-export function testButton () {
-  return {
-    type: 'TEST_BUTTON'
-  }
-}
-
 export function checkUserInDatabase (profile) {
   return dispatch => {
     const clientID = profile.clientID

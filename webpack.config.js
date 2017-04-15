@@ -28,8 +28,8 @@ module.exports = {
     }]
   },
   postcss: [
-   require('autoprefixer')
- ],
+    require('autoprefixer')
+  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
