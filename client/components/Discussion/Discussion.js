@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './discussion.css'
 
-import { updateCommentForm, saveComment } from '../../actions/comments.js'
+import { getComments, updateCommentForm, saveComment } from '../../actions/comments.js'
 
 class Discussion extends Component {
   render () {
@@ -11,13 +11,14 @@ class Discussion extends Component {
       <div>
         <input type='text' className='comment-input' name='comment' placeholder='Share your views here' onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
         <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
-
-        {errorMessage &&
-          <p>{errorMessage}</p>
-        }
-        {
-
-        }
+        <div>
+        {this.props.commentList.map((comment, i) => {
+          return (
+            <div key={i}>{comment.comment}</div>
+          )
+        })
+      }
+      </div>
       </div>
     )
   }
@@ -27,7 +28,11 @@ class Discussion extends Component {
     const comment = this.props.comment
     const commentDetails = { clientID: clientID, billNumber: billNumber, comment: comment }
     this.props.saveComment(commentDetails).then(() => {
-      displayComments(this.props.commentList)
+      getComments()
+    }).catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
     })
   }
 }
@@ -43,6 +48,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getComments: (billNumber) => {
+      return dispatch(getComments(billNumber))
+    },
     updateCommentForm: (name, value) => {
       return dispatch(updateCommentForm(name, value))
     },

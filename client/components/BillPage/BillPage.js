@@ -16,7 +16,6 @@ class BillPage extends React.Component {
     const billNumber = this.props.match.params.bill_number
     this.props.getBillInfo(billNumber)
   }
-
   render () {
     return (
       <div className='container bill-info-container'>

@@ -1,6 +1,6 @@
 const initialState = {
   comment: '',
-  commentList: ''
+  commentList: []
 }
 
 export default function auth (state = initialState, action) {

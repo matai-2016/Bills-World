@@ -1,8 +1,22 @@
 import request from 'superagent'
 
+export function getComments (billNumber) {
+  return dispatch => {
+    return request
+      .get(`comments/${billNumber}`)
+      .end((err, res) => {
+        if (err) {
+          return console.error(err.message, 'Failed to get comments')
+        }
+        dispatch(updateCommentList(res.body))
+    })
+  }
+}
+
 export function saveComment (commentDetails) {
   return dispatch => {
-    return request.post('/comments')
+    return request
+      .post('/comments/save')
       .set({ 'Content-Type': 'application/json' })
       .send(commentDetails)
       .then((res) => {
@@ -13,6 +27,7 @@ export function saveComment (commentDetails) {
       })
   }
 }
+
 
 export function updateCommentList (comments) {
   return {
