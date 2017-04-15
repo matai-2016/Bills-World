@@ -6,9 +6,11 @@ import Header from '../Header/Header'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
 
+import './home.css'
+
 const Home = () => {
   return (
-    <div>
+    <div className='container'>
       <Header />
       <h1>Home Page</h1>
       <Login />

@@ -8,7 +8,7 @@ import Header from '../Header/Header'
 import BillInfo from '../BillInfo/BillInfo'
 import Footer from '../Footer/Footer'
 
-
+import './billPage.css'
 
 
 class BillPage extends React.Component {
@@ -19,7 +19,7 @@ class BillPage extends React.Component {
 
   render () {
     return (
-      <div className='container'>
+      <div className='container bill-info-container'>
         <Header />
         <Login />
         <BillInfo
