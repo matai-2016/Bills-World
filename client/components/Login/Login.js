@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { checkLogin, createLoginRequest, registerLogoutSuccess } from '../actions/auth.js'
+import { checkLogin, createLoginRequest, registerLogoutSuccess } from '../../actions/auth.js'
 
 class Login extends Component {
   constructor (props) {
