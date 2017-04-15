@@ -1,4 +1,4 @@
-import React, { Component }  from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './discussion.css'
 
@@ -7,10 +7,9 @@ import { updateCommentForm } from '../../actions/comments.js'
 class Discussion extends Component {
   render () {
     const errorMessage = this.props.message
-      return (
-        <div>
-          <input type='text' className='comment-input' name='comment'  placeholder='Share your views here' onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}/>
-
+    return (
+      <div>
+        <input type='text' className='comment-input' name='comment' placeholder='Share your views here' onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
 
         {errorMessage &&
           <p>{errorMessage}</p>
@@ -27,7 +26,6 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
 
 export default connect(null, mapDispatchToProps)(Discussion)
 

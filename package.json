@@ -10,7 +10,7 @@
     "postinstall": "knex migrate:latest && webpack",
     "start": "node server",
     "test": "NODE_ENV=test ava -v test/**/*.test.js",
-    "linter": "standard --fix --verbose | snazzy",
+    "linter": "standard --fix --verbose",
     "watch": "nodemon -e js,jsx -x npm test"
   },
   "author": "EDA",
