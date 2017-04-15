@@ -7,17 +7,13 @@ import { getVotes } from '../../actions/votes.js'
 
 class Vote extends React.Component {
   componentDidMount () {
-    this.props.getVotes()
+    this.props.getVotes('223-1')
   }
-
-  // handleClick (id) {
-  //   this.props.getBills()
-  // }
 
   render () {
     return (
       <div className='votes-container'>
-        <p>Bill Number: {this.props.votes.bill_number} </p>
+        <p>Bill Number: {this.props.billInfo.bill_number} </p>
         <p className='votes-for'>Votes For: {this.props.votes.votes_for} </p>
         <p className='votes-against'>Votes Against: {this.props.votes.votes_against} </p>
       </div>
@@ -32,6 +28,7 @@ class Vote extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    billInfo: state.billInfo,
     votes: state.votes
   }
 }

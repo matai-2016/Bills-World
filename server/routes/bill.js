@@ -11,7 +11,6 @@ router.use(bodyParser.json())
 router.get('/:bill_number', (req, res) => {
   bill.getBill(req.params.bill_number)
     .then((bill) => {
-      console.log('BILL: ', bill[0])
       const curBill = bill[0]
       const result = {
         bill_number: curBill.bill_number,

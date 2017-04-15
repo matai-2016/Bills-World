@@ -5,11 +5,9 @@ import { getBillInfo } from '../../actions/billInfo'
 
 import Login from '../Login/Login'
 import Header from '../Header/Header'
+import Vote from '../Vote/Vote'
 import BillInfo from '../BillInfo/BillInfo'
 import Footer from '../Footer/Footer'
-
-
-
 
 class BillPage extends React.Component {
   componentDidMount () {
@@ -22,6 +20,7 @@ class BillPage extends React.Component {
       <div className='container'>
         <Header />
         <Login />
+        <Vote billNumber={this.props.billInfo.bill_number} />
         <BillInfo
           title={this.props.billInfo.title}
           introductionDate={this.props.billInfo.introduction_date}
@@ -49,6 +48,5 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillPage)
