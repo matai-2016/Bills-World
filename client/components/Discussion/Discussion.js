@@ -1,6 +1,6 @@
 import React, { Component }  from 'react'
 import { connect } from 'react-redux'
-import './Discussion.css'
+import './discussion.css'
 
 import { updateCommentForm } from '../../actions/comments.js'
 
@@ -35,7 +35,7 @@ export default connect(null, mapDispatchToProps)(Discussion)
 
 // saveComment: (details) => {
 //   return dispatch(loginUser(creds))
-// 
+//
 // const mapStateToProps = (state) => {
 //   return {
 //     email: state.auth.email,

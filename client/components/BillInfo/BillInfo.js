@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './billInfo.css'
+
 const BillInfo = (props) => {
   return (
     <div>

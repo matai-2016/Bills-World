@@ -3,6 +3,8 @@ import Bill from '../Bill/Bill'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import './bills.css'
+
 import { getBills } from '../../actions/bills.js'
 
 class Bills extends React.Component {
@@ -12,10 +14,10 @@ class Bills extends React.Component {
 
   render () {
     return (
-      <div className='container'>
+      <div className='container-fluid'>
         {this.props.bills.map((bill, i) => {
           return (
-            <div className='bill-container' key={i}>
+            <div className='col-md-4 bill-border' key={i}>
               <Bill
                 id={bill.id}
                 title={bill.title}
