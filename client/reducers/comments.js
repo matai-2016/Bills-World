@@ -1,5 +1,6 @@
 const initialState = {
-  comment: ''
+  comment: '',
+  commentList: ''
 }
 
 export default function auth (state = initialState, action) {
@@ -8,6 +9,11 @@ export default function auth (state = initialState, action) {
       return {
         ...state,
         [action.name]: action.value
+      }
+    case 'UPDATE_COMMENT_LIST':
+      return {
+        ...state,
+        commentList: action.comments
       }
     default:
       return state
