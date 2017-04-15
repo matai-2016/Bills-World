@@ -1,23 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import './discussion.css'
 
 import { getComments, updateCommentForm, saveComment } from '../../actions/comments.js'
 
 class Discussion extends Component {
+  componentDidMount (){
+    this.props.getComments(this.props.billNumber)
+  }
   render () {
     const errorMessage = this.props.message
+    
     return (
       <div>
         <input type='text' className='comment-input' name='comment' placeholder='Share your views here' onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
         <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
         <div>
-        {this.props.commentList.map((comment, i) => {
-          return (
-            <div key={i}>{comment.comment}</div>
-          )
-        })
-      }
+        {
+          this.props.commentList.map((comment, i) => {
+            return (
+              <div key={i}>{comment.comment}</div>
+            )
+          })
+        }
       </div>
       </div>
     )
@@ -28,7 +33,7 @@ class Discussion extends Component {
     const comment = this.props.comment
     const commentDetails = { clientID: clientID, billNumber: billNumber, comment: comment }
     this.props.saveComment(commentDetails).then(() => {
-      getComments()
+      this.props.getComments(this.props.billNumber)
     }).catch((err) => {
       if (err) {
         console.error(err.message)
@@ -37,10 +42,13 @@ class Discussion extends Component {
   }
 }
 
+Discussion.propTypes = {
+  billNumber: PropTypes.string.isRequired
+}
+
 const mapStateToProps = (state) => {
   return {
     clientID: state.auth.clientID,
-    billNumber: state.billInfo.bill_number,
     comment: state.comments.comment,
     commentList: state.comments.commentList
   }
