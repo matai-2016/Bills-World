@@ -19,7 +19,7 @@ class BillPage extends React.Component {
 
   render () {
     return (
-      <div className='container'>
+      <div className='container bill-info-container'>
         <Header />
         <Login />
         <BillInfo
