@@ -14,16 +14,14 @@ import './billPage.css'
 class BillPage extends React.Component {
   componentDidMount () {
     const billNumber = this.props.match.params.bill_number
-    setTimeout(() => {
       this.props.getBillInfo(billNumber)
-    }, 5000)
-
+      console.log(billNumber + 'componentDidMount')
   }
   render () {
     if (!this.props.billInfo.bill_number) {
       return (<div>Loading...</div>)
     }
-
+    console.log(this.props.billInfo.bill_number + 'inside the render')
     return (
       <div className='container bill-info-container'>
         <Header />

@@ -7,10 +7,11 @@ import { getComments, updateCommentForm, saveComment } from '../../actions/comme
 class Discussion extends Component {
   componentDidMount (){
     this.props.getComments(this.props.billNumber)
+    console.log(this.props.billNumber + 'inside Discussion, this.props.billNumber')
   }
   render () {
     const errorMessage = this.props.message
-    
+
     return (
       <div>
         <input type='text' className='comment-input' name='comment' placeholder='Share your views here' onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
