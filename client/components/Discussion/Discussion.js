@@ -10,7 +10,7 @@ class Discussion extends Component {
 
         <div>
           <input type='text' className='comment-input' name='comment'  placeholder='Share your views here' onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}/>
-          <button onClick={(event) => this.handleSubmit(event)}>Submit</button
+          <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
 
         {errorMessage &&
           <p>{errorMessage}</p>
