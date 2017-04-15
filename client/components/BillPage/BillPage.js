@@ -6,6 +6,7 @@ import { getBillInfo } from '../../actions/billInfo'
 import Login from '../Login/Login'
 import Header from '../Header/Header'
 import BillInfo from '../BillInfo/BillInfo'
+import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
 
 import './billPage.css'
@@ -13,10 +14,14 @@ import './billPage.css'
 class BillPage extends React.Component {
   componentDidMount () {
     const billNumber = this.props.match.params.bill_number
-    this.props.getBillInfo(billNumber)
+      this.props.getBillInfo(billNumber)
+      console.log(billNumber + 'componentDidMount')
   }
-
   render () {
+    if (!this.props.billInfo.bill_number) {
+      return (<div>Loading...</div>)
+    }
+    console.log(this.props.billInfo.bill_number + 'inside the render')
     return (
       <div className='container bill-info-container'>
         <Header />
@@ -29,6 +34,7 @@ class BillPage extends React.Component {
           billNumber={this.props.billInfo.bill_number}
           summary={this.props.billInfo.summary}
         />
+        <Discussion billNumber={this.props.billInfo.bill_number}/>
         <Footer />
       </div>
     )
