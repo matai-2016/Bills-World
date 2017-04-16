@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Line } from 'rc-progress'
 
 import { getVotes, toggleVote, checkUserVote } from '../../actions/votes.js'
 import './vote.css'
@@ -23,12 +24,15 @@ class Vote extends React.Component {
         <p className='votes-percentage-for'>Percentage For: {this.props.votes.percentage_for}%</p>
         <p className='votes-percentage-against'>Percentage Against: {this.props.votes.percentage_against}%</p>
         {this.props.userVote.votes_for
-          ? <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' className='btn btn-default highlight-button'>Vote Up</button>
-          : <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>Vote Up</button>
+          ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' className='btn btn-default highlight-button'>&#8710;</button>
+          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
         }
+        <div className='voting-button' style={{width: '150px'}}>
+          <Line percent={this.props.votes.percentage_for} strokeWidth="6" strokeColor={'#210708'} />
+        </div>
         {this.props.userVote.votes_against
-          ? <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' className='btn btn-default highlight-button'>Vote Down</button>
-          : <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>Vote Down</button>
+          ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' className='btn btn-default highlight-button'>&nabla;</button>
+          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
         }
       </div>
     )
