@@ -11,14 +11,14 @@ class Discussion extends Component {
         <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
         <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
         <div>
-        {
+          {
           this.props.comments.map((comment, i) => {
             return (
               <div key={i}>{comment.comment}</div>
             )
           })
         }
-      </div>
+        </div>
       </div>
     )
   }

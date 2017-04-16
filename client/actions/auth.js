@@ -1,5 +1,4 @@
 import { loginSuccess, checkUserInDatabase, loginError, loginRequest, logoutSuccess } from './index'
-import request from 'superagent'
 import AuthService from '../utils/AuthService'
 
 const authService = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN)

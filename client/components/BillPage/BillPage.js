@@ -14,7 +14,7 @@ import './billPage.css'
 class BillPage extends React.Component {
   componentDidMount () {
     const billNumber = this.props.match.params.bill_number
-      this.props.getBillInfo(billNumber)
+    this.props.getBillInfo(billNumber)
   }
   render () {
     if (!this.props.billInfo.bill_number) {

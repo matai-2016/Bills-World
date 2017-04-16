@@ -26,5 +26,4 @@ router.get('/:bill_number', (req, res) => {
     })
 })
 
-
 module.exports = router
