@@ -35,6 +35,11 @@ router.get('/', (req, res) => {
       })
       res.send(billsToSend)
     })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 })
 
 module.exports = router

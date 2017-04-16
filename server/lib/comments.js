@@ -15,10 +15,20 @@ function saveComment (clientID, billNumber, comment, username, date) {
       username: username,
       date: date
     })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 }
 
 function getComments (billNumber) {
   return knex('comments')
     .where('bill_number', billNumber)
     .select()
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 }
