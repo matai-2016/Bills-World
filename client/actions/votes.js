@@ -56,6 +56,7 @@ export function toggleVote (voteType, clientID, billNumber) {
           return console.error(err.message, 'Update Vote failed')
         }
         dispatch(showUserVote(res.body))
+        dispatch(getVotes(billNumber))
       })
   }
 }
