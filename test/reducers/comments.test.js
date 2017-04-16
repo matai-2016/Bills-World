@@ -8,8 +8,8 @@ test('comments returns state provided through action', t => {
     comment: 'my first comment'
   }
   const afterState = {
-      comment: 'my first comment',
-      devAcademy: 'is the coolest'
+    comment: 'my first comment',
+    devAcademy: 'is the coolest'
   }
   const action = updateCommentForm('devAcademy', 'is the coolest')
   t.deepEqual(comments(beforeState, action), afterState)

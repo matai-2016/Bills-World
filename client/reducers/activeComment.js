@@ -1,19 +1,18 @@
 const initialState = {
-  comment: '',
-  commentList: []
+  comment: ''
 }
 
-export default function comments (state = initialState, action) {
+export default function activeComment (state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_COMMENT_FORM':
       return {
         ...state,
         [action.name]: action.value
       }
-    case 'UPDATE_COMMENT_LIST':
+    case 'CLEAR_INPUT_BOX':
       return {
         ...state,
-        commentList: action.comments
+        comment: ''
       }
     default:
       return state

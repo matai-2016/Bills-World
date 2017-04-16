@@ -2,40 +2,35 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import './discussion.css'
 
-import { getComments, updateCommentForm, saveComment } from '../../actions/comments.js'
+import { getComments, updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
 
 class Discussion extends Component {
-  componentDidMount (){
-    this.props.getComments(this.props.billNumber)
-    console.log(this.props.billNumber + 'inside Discussion, this.props.billNumber')
-  }
   render () {
-    const errorMessage = this.props.message
-
     return (
       <div>
-        <input type='text' className='comment-input' name='comment' placeholder='Share your views here' onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
+        <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
         <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
         <div>
-        {
-          this.props.commentList.map((comment, i) => {
+          {
+          this.props.comments.map((comment, i) => {
             return (
               <div key={i}>{comment.comment}</div>
             )
           })
         }
-      </div>
+        </div>
       </div>
     )
   }
   handleSubmit (event) {
     const clientID = this.props.clientID
     const billNumber = this.props.billNumber
-    const comment = this.props.comment
-    const commentDetails = { clientID: clientID, billNumber: billNumber, comment: comment }
-    this.props.saveComment(commentDetails).then(() => {
-      this.props.getComments(this.props.billNumber)
-    }).catch((err) => {
+    const activeComment = this.props.activeComment
+    const commentDetails = { clientID: clientID, billNumber: billNumber, comment: activeComment }
+    this.props.saveComment(commentDetails)
+    .then(this.props.getBillInfo.bind(null, billNumber))
+    .then(this.props.clearInputBox)
+    .catch((err) => {
       if (err) {
         console.error(err.message)
       }
@@ -50,8 +45,7 @@ Discussion.propTypes = {
 const mapStateToProps = (state) => {
   return {
     clientID: state.auth.clientID,
-    comment: state.comments.comment,
-    commentList: state.comments.commentList
+    activeComment: state.activeComment.comment
   }
 }
 
@@ -65,6 +59,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     saveComment: (commentDetails) => {
       return dispatch(saveComment(commentDetails))
+    },
+    clearInputBox: () => {
+      return dispatch(clearInputBox())
     }
   }
 }
