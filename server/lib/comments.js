@@ -6,17 +6,20 @@ module.exports = {
   getComments
 }
 
-function saveComment (clientID, billNumber, comment) {
+function saveComment (date, billNumber, clientID, username, comment) {
   return knex('comments')
     .insert({
-      client_id: clientID,
+      date: date,
       bill_number: billNumber,
+      client_id: clientID,
+      username: username,
       comment: comment
     })
 }
 
 function getComments (billNumber) {
   return knex('comments')
+  console.log(billNumber)
     .where('bill_number', billNumber)
     .select()
 }
