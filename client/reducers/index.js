@@ -12,7 +12,7 @@ const reducers = combineReducers({
   bills,
   billInfo,
   votes,
-  userVote
+  userVote,
   activeComment,
   billInfo
 })
