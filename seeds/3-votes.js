@@ -1,11 +1,13 @@
 
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
   return knex('votes').del()
     .then(function () {
       // Inserts seed entries
       return knex('votes').insert([
-        {id: 1, user_id: 2, bill_id: 1, voted_for: true, voted_against: false}
-      ]);
-    });
-};
+        {id: 1, user_id: 2, bill_number: '223-1', voted_for: true, voted_against: false},
+        {id: 2, user_id: 1, bill_number: '223-1', voted_for: true, voted_against: false},
+        {id: 3, user_id: 1, bill_number: '253-1', voted_for: false, voted_against: true}
+      ])
+    })
+}
