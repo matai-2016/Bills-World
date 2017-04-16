@@ -28,7 +28,7 @@ class Login extends Component {
                 <img className='img-responsive profile-pic dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown' src={this.props.profile.picture} />
                  <ul className='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
                     <li role='presentation'>
-                       <Link role='menuitem' tabindex='-1' to='#' onClick={() => this.props.onLogoutClick(this.props.history)}>Logout</Link>
+                       <Link role='menuitem' tabIndex='-1' to='#' onClick={() => this.props.onLogoutClick(this.props.history)}>Logout</Link>
                     </li>
                  </ul>
               </div>
