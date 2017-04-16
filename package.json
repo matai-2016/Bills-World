@@ -6,6 +6,7 @@
   "main": "server/index.js",
   "scripts": {
     "knex": "knex",
+    "debug": "webpack && node --inspect --debug-brk server",
     "dev": "nodemon --watch server server/index & webpack --watch",
     "postinstall": "knex migrate:latest && webpack",
     "start": "node server",

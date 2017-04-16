@@ -3,7 +3,8 @@ const knex = require('knex')(config)
 
 module.exports = {
   saveComment,
-  getComments
+  getComments,
+  getAllComments
 }
 
 function saveComment (clientID, billNumber, comment, username, date) {
@@ -25,6 +26,16 @@ function saveComment (clientID, billNumber, comment, username, date) {
 function getComments (billNumber) {
   return knex('comments')
     .where('bill_number', billNumber)
+    .select()
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+}
+
+function getAllComments () {
+  return knex('comments')
     .select()
     .catch((err) => {
       if (err) {

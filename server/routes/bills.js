@@ -9,8 +9,8 @@ router.use(bodyParser.json())
 
 // gets all bills and their vote count
 router.get('/', (req, res) => {
-  Promise.all([bills.getBills(), votes.getVotes(), comments.getComments()])
-    .then(([bills, votes, comments]) => {
+  Promise.all([bills.getBills(), votes.getVotes(), comments.getAllComments()])
+    .then(([bills, votes, allComments]) => {
       const billsToSend = bills.map(bill => {
         return {
           bill_number: bill.bill_number,
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
             .reduce(function (total, vote) {
               return vote.voted_against ? total + 1 : total
             }, 0),
-          comments: comments.filter(commentGroup => commentGroup.bill_number === bill.bill_number)
+          comments: allComments.filter(comments => comments.bill_number === bill.bill_number)
         }
       })
       res.send(billsToSend)
