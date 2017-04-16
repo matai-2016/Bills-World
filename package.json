@@ -9,7 +9,7 @@
     "dev": "nodemon --watch server server/index & webpack --watch",
     "build": "webpack",
     "migrate": "knex migrate:latest",
-    "postinstall": "migrate && build",
+    "postinstall": "npm run migrate && npm run build",
     "start": "node server",
     "test": "NODE_ENV=test ava -v test/**/*.test.js",
     "linter": "standard --fix --verbose | snazzy",
