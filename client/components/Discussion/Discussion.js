@@ -14,7 +14,10 @@ class Discussion extends Component {
           {
           this.props.comments.map((comment, i) => {
             return (
-              <div key={i}>{comment.comment}</div>
+              <div key={i}>
+              <p>{comment.comment} <br />
+              {comment.date} {comment.username}</p>
+              </div>
             )
           })
         }
@@ -23,10 +26,16 @@ class Discussion extends Component {
     )
   }
   handleSubmit (event) {
+    const today = new Date()
+    const dd = today.getDate()
+    const mm = today.getMonth() + 1
+    const yyyy = today.getFullYear()
+    const date = dd + '/' + mm + '/' + yyyy
+    const username = this.props.username
     const clientID = this.props.clientID
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { clientID: clientID, billNumber: billNumber, comment: activeComment }
+    const commentDetails = { date: date, username: username, clientID: clientID, billNumber: billNumber, comment: activeComment }
     this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
@@ -44,7 +53,8 @@ Discussion.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    clientID: state.auth.clientID,
+    clientID: state.auth.profile.clientID,
+    username: state.auth.profile.username,
     activeComment: state.activeComment.comment
   }
 }

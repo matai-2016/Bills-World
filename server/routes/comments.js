@@ -18,7 +18,7 @@ router.get('/:bill_number', (req, res) => {
 })
 
 router.post('/save', (req, res) => {
-  comments.saveComment(req.body.clientID, req.body.billNumber, req.body.comment)
+  comments.saveComment(req.body.clientID, req.body.billNumber, req.body.comment, req.body.username, req.body.date)
       .then(() => comments.getComments(req.body.billNumber))
       .then(function (result) {
         res.send(result)
