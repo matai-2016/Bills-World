@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import './discussion.css'
 
-import { getComments, updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
+import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
 
 class Discussion extends Component {
   render () {
@@ -61,9 +61,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getComments: (billNumber) => {
-      return dispatch(getComments(billNumber))
-    },
     updateCommentForm: (name, value) => {
       return dispatch(updateCommentForm(name, value))
     },
