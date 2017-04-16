@@ -3,8 +3,10 @@ import './footer.css'
 
 const Footer = () => {
   return (
-    <div>
-      <h2>Footer</h2>
+    <div className='footer'>
+      <div className='footer-logo'>
+        <img className='img-responsive' src='/img/beehive-red.png' />
+      </div>
     </div>
   )
 }
