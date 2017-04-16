@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-
-import { checkLogin, loginRequest, logoutSuccess } from '../../actions'
+import { checkLogin, createLoginRequest, registerLogoutSuccess } from '../../actions/auth.js'
 
 class Login extends Component {
   constructor (props) {
@@ -48,10 +47,10 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(checkLogin(history))
     },
     onLoginClick: (history) => {
-      return dispatch(loginRequest())
+      return dispatch(createLoginRequest())
     },
     onLogoutClick: (history) => {
-      return dispatch(logoutSuccess(history))
+      return dispatch(registerLogoutSuccess(history))
     }
   }
 }

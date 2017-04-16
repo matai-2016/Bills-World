@@ -1,16 +1,17 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const bill = require('../lib/bill')
+const comments = require('../lib/comments')
 // const votes = require('../lib/votes')
 
 const router = express.Router()
 router.use(bodyParser.json())
 
-// get single bill and vote count
+// get single bill and comments
 
 router.get('/:bill_number', (req, res) => {
-  bill.getBill(req.params.bill_number)
-    .then((bill) => {
+  Promise.all([bill.getBill(req.params.bill_number), comments.getComments(req.params.bill_number)])
+    .then(([bill, comments]) => {
       const curBill = bill[0]
       const result = {
         bill_number: curBill.bill_number,
@@ -18,7 +19,8 @@ router.get('/:bill_number', (req, res) => {
         summary: curBill.summary,
         type: curBill.type,
         member_in_charge: curBill.member_in_charge,
-        introduction_date: curBill.introduction_date
+        introduction_date: curBill.introduction_date,
+        comments: comments
       }
       res.send(result)
     })

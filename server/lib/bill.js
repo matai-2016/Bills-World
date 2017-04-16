@@ -5,8 +5,8 @@ module.exports = {
   getBill
 }
 
-function getBill (bill_number) {
+function getBill (billNumber) {
   return knex('bills')
-  .where('bill_number', bill_number)
+  .where('bill_number', billNumber)
   .select()
 }
