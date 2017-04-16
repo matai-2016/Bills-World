@@ -1,6 +1,5 @@
 const initialState = {
-  comment: '',
-  commentList: []
+  comment: ''
 }
 
 export default function activeComment (state = initialState, action) {
@@ -10,10 +9,10 @@ export default function activeComment (state = initialState, action) {
         ...state,
         [action.name]: action.value
       }
-    case 'UPDATE_COMMENT_LIST':
+    case 'CLEAR_INPUT_BOX':
       return {
         ...state,
-        commentList: action.comments
+        comment: ''
       }
     default:
       return state
