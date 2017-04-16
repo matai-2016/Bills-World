@@ -25,7 +25,11 @@ class Discussion extends Component {
     )
   }
   handleSubmit (event) {
-    const date = 'today'
+    const today = new Date()
+    const dd = today.getDate()
+    const mm = today.getMonth() + 1
+    const yyyy = today.getFullYear()
+    const date = dd + '/' + mm + '/' + yyyy
     const username = this.props.username
     const clientID = this.props.clientID
     const billNumber = this.props.billNumber
@@ -72,9 +76,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Discussion)
-
-// const today = new Date()
-// const dd = today.getDate()
-// const mm = today.getMonth() + 1
-// const yyyy = today.getFullYear()
-// const date = dd + '/' + mm + '/' + yyyy
