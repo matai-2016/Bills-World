@@ -1,8 +1,8 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const votes = require('../lib/votes')
-const bills = require('../lib/bills')
 const comments = require('../lib/comments')
+const bills = require('../lib/bills')
 
 const router = express.Router()
 router.use(bodyParser.json())
@@ -29,8 +29,7 @@ router.get('/', (req, res) => {
             .reduce(function (total, vote) {
               return vote.voted_against ? total + 1 : total
             }, 0),
-          comments: comments
-            .filter(commentGroup => commentGroup.bill_number === bill.bill_number)
+          comments: comments.filter(commentGroup => commentGroup.bill_number === bill.bill_number)
         }
       })
       res.send(billsToSend)
