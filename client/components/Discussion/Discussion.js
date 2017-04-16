@@ -1,22 +1,25 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import './discussion.css'
+import Reply from '../Reply/Reply'
 
-import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
+import { updateCommentForm, saveComment, clearInputBox, createReply } from '../../actions/comments.js'
 
 class Discussion extends Component {
   render () {
     return (
       <div>
         <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
-        <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
+        <button onClick={() => this.handleSubmit()}>Submit</button>
         <div>
           {
-          this.props.comments.map((comment, i) => {
+          this.props.comments.map((item) => {
             return (
-              <div key={i}>
-              <p>{comment.comment} <br />
-              {comment.date} {comment.username}</p>
+              <div key={item.id}>
+              <p>{item.comment} <br />
+              {item.date} {item.username}</p>
+              <button name={item.id} onClick={(e) => this.reply(e.target.name)}>Reply</button>
+              <Reply parentId={this.props.parentId} itemId={item.id} replying={this.props.replying}/>
               </div>
             )
           })
@@ -25,7 +28,7 @@ class Discussion extends Component {
       </div>
     )
   }
-  handleSubmit (event) {
+  handleSubmit () {
     const today = new Date()
     const dd = today.getDate()
     const mm = today.getMonth() + 1
@@ -45,6 +48,9 @@ class Discussion extends Component {
       }
     })
   }
+  reply (parentId) {
+    this.props.createReply(parentId)
+  }
 }
 
 Discussion.propTypes = {
@@ -55,7 +61,9 @@ const mapStateToProps = (state) => {
   return {
     clientID: state.auth.profile.clientID,
     username: state.auth.profile.username,
-    activeComment: state.activeComment.comment
+    activeComment: state.activeComment.comment,
+    replying: state.activeReply.replying,
+    parentId: state.activeReply.parentId
   }
 }
 
@@ -69,6 +77,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearInputBox: () => {
       return dispatch(clearInputBox())
+    },
+    createReply: (parentId) => {
+      return dispatch(createReply(parentId))
     }
   }
 }

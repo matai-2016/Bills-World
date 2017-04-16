@@ -25,3 +25,10 @@ export function updateCommentForm (name, value) {
     value
   }
 }
+
+export function createReply (parentId) {
+  return {
+    type: 'CREATE_REPLY',
+    parentId
+  }
+}
