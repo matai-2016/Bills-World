@@ -1,8 +1,3 @@
-/*.login {
-  position: relative;
-  right: 30px;
-}*/
-
 .login-components {
   display: flex;
   justify-content: space-between;
@@ -30,6 +25,7 @@
 
 .dropdown-menu {
   position: absolute;
-  top: 0;
-  right: 0 !important;
+  right: 0;
+  left: inherit;
+  min-width: auto;
 }
