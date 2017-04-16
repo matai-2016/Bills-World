@@ -35,18 +35,7 @@ class Vote extends React.Component {
       </div>
     )
   }
-
 }
-
-
-// {this.props.userVote.votes_against
-//   ? <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' disabled>Vote Up</button>
-//   : <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>Vote Up</button>
-// }
-// {this.props.userVote.votes_for
-//   ? <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' disabled>Vote Down</button>
-//   : <button onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>Vote Down</button>
-// }
 
 const mapStateToProps = state => {
   return {
