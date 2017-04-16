@@ -21,8 +21,15 @@ module.exports = {
     {
       test: /\.json$/,
       loader: 'json'
+    },
+    {
+      test: /\.css$/,
+      loader: 'style!css?importLoaders=1!postcss'
     }]
   },
+  postcss: [
+    require('autoprefixer')
+  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
