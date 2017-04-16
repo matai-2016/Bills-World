@@ -21,24 +21,24 @@ class Vote extends React.Component {
       <div className='votes-container'>
         {this.props.votes.votes_for || this.props.votes.votes_against
           ? <div>
-              <p className='votes-for'>Votes For: {this.props.votes.votes_for} </p>
-              <p className='votes-against'>Votes Against: {this.props.votes.votes_against} </p>
-              <p className='votes-percentage-for'>Percentage For: {this.props.votes.percentage_for}%</p>
-              <p className='votes-percentage-against'>Percentage Against: {this.props.votes.percentage_against}%</p>
-            </div>
+            <p className='votes-for'>Votes For: {this.props.votes.votes_for} </p>
+            <p className='votes-against'>Votes Against: {this.props.votes.votes_against} </p>
+            <p className='votes-percentage-for'>Percentage For: {this.props.votes.percentage_for}%</p>
+            <p className='votes-percentage-against'>Percentage Against: {this.props.votes.percentage_against}%</p>
+          </div>
           : null
         }
         {this.props.auth.isAuthenticated &&
           <div>
             {this.props.userVote.votes_for
-              ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' className='btn btn-default highlight-button'>&#8710;</button>
+              ? <button className='voting-button btn btn-default highlight-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' >&#8710;</button>
               : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
             }
             <div className='voting-button' style={{width: '150px'}}>
-              <Line percent={this.props.votes.percentage_for} strokeWidth="6" strokeColor={'#210708'} />
+              <Line percent={this.props.votes.percentage_for} strokeWidth='6' strokeColor={'#210708'} />
             </div>
             {this.props.userVote.votes_against
-              ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' className='btn btn-default highlight-button'>&nabla;</button>
+              ? <button className='voting-button btn btn-default highlight-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
               : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
             }
           </div>
