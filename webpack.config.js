@@ -1,4 +1,5 @@
 const env = require('webpack').EnvironmentPlugin
+const DotenvPlugin = require('webpack-dotenv-plugin')
 
 module.exports = {
   entry: './client/index.js',
@@ -22,7 +23,11 @@ module.exports = {
     }]
   },
   plugins:[
-    new env(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN'])
+    new env(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN']),
+    new DotenvPlugin({
+      sample: './.env.example',
+      path: './.env'
+    })
   ],
   postcss: [
     require('autoprefixer')
