@@ -5,10 +5,10 @@ import { getBillInfo } from '../../actions/billInfo'
 
 import Login from '../Login/Login'
 import Header from '../Header/Header'
+import Vote from '../Vote/Vote'
 import BillInfo from '../BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
-
 import './billPage.css'
 
 class BillPage extends React.Component {
@@ -24,6 +24,7 @@ class BillPage extends React.Component {
       <div className='container bill-info-container'>
         <Header />
         <Login />
+        <Vote billNumber={this.props.match.params.bill_number} />
         <BillInfo
           title={this.props.billInfo.title}
           introductionDate={this.props.billInfo.introduction_date}
