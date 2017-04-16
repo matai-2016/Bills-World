@@ -13,7 +13,6 @@ class Vote extends React.Component {
 
   handleClick (e) {
     e.preventDefault()
-    console.log('This is it: ', e.target.name, this.props.auth.profile.clientID, this.props.billInfo.bill_number)
     this.props.toggleVote(e.target.name, this.props.auth.profile.clientID, this.props.billInfo.bill_number)
   }
 
