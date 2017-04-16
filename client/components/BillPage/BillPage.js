@@ -21,7 +21,7 @@ class BillPage extends React.Component {
       return (<div>Loading...</div>)
     }
     return (
-      <div className='container bill-info-container'>
+      <div>
         <Header />
         <Login />
         <Vote billNumber={this.props.match.params.bill_number} />
