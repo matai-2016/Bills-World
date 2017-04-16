@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const votes = require('../lib/votes')
+const comments = require('../lib/comments')
 const bills = require('../lib/bills')
 
 const router = express.Router()
@@ -8,8 +9,8 @@ router.use(bodyParser.json())
 
 // gets all bills and their vote count
 router.get('/', (req, res) => {
-  Promise.all([bills.getBills(), votes.getVotes()])
-    .then(([bills, votes]) => {
+  Promise.all([bills.getBills(), votes.getVotes(), comments.getAllComments()])
+    .then(([bills, votes, allComments]) => {
       const billsToSend = bills.map(bill => {
         return {
           bill_number: bill.bill_number,
@@ -27,10 +28,16 @@ router.get('/', (req, res) => {
             .filter(vote => vote.bill_number === bill.bill_number)
             .reduce(function (total, vote) {
               return vote.voted_against ? total + 1 : total
-            }, 0)
+            }, 0),
+          comments: allComments.filter(comments => comments.bill_number === bill.bill_number)
         }
       })
       res.send(billsToSend)
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
     })
 })
 

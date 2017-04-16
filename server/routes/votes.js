@@ -36,6 +36,11 @@ router.get('/:bill_number', (req, res) => {
       }
       res.send(result)
     })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 })
 
 router.get('/:bill_number/:clientID', (req, res) => {
@@ -56,6 +61,11 @@ router.get('/:bill_number/:clientID', (req, res) => {
         }
       }
       res.send(result)
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
     })
 })
 
@@ -89,6 +99,11 @@ router.post('/', (req, res) => {
             res.send(finalResult)
           }
         })
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
     })
 })
 
