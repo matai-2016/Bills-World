@@ -6,8 +6,8 @@
   "main": "server/index.js",
   "scripts": {
     "knex": "knex",
-    "dev": "nodemon --watch server server/index & webpack --watch",
-    "build": "webpack",
+    "dev": "nodemon --watch server server/index & webpack --config webpack.config.js --watch",
+    "build": "webpack --config webpack.config.prod.js",
     "migrate": "knex migrate:latest",
     "postinstall": "npm run migrate && npm run build",
     "start": "node server",
