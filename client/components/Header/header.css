@@ -1,0 +1,28 @@
+.header {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 40px;
+  background-color: #FF4E4E;
+}
+
+.header div:last-child {
+  margin-left: auto;
+}
+
+.logo {
+  height: 30px;
+  width: 20px;
+}
+
+.title {
+  margin-left: 30px;
+  /*align-self: flex-start;*/
+  color: white;
+}
+
+
+/*gray: #58595C*/

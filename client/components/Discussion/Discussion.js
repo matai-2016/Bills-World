@@ -14,9 +14,9 @@ class Discussion extends Component {
           {
           this.props.comments.map((comment, i) => {
             return (
-               <div key={i}>
-               <p>{comment.comment} <br />
-               {comment.date} {comment.username}</p>
+              <div key={i}>
+                <p>{comment.comment} <br />
+                  {comment.date} {comment.username}</p>
               </div>
             )
           })
