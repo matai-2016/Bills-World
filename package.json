@@ -7,7 +7,9 @@
   "scripts": {
     "knex": "knex",
     "dev": "nodemon --watch server server/index & webpack --watch",
-    "postinstall": "knex migrate:latest && webpack",
+    "build": "webpack",
+    "migrate": "knex migrate:latest",
+    "postinstall": "migrate && build",
     "start": "node server",
     "test": "NODE_ENV=test ava -v test/**/*.test.js",
     "linter": "standard --fix --verbose | snazzy",

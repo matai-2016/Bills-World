@@ -1,3 +1,5 @@
+const env = require('webpack').EnvironmentPlugin
+
 module.exports = {
   entry: './client/index.js',
   output: {
@@ -19,6 +21,9 @@ module.exports = {
       loader: 'style!css?importLoaders=1!postcss'
     }]
   },
+  plugins:[
+    new env(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN'])
+  ],
   postcss: [
     require('autoprefixer')
   ],
