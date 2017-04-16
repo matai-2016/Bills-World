@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-react-webpack",
+  "name": "bills-world",
   "version": "0.1.1",
   "description": "Bills-World",
   "repository": "https://github.com/matai-2016/Bills-World",
@@ -9,12 +9,15 @@
     "dev": "nodemon --watch server server/index & webpack --watch",
     "postinstall": "knex migrate:latest && webpack",
     "start": "node server",
-    "test": "tape -r babel-register 'test/**/*.test.js' | tap-spec",
+    "test": "NODE_ENV=test ava -v test/**/*.test.js",
+    "linter": "standard --fix --verbose | snazzy",
     "watch": "nodemon -e js,jsx -x npm test"
   },
   "author": "EDA",
   "license": "ISC",
   "dependencies": {
+    "auth0-lock": "^10.14.0",
+    "ava": "^0.19.1",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
@@ -22,10 +25,16 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.18.0",
     "body-parser": "^1.15.2",
+    "cheerio": "^0.22.0",
+    "css-loader": "^0.28.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
+    "fs": "0.0.1-security",
+    "jwt-decode": "^2.2.0",
     "knex": "^0.12.9",
     "pg": "^6.1.5",
+    "postcss-loader": "^1.3.3",
+    "rc-progress": "^2.1.0",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -34,16 +43,24 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
+    "request": "^2.81.0",
+    "style-loader": "^0.16.1",
     "superagent": "^3.5.2",
-    "webpack": "^1.14.0"
+    "supertest": "^3.0.0",
+    "webpack": "^1.14.0",
+    "webpack-dotenv-plugin": "^2.0.0"
   },
   "devDependencies": {
     "enzyme": "^2.7.0",
+    "jsdom": "^9.12.0",
+    "json-loader": "^0.5.4",
     "jsx-loader": "^0.13.2",
     "nodemon": "^1.11.0",
+    "snazzy": "^7.0.0",
+    "sqlite3": "^3.1.8",
+    "standard": "^10.0.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
-    "sqlite3": "^3.1.8",
     "webpack-dev-server": "^1.16.2"
   },
   "babel": {
@@ -51,6 +68,18 @@
       "es2015",
       "react",
       "stage-2"
+    ]
+  },
+  "ava": {
+    "babel": {
+      "presets": [
+        "es2015",
+        "react",
+        "stage-2"
+      ]
+    },
+    "require": [
+      "babel-register"
     ]
   },
   "engines": {
