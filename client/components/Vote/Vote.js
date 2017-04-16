@@ -7,7 +7,6 @@ import './vote.css'
 class Vote extends React.Component {
   componentDidMount () {
     this.props.getVotes(this.props.billNumber)
-    console.log(this.props.billNumber)
     this.props.checkUserVote(this.props.auth.profile.clientID, this.props.billNumber)
   }
 
