@@ -35,7 +35,7 @@ function getVotesByClientIdAndBillId (billNumber, clientID) {
 function saveUserVote (userID, billNumber, voteFor, voteAgainst) {
   return knex('votes')
     .insert({
-      user_ID: userID,
+      user_id: userID,
       bill_number: billNumber,
       voted_for: voteFor,
       voted_against: voteAgainst
@@ -55,7 +55,7 @@ function updateUserVote (userID, billNumber, voteFor, voteAgainst) {
       bill_number: billNumber
     })
     .update({
-      user_ID: userID,
+      user_id: userID,
       bill_number: billNumber,
       voted_for: voteFor,
       voted_against: voteAgainst

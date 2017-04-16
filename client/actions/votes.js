@@ -15,7 +15,6 @@ export function getVotes (billNumber) {
 }
 
 export function receiveVotes (votes) {
-  console.log(votes)
   return {
     type: 'RECEIVE_VOTES',
     votes

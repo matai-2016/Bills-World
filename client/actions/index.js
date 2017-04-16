@@ -27,7 +27,6 @@ export function addUserToDatabase (profile) {
         console.error(err.message)
         return
       }
-      console.log('User has been added to database')
     })
   }
 }
