@@ -20,7 +20,7 @@ class BillPage extends React.Component {
       <div className='container'>
         <Header />
         <Login />
-        <Vote billNumber={this.props.billInfo.bill_number} />
+        <Vote billNumber={this.props.match.params.bill_number} />
         <BillInfo
           title={this.props.billInfo.title}
           introductionDate={this.props.billInfo.introduction_date}
