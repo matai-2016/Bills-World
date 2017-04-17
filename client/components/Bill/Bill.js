@@ -9,7 +9,6 @@ const Bill = (props) => {
     title = title.slice(0, 50)
     title = title + '...'
   }
-  console.log(title, 'hello')
   return (
     <div>
       <h3>{title}</h3>
