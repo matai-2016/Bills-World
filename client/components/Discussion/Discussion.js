@@ -8,6 +8,14 @@ class Discussion extends Component {
   render () {
     return (
       <div>
+        <h3 className='comments-title'>Comments</h3>
+        {this.props.auth.isAuthenticated &&
+          <span>
+            <div className='form-group row'>
+              <textarea type='text' className='input-box form-control' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
+              </textarea>
+              <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+            </div>
         {this.props.auth.isAuthenticated &&
           <span>
             <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
@@ -23,9 +31,17 @@ class Discussion extends Component {
           {
           this.props.comments.map((comment, i) => {
             return (
-              <div key={i}>
-                <p>{comment.comment} <br />
-                  {comment.date} {comment.username}</p>
+              <div key={i} className='comment'>
+                <div>
+                  <p className='comment-text'>{comment.comment}</p>
+                </div>
+                <div className='row'>
+                  <div className='metadata col-md-offset-2'>
+                    <p className='username'>{comment.username}</p>
+                    <p>{comment.date}</p>
+                  </div>
+                </div>
+                <hr/>
               </div>
             )
           })
