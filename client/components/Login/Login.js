@@ -43,7 +43,7 @@ class Login extends Component {
           )
         }
         {
-          this.props.error && <p>{this.props.error}</p>
+          this.props.error && <p>{JSON.stringify(this.props.error)}</p>
         }
       </div>
     )

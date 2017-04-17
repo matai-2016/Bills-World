@@ -14,7 +14,7 @@ export function checkLogin (history) {
         AuthService.setToken(authResult.idToken) // static method
         AuthService.setProfile(profile) // static method
         dispatch(checkUserInDatabase(profile))
-        return dispatch(registerLoginSuccess(history, profile))
+        return dispatch(registerLoginSuccess(history, profile, authResult.state))
       })
     })
     // Add callback for lock's `authorization_error` event
@@ -27,8 +27,8 @@ export function createLoginRequest () {
   return loginRequest()
 }
 
-export function registerLoginSuccess (history, profile) {
-  history.push('/')
+export function registerLoginSuccess (history, profile, path='/') {
+  history.push(path)
   return loginSuccess(profile)
 }
 
