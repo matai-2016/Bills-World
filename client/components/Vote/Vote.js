@@ -2,13 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Line } from 'rc-progress'
 
-import { getVotes, toggleVote, checkUserVote } from '../../actions/votes.js'
+import { getVotes } from '../../actions/votes.js'
+import { toggleVote, checkUserVote } from '../../actions/userVote.js'
 import './vote.css'
 
 class Vote extends React.Component {
   componentDidMount () {
     this.props.getVotes(this.props.billNumber)
     this.props.checkUserVote(this.props.auth.profile.clientID, this.props.billNumber)
+
   }
 
   handleClick (e) {
@@ -19,19 +21,27 @@ class Vote extends React.Component {
   render () {
     return (
       <div className='votes-container'>
-        <span className='votes-against'>{this.props.votes.votes_against} </span>
-        {this.props.userVote.votes_for
-          ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' className='btn btn-default highlight-button'>&#8710;</button>
-          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
+        <span className='votes-against'>{this.props.votes.votes_for} </span>
+        {this.props.auth.isAuthenticated &&
+          <span class='voting-component'>
+            {this.props.userVote.votes_for
+              ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' className='btn btn-default highlight-button'>&#8710;</button>
+              : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
+            }
+          </span>
         }
         <div className='voting-button' style={{width: '150px'}}>
           <Line percent={this.props.votes.percentage_for} strokeWidth='6' strokeColor={'#210708'} />
         </div>
-        {this.props.userVote.votes_against
-          ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' className='btn btn-default highlight-button'>&nabla;</button>
-          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
+        {this.props.auth.isAuthenticated &&
+          <span class='voting-component'>
+            {this.props.userVote.votes_against
+              ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' className='btn btn-default highlight-button'>&nabla;</button>
+              : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
+            }
+          </span>
         }
-        <span className='votes-for'>{this.props.votes.votes_for}</span>
+        <span className='votes-for'>{this.props.votes.votes_against}</span>
       </div>
     )
   }

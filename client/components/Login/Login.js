@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { checkLogin, createLoginRequest, registerLogoutSuccess } from '../../actions/auth.js'
+import { clearUserVote } from '../../actions/userVote'
 
 import './login.css'
 
@@ -11,6 +12,12 @@ class Login extends Component {
   constructor (props) {
     super(props)
     this.props.checkLogin(this.props.history)
+  }
+
+  handleClick (e) {
+    e.preventDefault()
+    this.props.clearUserVote()
+    this.props.onLogoutClick(this.props.history)
   }
 
   render () {
@@ -28,7 +35,7 @@ class Login extends Component {
                 <img className='img-responsive profile-pic dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown' src={this.props.profile.picture} />
                  <ul className='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
                     <li role='presentation'>
-                       <Link role='menuitem' tabIndex='-1' to='#' onClick={() => this.props.onLogoutClick(this.props.history)}>Logout</Link>
+                       <Link role='menuitem' tabIndex='-1' to='#' onClick={(e) => this.handleClick(e)}>Logout</Link>
                     </li>
                  </ul>
               </div>
@@ -42,6 +49,8 @@ class Login extends Component {
     )
   }
 }
+
+
 
 const mapStateToProps=(state) => {
   return {
@@ -61,6 +70,10 @@ const mapDispatchToProps=(dispatch) => {
     },
     onLogoutClick: (history) => {
       return dispatch(registerLogoutSuccess(history))
+      return dispatch(registerLogoutSuccess(history))
+    },
+    clearUserVote: () => {
+      return dispatch(clearUserVote())
     }
   }
 }
