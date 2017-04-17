@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 
 import { getBillInfo } from '../../actions/billInfo'
 
-import Login from '../Login/Login'
 import Header from '../Header/Header'
+import BillTitle from '../BillTitle/BillTitle'
 import Vote from '../Vote/Vote'
+import Share from '../Share/Share'
 import BillInfo from '../BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
@@ -21,25 +22,29 @@ class BillPage extends React.Component {
       return (<div>Loading...</div>)
     }
     return (
-      <div className='container bill-info-container'>
+      <div>
         <Header />
-        <Login />
-        <Vote billNumber={this.props.match.params.bill_number} />
-        <BillInfo
+        <BillTitle
           title={this.props.billInfo.title}
-          introductionDate={this.props.billInfo.introduction_date}
-          memberInCharge={this.props.billInfo.member_in_charge}
-          type={this.props.billInfo.type}
-          billNumber={this.props.billInfo.bill_number}
-          summary={this.props.billInfo.summary}
         />
-        <Discussion
-          billNumber={this.props.billInfo.bill_number}
-          comments={this.props.billInfo.comments}
-          getBillInfo={this.props.getBillInfo}
+        <div className='container'>
+          <BillInfo
+            title={this.props.billInfo.title}
+            introductionDate={this.props.billInfo.introduction_date}
+            memberInCharge={this.props.billInfo.member_in_charge}
+            type={this.props.billInfo.type}
+            billNumber={this.props.billInfo.bill_number}
+            summary={this.props.billInfo.summary}
           />
+          <Vote billNumber={this.props.match.params.bill_number} />
+          <Discussion
+            billNumber={this.props.billInfo.bill_number}
+            comments={this.props.billInfo.comments}
+            getBillInfo={this.props.getBillInfo}
+            />
+        </div>
         <Footer />
-      </div>
+    </div>
     )
   }
 }

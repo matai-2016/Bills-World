@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import ReportAbuse from '../ReportAbuse/ReportAbuse'
 import './discussion.css'
 import Reply from '../Reply/Reply'
 
@@ -9,22 +10,46 @@ class Discussion extends Component {
   render () {
     return (
       <div>
-        <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
-        <button onClick={() => this.handleSubmit()}>Submit</button>
+        <h3 className='comments-title'>Comments</h3>
+        {
+          this.props.auth.isAuthenticated &&
+          <span>
+            <div className='form-group row'>
+              <textarea type='text' className='input-box form-control' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
+              </textarea>
+              <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+            </div>
+          </span>
+        }
+        {
+          !this.props.auth.isAuthenticated &&
+          <span>
+            <p className='login-prompt'>Please login or register to comment on this thread</p>
+          </span>
+        }
         <div>
           {
           this.props.comments.map((item) => {
             return (
-              <div key={item.id}>
-              <p>{item.comment} <br />
-              {item.date} {item.username}</p>
-              <button name={item.id} onClick={(e) => this.reply(e.target.name)}>Reply</button>
-              <Reply parentId={this.props.parentId} itemId={item.id} replying={this.props.replying}/>
+              <div key={item.id} className='comment'>
+                <div>
+                  <p className='comment-text'>{comment.comment}</p>
+                </div>
+                <div className='row'>
+                  <div className='metadata col-md-offset-2'>
+                    <p className='username'>{comment.username}</p>
+                    <p>{comment.date}</p>
+                    <button name={item.id} onClick={(e) => this.reply(e.target.name)}>Reply</button>
+                    <Reply parentId={this.props.parentId} itemId={item.id} replying={this.props.replying}/>
+                  </div>
+                </div>
+                <hr/>
               </div>
             )
           })
         }
         </div>
+        <ReportAbuse />
       </div>
     )
   }
@@ -64,6 +89,7 @@ const mapStateToProps = (state) => {
     activeComment: state.activeComment.comment,
     replying: state.activeReply.replying,
     parentId: state.activeReply.parentId
+    auth: state.auth
   }
 }
 

@@ -2,38 +2,50 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Line } from 'rc-progress'
 
-import { getVotes, toggleVote, checkUserVote } from '../../actions/votes.js'
+import { getVotes } from '../../actions/votes.js'
+import { toggleVote, checkUserVote } from '../../actions/userVote.js'
 import './vote.css'
 
 class Vote extends React.Component {
   componentDidMount () {
     this.props.getVotes(this.props.billNumber)
-    this.props.checkUserVote(this.props.auth.profile.clientID, this.props.billNumber)
+    if (this.props.auth.isAuthenticated) {
+      this.props.checkUserVote(this.props.auth.profile.user_id, this.props.billNumber)
+    }
   }
 
   handleClick (e) {
     e.preventDefault()
-    this.props.toggleVote(e.target.name, this.props.auth.profile.clientID, this.props.billInfo.bill_number)
+    this.props.toggleVote(e.target.name, this.props.auth.profile.user_id, this.props.billInfo.bill_number)
+    // this.props.getVotes(this.props.billNumber)
   }
 
   render () {
     return (
       <div className='votes-container'>
-        <p className='votes-for'>Votes For: {this.props.votes.votes_for} </p>
-        <p className='votes-against'>Votes Against: {this.props.votes.votes_against} </p>
-        <p className='votes-percentage-for'>Percentage For: {this.props.votes.percentage_for}%</p>
-        <p className='votes-percentage-against'>Percentage Against: {this.props.votes.percentage_against}%</p>
-        {this.props.userVote.votes_for
-          ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' className='btn btn-default highlight-button'>&#8710;</button>
-          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
-        }
-        <div className='voting-button' style={{width: '150px'}}>
-          <Line percent={this.props.votes.percentage_for} strokeWidth="6" strokeColor={'#210708'} />
+        <div className='voting-bar' >
+          {this.props.auth.isAuthenticated &&
+            <span>
+              {this.props.userVote.votes_for
+                ? <button className='voting-button button-for highlight-button-for' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
+                : <button className='voting-button button-for' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
+              }
+            </span>
+          }
+          <div className='voting-button' style={{width: '150px'}}>
+            <button className='votes-for votes-for-container'>{this.props.votes.votes_for}</button>
+            <Line className='svg' percent={this.props.votes.percentage_for} strokeWidth='5' trailWidth='5' strokeLinecap='square' strokeColor={'#25ba68'} trailColor={'#FF4E4E'} />
+            <button className='votes-against votes-against-container'>{this.props.votes.votes_against}</button>
+          </div>
+          {this.props.auth.isAuthenticated &&
+            <span>
+              {this.props.userVote.votes_against
+                ? <button className='voting-button button-against highlight-button-against' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
+                : <button className='voting-button button-against' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
+              }
+            </span>
+          }
         </div>
-        {this.props.userVote.votes_against
-          ? <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' className='btn btn-default highlight-button'>&nabla;</button>
-          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
-        }
       </div>
     )
   }
@@ -53,11 +65,11 @@ const mapDispatchToProps = dispatch => {
     getVotes: (billNumber) => {
       dispatch(getVotes(billNumber))
     },
-    toggleVote: (voteType, clientID, billNumber) => {
-      dispatch(toggleVote(voteType, clientID, billNumber))
+    toggleVote: (voteType, user_id, billNumber) => {
+      dispatch(toggleVote(voteType, user_id, billNumber))
     },
-    checkUserVote: (clientID, billNumber) => {
-      dispatch(checkUserVote(clientID, billNumber))
+    checkUserVote: (user_id, billNumber) => {
+      dispatch(checkUserVote(user_id, billNumber))
     }
   }
 }

@@ -1,0 +1,35 @@
+.header {
+  font-family: 'Amiri', serif;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 40px;
+  background-color: #FF4E4E;
+}
+
+.header div:last-child {
+  margin-left: auto;
+}
+
+.logo {
+  height: 30px;
+  width: 20px;
+}
+
+.header-title {
+  font-size: 28px;
+  margin-left: 15px;
+  margin-top: 20px;
+  /*align-self: flex-start;*/
+  color: white;
+}
+
+.header-title:hover {
+  text-decoration: none;
+}
+
+
+/*gray: #58595C*/

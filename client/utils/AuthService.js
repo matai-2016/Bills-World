@@ -10,13 +10,12 @@ export default class AuthService {
     // Configure Auth0 lock
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: 'http://localhost:3000/',
+        redirectUrl: window.location.origin,
         responseType: 'token'
       },
-      // theme: {
-      //   logo: LogoImg,
-      //   primaryColor: "#b81b1c"
-      // },
+      theme: {
+        logo: '/img/beehive-red.png'
+      },
       languageDictionary: {
         title: 'Bill\'s World'
       }
@@ -30,7 +29,14 @@ export default class AuthService {
   // ======================================================
   login () {
     // Call the show method to display the widget.
-    this.lock.show()
+    this.lock.show({
+      auth: {
+        params: {
+          state: window.location.pathname,
+          scope: 'openid'
+        }
+      }
+    })
   }
 
   logout () {
