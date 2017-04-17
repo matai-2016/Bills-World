@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import { getBillInfo } from '../../actions/billInfo'
 
-import Login from '../Login/Login'
 import Header from '../Header/Header'
+import BillTitle from '../BillTitle/BillTitle'
 import Vote from '../Vote/Vote'
 import Share from '../Share/Share'
 import BillInfo from '../BillInfo/BillInfo'
@@ -25,14 +24,10 @@ class BillPage extends React.Component {
     return (
       <div>
         <Header />
-        <Link to='/'><img className='back' src='/img/back-button.png' /></Link>
-        <div className='container bill-info-container'>
-          <Vote billNumber={this.props.match.params.bill_number} />
-          <Share
-            billNumber={this.props.billInfo.bill_number}
-            title={this.props.billInfo.title}
-            summary={this.props.billInfo.summary}
-          />
+        <BillTitle
+          title={this.props.billInfo.title}
+        />
+        <div className='container'>
           <BillInfo
             title={this.props.billInfo.title}
             introductionDate={this.props.billInfo.introduction_date}
@@ -41,6 +36,7 @@ class BillPage extends React.Component {
             billNumber={this.props.billInfo.bill_number}
             summary={this.props.billInfo.summary}
           />
+          <Vote billNumber={this.props.match.params.bill_number} />
           <Discussion
             billNumber={this.props.billInfo.bill_number}
             comments={this.props.billInfo.comments}

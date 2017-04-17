@@ -5,14 +5,21 @@ import './billInfo.css'
 
 const BillInfo = (props) => {
   return (
-    <div>
-      <h3>Title: {props.title}</h3>
-      <p>Introduction date: {moment(props.introductionDate).format('D MMM YYYY')}</p>
-      <p>Member in charge: {props.memberInCharge}</p>
-      <p>Type: {props.type}</p>
-      <p>Bill number: {props.billNumber}</p>
-      <p>Summary: {props.summary}</p>
-      <a href='https://www.parliament.nz/en/pb/bills-and-laws/proposed-members-bills/'>View on Parliament Website</a>
+    <div className='bill-info-container'>
+      <p className='intro-date'>Introduced: {moment(props.introductionDate).format('D MMM YYYY')}</p>
+      <p className='summary'>{props.summary}</p>
+      <div className='bill-details'>
+        <div className='detail-container'>
+          <p>Bill Number: {props.billNumber}</p>
+        </div>
+        <div className='detail-container'>
+          <p>Type: {props.type}</p>
+        </div>
+        <div className='detail-container'>
+          <p id='member-in-charge'><img className='member-img' src='/img/member.png' />{props.memberInCharge}</p>
+        </div>
+        <a className='parliament-link' href='https://www.parliament.nz/en/pb/bills-and-laws/proposed-members-bills/'>View on Parliament Website</a>
+      </div>
     </div>
   )
 }

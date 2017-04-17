@@ -12,7 +12,9 @@ const Header = () => {
           <img className='img-responsive' src='/img/beehive-white.png' />
         </div>
       </Link>
-      <h4 className='title'>Bill's World</h4>
+      <Link to='/'>
+        <h4 className='header-title'>Bill's World</h4>
+      </Link>
       <Login />
     </div>
   )
