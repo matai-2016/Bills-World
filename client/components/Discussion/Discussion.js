@@ -10,21 +10,18 @@ class Discussion extends Component {
     return (
       <div>
         <h3 className='comments-title'>Comments</h3>
-        {this.props.auth.isAuthenticated &&
+        {
+          this.props.auth.isAuthenticated &&
           <span>
             <div className='form-group row'>
               <textarea type='text' className='input-box form-control' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
               </textarea>
               <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
             </div>
-          </span>}
-        {this.props.auth.isAuthenticated &&
-          <span>
-            <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
-            <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
           </span>
         }
-        {!this.props.auth.isAuthenticated &&
+        {
+          !this.props.auth.isAuthenticated &&
           <span>
             <p className='login-prompt'>Please login or register to comment on this thread</p>
           </span>

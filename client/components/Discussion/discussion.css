@@ -27,6 +27,11 @@
   opacity: .7;
 }
 
+.comments-title {
+  border-bottom: 3px solid #FF4E4E;
+  padding-bottom: 1rem;
+}
+
 .metadata {
   display: flex;
   float: right;
@@ -43,9 +48,4 @@
   color: #58595C;
   font-weight: bold;
   padding-right: 1.5rem;
-}
-
-.login-prompt {
-  border-top: 6px solid #FF4E4E;
-  padding-bottom: 1rem;
 }
