@@ -13,10 +13,9 @@ export default class AuthService {
         redirectUrl: window.location.origin,
         responseType: 'token'
       },
-      // theme: {
-      //   logo: LogoImg,
-      //   primaryColor: "#b81b1c"
-      // },
+      theme: {
+        logo: '/img/beehive-red.png'
+      },
       languageDictionary: {
         title: 'Bill\'s World'
       }
