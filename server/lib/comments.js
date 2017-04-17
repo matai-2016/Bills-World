@@ -10,7 +10,7 @@ module.exports = {
 function saveComment (user_id, billNumber, comment, username, date) {
   return knex('comments')
     .insert({
-      user_id: clientID,
+      user_id: user_id,
       bill_number: billNumber,
       comment: comment,
       username: username,
