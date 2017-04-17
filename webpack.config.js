@@ -25,9 +25,9 @@ module.exports = {
   plugins:[
     new env(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN']),
     new DotenvPlugin({
-      sample: './.env.example',
-      path: './.env'
-    })
+     sample: './.env.example',
+     path: './.env'
+   })
   ],
   postcss: [
     require('autoprefixer')

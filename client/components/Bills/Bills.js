@@ -1,5 +1,6 @@
 import React from 'react'
 import Bill from '../Bill/Bill'
+import CommentCount from '../CommentCount/CommentCount'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -27,6 +28,7 @@ class Bills extends React.Component {
                 billNumber={bill.bill_number}
                 summary={bill.summary}
               />
+              <CommentCount billNumber={bill.bill_number} comments={bill.comments} />
               <Link to={`./${bill.bill_number}`}><button className='view-bill-button'>View Bill</button></Link>
             </div>
           )
