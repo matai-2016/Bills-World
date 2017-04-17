@@ -1,6 +1,8 @@
 .bill-info-container {
   padding-top: 30px;
   display:block;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #FF4E4E;
 }
 
 .summary {
@@ -37,6 +39,5 @@
 }
 
 .parliament-link {
-  margin-top: 15px;
   display: inline-block;
 }

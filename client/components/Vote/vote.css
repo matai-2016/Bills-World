@@ -1,21 +1,86 @@
 .votes-container {
-  padding-top: 20px;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #FF4E4E;
+  text-align: center;
 }
 
 .highlight-button {
   opacity: .5;
 }
-#container {
-  margin: 20px;
-  width: 100px;
-  height: 13px;
-  display: inline-block;
+
+/*
+.voting-bar {
+  bottom: 10px;
+  width: 70%;
+  display: inline;
+}*/
+
+.votes-against, .votes-for {
+  font-size: 25px;
 }
 
+.svg {
+  width: 50%;
+  display: inline;
+}
+
+.votes-for-container {
+  border-radius: 50%;
+  color: white;
+  height: 40px;
+  width: 40px;
+  background-color: #25ba68;
+  display: inline;
+  margin-right: 5%;
+  border-style: none;
+  font-weight: bold;
+}
+
+.votes-against-container {
+  border-radius: 50%;
+  color: white;
+  height: 40px;
+  width: 40px;
+  background-color: #FF4E4E;
+  display: inline;
+  text-align: center;
+  margin-left: 5%;
+  border-style: none;
+  font-weight: bold;
+}
 
 .voting-button {
-  position: relative; bottom: 10px;
-  display: inline-block;
-  margin-left: 5px;
-  margin-right: 5px;
+  display: inline;
+  position: relative; top: 7px;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  border-style: none;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 0px;
+}
+
+.highlight-button-for {
+  color: #25ba68;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.highlight-button-against {
+  color: #FF4E4E;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.button-for {
+  float: left;
+  margin-left: 10%;
+}
+
+.button-against {
+  float: right;
+  margin-right: 10%;
 }

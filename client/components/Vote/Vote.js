@@ -19,19 +19,19 @@ class Vote extends React.Component {
   render () {
     return (
       <div className='votes-container'>
-        <span className='votes-against'>{this.props.votes.votes_against} </span>
-        {this.props.userVote.votes_for
-          ? <button className='voting-button btn btn-default highlight-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
-          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
-        }
-        <div className='voting-button' style={{width: '150px'}}>
-          <Line percent={this.props.votes.percentage_for} strokeWidth='6' strokeColor={'#210708'} />
+        <div className='voting-bar' >
+          {this.props.userVote.votes_for
+            ? <button className='voting-button button-for highlight-button-for' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
+            : <button className='voting-button button-for' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>&#8710;</button>
+          }
+          <button className='votes-for votes-for-container'>{this.props.votes.votes_for}</button>
+          <Line className='svg' percent={this.props.votes.percentage_for} strokeWidth='5' trailWidth='5' strokeLinecap='square' strokeColor={'#25ba68'} trailColor={'#FF4E4E'} />
+          <button className='votes-against votes-against-container'>{this.props.votes.votes_against}</button>
+          {this.props.userVote.votes_against
+            ? <button className='voting-button button-against highlight-button-against' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
+            : <button className='voting-button button-against' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
+          }
         </div>
-        {this.props.userVote.votes_against
-          ? <button className='voting-button btn btn-default highlight-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
-          : <button className='voting-button' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
-        }
-        <span className='votes-for'>{this.props.votes.votes_for}</span>
       </div>
     )
   }

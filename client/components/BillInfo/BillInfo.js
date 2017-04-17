@@ -18,8 +18,8 @@ const BillInfo = (props) => {
         <div className='detail-container'>
           <p id='member-in-charge'><img className='member-img' src='/img/member.png' />{props.memberInCharge}</p>
         </div>
+        <a className='parliament-link' href='https://www.parliament.nz/en/pb/bills-and-laws/proposed-members-bills/'>View on Parliament Website</a>
       </div>
-      <a className='parliament-link' href='https://www.parliament.nz/en/pb/bills-and-laws/proposed-members-bills/'>View on Parliament Website</a>
     </div>
   )
 }
