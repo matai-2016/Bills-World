@@ -1,0 +1,42 @@
+.bill-info-container {
+  padding-top: 30px;
+  display:block;
+}
+
+.summary {
+  font-size: 17px;
+}
+
+.detail-container {
+  background-color: #58595C;
+  border-radius: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.detail-container p {
+  color: white;
+  padding-top: 2px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 10px;
+}
+
+.member-img {
+  height: 15px;
+  width: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+#member-in-charge {
+  padding-left: 2px;
+}
+
+.parliament-link {
+  margin-top: 15px;
+  display: inline-block;
+}

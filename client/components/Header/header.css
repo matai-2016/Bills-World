@@ -19,10 +19,16 @@
   width: 20px;
 }
 
-.title {
-  margin-left: 30px;
+.header-title {
+  font-size: 28px;
+  margin-left: 15px;
+  margin-top: 20px;
   /*align-self: flex-start;*/
   color: white;
+}
+
+.header-title:hover {
+  text-decoration: none;
 }
 
 

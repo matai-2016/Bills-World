@@ -1,0 +1,16 @@
+.bill-title {
+  background-color: #58595C;
+}
+
+.text-container {
+  position: relative;
+    height: 180px;
+}
+
+.title-text {
+  position: absolute;
+  font-family: 'Amiri', serif;
+  color: white;
+  font-size: 30px;
+  bottom: 0;
+}

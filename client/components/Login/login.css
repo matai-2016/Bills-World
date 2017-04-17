@@ -6,10 +6,12 @@
 }
 
 .login-buttons {
+  font-family: 'Yantramanav', sans-serif;
   background-color: white;
   border-radius: 20px;
   color: #FF4E4E;
   padding: 5px 30px;
+  border-style: none;
 }
 
 #login-welcome {

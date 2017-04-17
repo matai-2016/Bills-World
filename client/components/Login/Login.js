@@ -19,7 +19,7 @@ class Login extends Component {
         {
           !this.props.isAuthenticated
           ? (
-            <button className='btn btn-default login-buttons' onClick={() => this.props.onLoginClick(this.props.history)}>Login</button>
+            <button className='btn btn-default login-buttons' onClick={() => this.props.onLoginClick(this.props.history)}>Log In or Sign Up</button>
           )
           : (
             <div className='login-components'>

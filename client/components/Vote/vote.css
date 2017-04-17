@@ -1,3 +1,7 @@
+.votes-container {
+  padding-top: 20px;
+}
+
 .highlight-button {
   opacity: .5;
 }
