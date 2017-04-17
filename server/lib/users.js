@@ -11,6 +11,11 @@ module.exports = {
 function getUsers () {
   return knex('users')
   .select()
+  .catch((err) => {
+    if (err) {
+      console.error(err.message)
+    }
+  })
 }
 
 function createUser (user_id, username, email, testDb) {
@@ -20,6 +25,11 @@ function createUser (user_id, username, email, testDb) {
       user_id: user_id,
       username: username,
       email: email
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
     })
 }
 
@@ -31,6 +41,11 @@ function exists (user_id, testDb) {
     .then(count => {
       return count[0].n > 0
     })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 }
 
 function getByUserId (user_id, testDb) {
@@ -38,4 +53,9 @@ function getByUserId (user_id, testDb) {
   return connection('users')
     .where('user_id', user_id)
     .select()
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 }

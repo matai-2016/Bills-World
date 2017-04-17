@@ -1,6 +1,10 @@
 /*global styles*/
 
-
+.btn-default:hover {
+  background-color: white;
+  opacity: .5;
+  color: #FF4E4E;
+}
 /* Larger than mobile */
 @media (min-width: 400px) {}
 

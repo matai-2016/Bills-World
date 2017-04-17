@@ -1,0 +1,16 @@
+.footer {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  align-items: center;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.footer-logo {
+  height: 30px;
+  width: 20px;
+}
