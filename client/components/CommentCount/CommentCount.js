@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import './commentCount.css'
+import './commentcount.css'
 
 class CommentCount extends React.Component {
   render () {
