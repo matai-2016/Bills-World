@@ -16,6 +16,10 @@ class Discussion extends Component {
               </textarea>
               <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
             </div>
+        {this.props.auth.isAuthenticated &&
+          <span>
+            <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
+            <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
           </span>
         }
         {!this.props.auth.isAuthenticated &&

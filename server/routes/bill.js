@@ -24,6 +24,11 @@ router.get('/:bill_number', (req, res) => {
       }
       res.send(result)
     })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 })
 
 module.exports = router
