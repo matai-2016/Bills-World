@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import ReportAbuse from '../ReportAbuse/ReportAbuse'
 import './discussion.css'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
@@ -48,6 +49,7 @@ class Discussion extends Component {
           })
         }
         </div>
+        <ReportAbuse />
       </div>
     )
   }
