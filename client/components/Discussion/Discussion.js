@@ -8,8 +8,17 @@ class Discussion extends Component {
   render () {
     return (
       <div>
-        <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
-        <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
+        {this.props.auth.isAuthenticated &&
+          <span>
+            <input type='text' className='comment-input' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
+            <button onClick={(event) => this.handleSubmit(event)}>Submit</button>
+          </span>
+        }
+        {!this.props.auth.isAuthenticated &&
+          <span>
+            <p className='login-prompt'>Please login or register to comment on this thread</p>
+          </span>
+        }
         <div>
           {
           this.props.comments.map((comment, i) => {
@@ -55,7 +64,8 @@ const mapStateToProps = (state) => {
   return {
     clientID: state.auth.profile.clientID,
     username: state.auth.profile.username,
-    activeComment: state.activeComment.comment
+    activeComment: state.activeComment.comment,
+    auth: state.auth
   }
 }
 
