@@ -19,8 +19,8 @@ router.use(bodyParser.json())
 //     })
 // })
 
-router.get('/:clientID', (req, res) => {
-  users.exists(req.params.clientID)
+router.get('/:user_id', (req, res) => {
+  users.exists(req.params.user_id)
     .then(exists => {
       if (exists) {
         console.log('User exists')
@@ -43,15 +43,15 @@ router.post('/register',
 )
 
 function register (req, res, next) {
-  users.exists(req.body.clientID)
+  users.exists(req.body.user_id)
     .then(exists => {
       if (exists) {
         console.log('USER EXISTS')
         next()
         return
       }
-      users.createUser(req.body.clientID, req.body.username, req.body.email)
-        .then(() => users.getByClientId(req.body.clientID))
+      users.createUser(req.body.user_id, req.body.username, req.body.email)
+        .then(() => users.getByUserId(req.body.user_id))
         .then(function (result) {
           res.send(result[0])
         })

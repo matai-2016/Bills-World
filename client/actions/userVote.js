@@ -1,10 +1,10 @@
 import request from 'superagent'
-import { userVote, getVotes } from './votes'
+import { getVotes } from './votes'
 
-export function checkUserVote (clientID, billNumber) {
+export function checkUserVote (user_id, billNumber) {
   return dispatch => {
     return request
-      .get(`/votes/${billNumber}/${clientID}`)
+      .get(`/votes/${billNumber}/${user_id}`)
       .end((err, res) => {
         if (err) {
           return console.error(err.message, 'Toggle Vote failed')
@@ -27,13 +27,13 @@ export function clearUserVote () {
   }
 }
 
-export function toggleVote (voteType, clientID, billNumber) {
+export function toggleVote (voteType, user_id, billNumber) {
   return dispatch => {
     return request
       .post('/votes')
       .send({
         voteType: voteType,
-        clientID: clientID,
+        user_id: user_id,
         billNumber: billNumber
       })
       .end((err, res) => {

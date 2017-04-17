@@ -38,57 +38,42 @@ router.get('/:bill_number', (req, res) => {
     })
 })
 
-router.get('/:bill_number/:clientID', (req, res) => {
-  votes.getVotesByClientIdAndBillId(req.params.bill_number, req.params.clientID)
+router.get('/:bill_number/:user_id', (req, res) => {
+  votes.getVotesByUserIdAndBillId(req.params.bill_number, req.params.user_id)
     .then((vote) => {
       let result = {}
       if (vote.length > 0) {
         result = {
           bill_number: vote[0].bill_number,
-          votes_for: vote[0].voted_for,
-          votes_against: vote[0].voted_against,
+          voted_for: vote[0].voted_for,
+          voted_against: vote[0].voted_against,
           message: 'already voted'
         }
       } else {
-        result = {
-          votes_for: 0,
-          votes_against: 0
-        }
+        result = {}
       }
       res.send(result)
     })
 })
 
 router.post('/', (req, res) => {
-  const { billNumber, clientID, voteType } = req.body
-  // get client ID from users table
-  users.getByClientId(clientID)
+  const { billNumber, user_id, voteType } = req.body
+  // get user ID from users table
+  return users.getByUserId(user_id)
     .then((userResult) => {
       const user = userResult[0]
-      let finalResult = {}
-      // check if there is an existing vote
-      votes.getVotesByClientIdAndBillId(billNumber, user.client_id)
-        .then((vote) => {
-          if (vote.length === 0) {
-            if (voteType === 'vote-for') {
-              votes.saveUserVote(user.id, billNumber, 1, 0)
-              .then(finalResult = {bill_number: billNumber, votes_for: 1, votes_against: 0, message: 'submitted vote'})
-            } else {
-              votes.saveUserVote(user.id, billNumber, 0, 1)
-              .then(finalResult = {bill_number: billNumber, votes_for: 0, votes_against: 1, message: 'submitted vote'})
-            }
-          } else {
-            let existingVote = vote[0]
-            if (voteType === 'vote-for') {
-              votes.updateUserVote(existingVote.user_id, billNumber, !existingVote.voted_for, 0)
-                .then(finalResult = {bill_number: billNumber, votes_for: !existingVote.voted_for, votes_against: 0, message: 'updated vote'})
-            } else {
-              votes.updateUserVote(existingVote.user_id, billNumber, 0, !existingVote.voted_against)
-                .then(finalResult = {bill_number: billNumber, votes_for: 0, votes_against: !existingVote.voted_against, message: 'updated vote'})
-            }
-            res.send(finalResult)
-          }
-        })
+      return votes.getExistingVote(billNumber, user.user_id)
+      .then((voteArr) => {
+        if (voteArr.length === 0) {
+          return votes.saveUserVote(user.id, billNumber, voteType === 'vote-for', voteType === 'vote-against')
+        } else {
+          const existingVote = voteArr[0]
+          return votes.updateUserVote(existingVote, voteType)
+        }
+      })
+    })
+    .then((voteResults) => {
+      res.send(voteResults[0])
     })
 })
 

@@ -26,7 +26,7 @@ class Login extends Component {
         {
           !this.props.isAuthenticated
           ? (
-            <button className='btn btn-default login-buttons' onClick={() => this.props.onLoginClick(this.props.history)}>Login</button>
+            <button className='btn btn-default login-buttons' onClick={() => this.props.onLoginClick()}>Login</button>
           )
           : (
             <div className='login-components'>
@@ -65,7 +65,7 @@ const mapDispatchToProps=(dispatch) => {
     checkLogin: (history) => {
       return dispatch(checkLogin(history))
     },
-    onLoginClick: (history) => {
+    onLoginClick: () => {
       return dispatch(createLoginRequest())
     },
     onLogoutClick: (history) => {
