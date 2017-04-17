@@ -27,7 +27,7 @@ export function createLoginRequest () {
   return loginRequest()
 }
 
-export function registerLoginSuccess (history, profile, path='/') {
+export function registerLoginSuccess (history, profile, path = '/') {
   history.push(path)
   return loginSuccess(profile)
 }
