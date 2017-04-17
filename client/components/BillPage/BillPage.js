@@ -7,6 +7,7 @@ import { getBillInfo } from '../../actions/billInfo'
 import Login from '../Login/Login'
 import Header from '../Header/Header'
 import Vote from '../Vote/Vote'
+import Share from '../Share/Share'
 import BillInfo from '../BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
@@ -27,6 +28,11 @@ class BillPage extends React.Component {
         <Link to='/'><img className='back' src='/img/back-button.png' /></Link>
         <div className='container bill-info-container'>
           <Vote billNumber={this.props.match.params.bill_number} />
+          <Share
+            billNumber={this.props.billInfo.bill_number}
+            title={this.props.billInfo.title}
+            summary={this.props.billInfo.summary}
+          />
           <BillInfo
             title={this.props.billInfo.title}
             introductionDate={this.props.billInfo.introduction_date}
