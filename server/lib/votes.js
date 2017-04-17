@@ -11,6 +11,11 @@ module.exports = {
 function getVotes () {
   return knex('votes')
   .select()
+  .catch((err) => {
+    if (err) {
+      console.error(err.message)
+    }
+  })
 }
 
 function getVotesByClientIdAndBillId (billNumber, clientID) {
@@ -20,6 +25,11 @@ function getVotesByClientIdAndBillId (billNumber, clientID) {
   .where('users.client_id', clientID)
   .where('bills.bill_number', billNumber)
   .select()
+  .catch((err) => {
+    if (err) {
+      console.error(err.message)
+    }
+  })
 }
 
 function saveUserVote (userID, billNumber, voteFor, voteAgainst) {
@@ -31,6 +41,11 @@ function saveUserVote (userID, billNumber, voteFor, voteAgainst) {
       voted_against: voteAgainst
     })
     .select()
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
 }
 
 function updateUserVote (userID, billNumber, voteFor, voteAgainst) {
@@ -44,5 +59,10 @@ function updateUserVote (userID, billNumber, voteFor, voteAgainst) {
       bill_number: billNumber,
       voted_for: voteFor,
       voted_against: voteAgainst
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
     })
 }
