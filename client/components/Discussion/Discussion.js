@@ -33,14 +33,14 @@ class Discussion extends Component {
             return (
               <div key={item.id} className='comment'>
                 <div>
-                  <p className='comment-text'>{comment.comment}</p>
+                  <p className='comment-text'>{item.comment}</p>
                 </div>
                 <div className='row'>
                   <div className='metadata col-md-offset-2'>
-                    <p className='username'>{comment.username}</p>
-                    <p>{comment.date}</p>
+                    <p className='username'>{item.username}</p>
+                    <p>{item.date}</p>
                     <button name={item.id} onClick={(e) => this.reply(e.target.name)}>Reply</button>
-                    <Reply parentId={this.props.parentId} itemId={item.id} replying={this.props.replying}/>
+                    
                   </div>
                 </div>
                 <hr/>
@@ -88,7 +88,7 @@ const mapStateToProps = (state) => {
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
     replying: state.activeReply.replying,
-    parentId: state.activeReply.parentId
+    parentId: state.activeReply.parentId,
     auth: state.auth
   }
 }
