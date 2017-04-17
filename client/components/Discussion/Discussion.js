@@ -57,10 +57,10 @@ class Discussion extends Component {
     const yyyy = today.getFullYear()
     const date = dd + '/' + mm + '/' + yyyy
     const username = this.props.username
-    const clientID = this.props.clientID
+    const user_id = this.props.user_id
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { date: date, username: username, clientID: clientID, billNumber: billNumber, comment: activeComment }
+    const commentDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeComment }
     this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
@@ -78,7 +78,7 @@ Discussion.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    clientID: state.auth.profile.clientID,
+    user_id: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
     auth: state.auth
