@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { checkLogin, createLoginRequest, registerLogoutSuccess } from '../../actions/auth.js'
+import { clearUserVote } from '../../actions/userVote'
 
 import './login.css'
 
@@ -13,13 +14,19 @@ class Login extends Component {
     this.props.checkLogin(this.props.history)
   }
 
+  handleClick (e) {
+    e.preventDefault()
+    this.props.clearUserVote()
+    this.props.onLogoutClick(this.props.history)
+  }
+
   render () {
     return (
       <div className='login'>
         {
           !this.props.isAuthenticated
           ? (
-            <button className='btn btn-default login-buttons' onClick={() => this.props.onLoginClick(this.props.history)}>Login</button>
+            <button className='btn btn-default login-buttons' onClick={() => this.props.onLoginClick()}>Login</button>
           )
           : (
             <div className='login-components'>
@@ -28,7 +35,7 @@ class Login extends Component {
                 <img className='img-responsive profile-pic dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown' src={this.props.profile.picture} />
                  <ul className='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
                     <li role='presentation'>
-                       <Link role='menuitem' tabIndex='-1' to='#' onClick={() => this.props.onLogoutClick(this.props.history)}>Logout</Link>
+                       <Link role='menuitem' tabIndex='-1' to='#' onClick={(e) => this.handleClick(e)}>Logout</Link>
                     </li>
                  </ul>
               </div>
@@ -43,6 +50,8 @@ class Login extends Component {
   }
 }
 
+
+
 const mapStateToProps=(state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
@@ -56,11 +65,15 @@ const mapDispatchToProps=(dispatch) => {
     checkLogin: (history) => {
       return dispatch(checkLogin(history))
     },
-    onLoginClick: (history) => {
+    onLoginClick: () => {
       return dispatch(createLoginRequest())
     },
     onLogoutClick: (history) => {
       return dispatch(registerLogoutSuccess(history))
+      return dispatch(registerLogoutSuccess(history))
+    },
+    clearUserVote: () => {
+      return dispatch(clearUserVote())
     }
   }
 }
