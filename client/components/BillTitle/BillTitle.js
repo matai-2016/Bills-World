@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import './billtitle.css'
+import './billTitle.css'
 
 const BillInfo = (props) => {
   return (
