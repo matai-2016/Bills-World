@@ -25,8 +25,7 @@ class BillPage extends React.Component {
       <div>
         <Header />
         <Link to='/'><img className='back' src='/img/back-button.png' /></Link>
-        <div className='container'>
-          <Login />
+        <div className='container bill-info-container'>
           <Vote billNumber={this.props.match.params.bill_number} />
           <BillInfo
             title={this.props.billInfo.title}
@@ -43,7 +42,7 @@ class BillPage extends React.Component {
             />
         </div>
         <Footer />
-      </div>
+    </div>
     )
   }
 }

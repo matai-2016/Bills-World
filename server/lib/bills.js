@@ -8,4 +8,9 @@ module.exports = {
 function getBills () {
   return knex('bills')
   .select()
+  .catch((err) => {
+    if (err) {
+      console.error(err.message)
+    }
+  })
 }
