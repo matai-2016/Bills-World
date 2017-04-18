@@ -1,7 +1,6 @@
 import React from 'react'
 import Bill from '../Bill/Bill'
-import CommentCount from '../CommentCount/CommentCount'
-import { Link } from 'react-router-dom'
+
 import { connect } from 'react-redux'
 
 import './bills.css'
@@ -15,24 +14,26 @@ class Bills extends React.Component {
 
   render () {
     return (
-      <div className='container-fluid'>
-        {this.props.bills.map((bill, i) => {
-          return (
-            <div className='col-md-4 bill-border' key={i}>
-              <Bill
-                id={bill.id}
-                title={bill.title}
-                introductionDate={bill.introduction_date}
-                memberInCharge={bill.member_in_charge}
-                type={bill.type}
-                billNumber={bill.bill_number}
-                summary={bill.summary}
-              />
-              <CommentCount billNumber={bill.bill_number} comments={bill.comments} />
-              <Link to={`./${bill.bill_number}`}><button className='view-bill-button'>View Bill</button></Link>
-            </div>
-          )
-        })}
+      <div className='bills-background'>
+        <div className='container'>
+          <h1>Current Bills</h1>
+          {this.props.bills.map((bill, i) => {
+            return (
+              <div className='col-md-4 col-sm-6 col-xs-12 bill-border' key={i}>
+                <Bill
+                  id={bill.id}
+                  title={bill.title}
+                  introductionDate={bill.introduction_date}
+                  memberInCharge={bill.member_in_charge}
+                  type={bill.type}
+                  billNumber={bill.bill_number}
+                  summary={bill.summary}
+                  comments={bill.comments}
+                />
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
