@@ -2,15 +2,15 @@ const config = require('../../knexfile')[process.env.NODE_ENV || 'development']
 const knex = require('knex')(config)
 
 module.exports = {
-  getVotes,
-  getVotesByUserIdAndBillId,
-  saveUserVote,
-  updateUserVote,
-  getExistingVote
+  getCommentVotes,
+  getCommentVotesByUserIdAndBillId,
+  saveUserCommentVote,
+  updateUserCommentVote,
+  getExistingCommentVote
 }
 
-function getVotes () {
-  return knex('votes')
+function getCommentVotes () {
+  return knex('comment_votes')
   .select()
   .catch((err) => {
     if (err) {
@@ -19,10 +19,10 @@ function getVotes () {
   })
 }
 
-function getVotesByUserIdAndBillId (billNumber, user_id) {
-  return knex('votes')
-  .join('users', 'votes.user_id', '=', 'users.id')
-  .join('bills', 'bills.bill_number', '=', 'votes.bill_number')
+function getCommentVotesByUserIdAndBillId (billNumber, user_id) {
+  return knex('comment_votes')
+  .join('users', 'comment_votes.user_id', '=', 'users.id')
+  .join('bills', 'bills.bill_number', '=', 'comment_votes.bill_number')
   .where('users.user_id', user_id)
   .where('bills.bill_number', billNumber)
   .select()
@@ -33,16 +33,16 @@ function getVotesByUserIdAndBillId (billNumber, user_id) {
   })
 }
 
-function getExistingVote (billNumber, user_id) {
-  return knex('votes')
-  .join('users', 'users.id', 'votes.user_id')
-  .select('votes.id', 'votes.voted_for', 'votes.voted_against')
+function getExistingCommentVote (billNumber, user_id) {
+  return knex('comment_votes')
+  .join('users', 'users.id', 'comment_votes.user_id')
+  .select('comment_votes.id', 'comment_votes.voted_for', 'comment_votes.voted_against')
   .where('users.user_id', user_id)
-  .where('votes.bill_number', billNumber)
+  .where('comment_votes.bill_number', billNumber)
 }
 
-function saveUserVote (user_id, billNumber, voteFor, voteAgainst) {
-  return knex('votes')
+function saveUserCommentVote (user_id, billNumber, voteFor, voteAgainst) {
+  return knex('comment_votes')
     .insert({
       user_id: user_id,
       bill_number: billNumber,
@@ -50,7 +50,7 @@ function saveUserVote (user_id, billNumber, voteFor, voteAgainst) {
       voted_against: voteAgainst
     })
     .then(() => {
-      return knex('votes')
+      return knex('comment_votes')
       .where({
         user_id: user_id,
         bill_number: billNumber
@@ -58,13 +58,13 @@ function saveUserVote (user_id, billNumber, voteFor, voteAgainst) {
     })
 }
 
-function updateUserVote (existingVote, voteType) {
-  const voteResult = getVoteResult(existingVote, voteType)
-  return knex('votes')
+function updateUserCommentVote (existingVote, voteType) {
+  const commentVoteResult = getCommentVoteResult(existingVote, voteType)
+  return knex('comment_votes')
     .where('id', existingVote.id)
-    .update(voteResult)
+    .update(commentVoteResult)
     .then(() => {
-      return knex('votes')
+      return knex('comment_votes')
       .where('id', existingVote.id)
     })
     .catch((err) => {
@@ -74,7 +74,7 @@ function updateUserVote (existingVote, voteType) {
     })
 }
 
-function getVoteResult (vote, type) {
+function getCommentVoteResult (vote, type) {
   switch (type) {
     case 'vote-for':
       return {

@@ -5,7 +5,6 @@ import './reply.css'
 // import { createReply } from '../../actions/comments.js'
 
 const Reply = (props) => {
-  console.log(props.parentId, Number(props.activeParentId))
   return (
     <div>
     {

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
+import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
 import './discussion.css'
 import Reply from '../Reply/Reply'
 
@@ -16,9 +17,19 @@ class Discussion extends Component {
           this.props.isAuthenticated &&
           <span>
             <div className='form-group row'>
-              <textarea type='text' className='input-box form-control' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
+              <textarea
+                type='text'
+                className='input-box form-control'
+                name='comment'
+                placeholder='Share your views here'
+                value={this.props.activeComment}
+                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
               </textarea>
-              <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              {
+                this.props.activeComment
+                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+                : <button disabled className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              }
             </div>
           </span>
         }
@@ -41,6 +52,14 @@ class Discussion extends Component {
                     <p className='username'>{item.username}</p>
                     <p>{item.date}</p>
                     <button name={item.id} onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
+                    {
+                      this.props.isAuthenticated
+                      && (this.props.user_id === item.user_id)
+                      && <EditDeleteComment
+                        comment_id={item.id}
+                        bill_number={this.props.billNumber}
+                        getBillInfo={this.props.getBillInfo}/>
+                    }
                   </div>
                   <Reply parentId={item.id}/>
                 </div>
