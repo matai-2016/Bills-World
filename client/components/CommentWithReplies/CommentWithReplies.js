@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './commentWithReplies.css'
 
-import Comment from '../Comment/'
+import Comment from '../Comment/Comment'
 import Reply from '../Reply/Reply'
 
 class CommentWithReplies extends Component {

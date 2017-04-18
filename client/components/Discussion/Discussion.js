@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
 import './discussion.css'
-import CommentWithReplies from '../CommentWithReplies/'
+import CommentWithReplies from '../CommentWithReplies/CommentWithReplies'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
 import { saveReply } from '../../actions/replies.js'
@@ -41,7 +41,7 @@ class Discussion extends Component {
         <div>
           {
             this.props.comments.map((comment) => {
-              const replies = this.props.replies.filter(r => r.parent_id === comment.id)
+              const replies = this.props.replies.filter(reply => reply.parent_id === comment.id)
               return (
                 <CommentWithReplies
                   key={comment.id}

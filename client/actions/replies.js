@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { getBillInfo } from './billInfo'
 
 export function createReply (parentId) {
   return {
@@ -27,6 +28,7 @@ export function saveReply (replyDetails) {
       .post('/replies/save')
       .set({ 'Content-Type': 'application/json' })
       .send(replyDetails)
+      .then(() => dispatch(getBillInfo(replyDetails.billNumber)))
       .catch(err => {
         return console.error(err.response.body)
       })
