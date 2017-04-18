@@ -1,4 +1,4 @@
-const env = require('webpack').EnvironmentPlugin
+const webpack = require('webpack')
 
 module.exports = {
   entry: './client/index.js',
@@ -22,13 +22,20 @@ module.exports = {
     }]
   },
   plugins: [
-    new env(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN'])
+    new webpack.EnvironmentPlugin(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN']),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      }
+    })
   ],
   postcss: [
     require('autoprefixer')
   ],
   resolve: {
     extensions: ['', '.js', '.jsx']
-  },
-  devtool: 'source-map'
+  }
 }

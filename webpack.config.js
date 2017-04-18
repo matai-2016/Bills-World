@@ -1,4 +1,5 @@
-const env = require('webpack').EnvironmentPlugin
+const webpack = require('webpack')
+const env = webpack.EnvironmentPlugin
 var DotenvPlugin = require('webpack-dotenv-plugin')
 
 module.exports = {
