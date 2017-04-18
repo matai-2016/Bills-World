@@ -5,7 +5,8 @@ import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
 import './discussion.css'
 import Reply from '../Reply/Reply'
 
-import { updateCommentForm, saveComment, clearInputBox, createReply } from '../../actions/comments.js'
+import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
+import { createReply } from '../../actions/replies.js'
 import moment from 'moment'
 
 class Discussion extends Component {
@@ -23,8 +24,7 @@ class Discussion extends Component {
                 name='comment'
                 placeholder='Share your views here'
                 value={this.props.activeComment}
-                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
-              </textarea>
+                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
               {
                 this.props.activeComment
                 ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
@@ -41,32 +41,31 @@ class Discussion extends Component {
         }
         <div>
           {
-          this.props.comments.map((item) => {
+          this.props.comments.map((comment) => {
             return (
-              <div key={item.id} className='comment-container'>
+              <div key={comment.id} className='comment-container'>
                 <div>
-                  <p className='comment-text'>{item.comment}</p>
+                  <p className='comment-text'>{comment.comment}</p>
                 </div>
                 <div className='row'>
                   <div className='metadata col-md-offset-2'>
-                    <p className='username'>{item.username}</p>
-                    <p>{item.date}</p>
-                      <button name={item.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
+                    <p className='username'>{comment.username}</p>
+                    <p>{comment.date}</p>
+                    <button name={comment.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
                     {
-                      this.props.isAuthenticated
-                      && (this.props.user_id === item.user_id)
-                      && <EditDeleteComment
-                        comment_id={item.id}
+                      this.props.isAuthenticated &&
+                      (this.props.user_id === comment.user_id) &&
+                      <EditDeleteComment
+                        comment_id={comment.id}
                         bill_number={this.props.billNumber}
-                        getBillInfo={this.props.getBillInfo}/>
+                        getBillInfo={this.props.getBillInfo} />
                     }
                   </div>
                 </div>
-                  <Reply
-                  parentId={item.id}
+                <Reply
+                  parentId={comment.id}
                   billNumber={this.props.billNumber}
                   getBillInfo={this.props.getBillInfo}
-                  clearInputBox={this.props.clearInputBox}
                   />
               </div>
             )

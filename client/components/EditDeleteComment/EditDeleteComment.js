@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import { updateCommentForm, saveComment, clearInputBox, deleteComment } from '../../actions/comments.js'
 
-
 import './editdeletecomment.css'
 
 class EditDeleteComment extends Component {
@@ -12,7 +11,7 @@ class EditDeleteComment extends Component {
       <div>
         <button className='edit-comment-button btn'>Edit</button>
         <button className='delete-comment-button btn'
-        onClick={(e) => this.handleSubmit(e)}>Delete</button>
+          onClick={(e) => this.handleSubmit(e)}>Delete</button>
       </div>
     )
   }

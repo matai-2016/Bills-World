@@ -15,12 +15,14 @@ const billsRoutes = require('./routes/bills')
 const billRoutes = require('./routes/bill')
 const votesRoutes = require('./routes/votes')
 const commentsRoutes = require('./routes/comments')
+const repliesRoutes = require('./routes/replies')
 
 app.use('/auth', authRoutes)
 app.use('/bills', billsRoutes)
 app.use('/bill', billRoutes)
 app.use('/votes', votesRoutes)
 app.use('/comments', commentsRoutes)
+app.use('/replies', repliesRoutes)
 
 app.get('/scrape', (req, res) => {
   webScraper(function (err, data) {

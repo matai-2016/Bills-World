@@ -3,19 +3,17 @@ import { connect } from 'react-redux'
 import './reply.css'
 import moment from 'moment'
 
-import { updateReplyForm, saveReply } from '../../actions/comments.js'
+import { updateReplyForm, saveReply} from '../../actions/replies.js'
 
 class Reply extends Component {
   render () {
     return (
       <div>
-      {
-        this.props.parentId === Number(this.props.activeParentId)
-        &&
+        {
+        this.props.parentId === Number(this.props.activeParentId) &&
         <div className='reply-container'>
           <textarea type='text' className='input-box form-control' name='activeReply' placeholder='Reply here' value={this.props.activeReply}
-          onChange={(e) => this.props.updateReplyForm(e.target.name, e.target.value)}>
-          </textarea>
+            onChange={(e) => this.props.updateReplyForm(e.target.name, e.target.value)} />
           {
             this.props.activeReply
             ? <button className='reply-submit-button btn' onClick={(props) => this.handleSubmit(props)}>Submit</button>
@@ -33,10 +31,9 @@ class Reply extends Component {
     const billNumber = this.props.billNumber
     const activeReply = this.props.activeReply
     const parentId = this.props.parentId
-    const replyDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeReply, parentId: parentId }
+    const replyDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, reply: activeReply, parentId: parentId }
     this.props.saveReply(replyDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
-    .then(this.props.clearInputBox)
     .catch((err) => {
       if (err) {
         console.error(err.message)
@@ -62,6 +59,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     saveReply: (replyDetails) => {
       return dispatch(saveReply(replyDetails))
+    },
+    clearInputBox: () => {
+      return dispatch(clearInputBox())
     }
   }
 }

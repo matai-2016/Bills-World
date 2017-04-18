@@ -8,7 +8,6 @@ import thunkMiddleware from 'redux-thunk'
 import reducers from './reducers'
 import App from './containers/App'
 
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(reducers, composeEnhancers(
