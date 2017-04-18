@@ -3,13 +3,27 @@ import { getVotes } from './votes'
 
 export function checkUserVote (user_id, billNumber) {
   return dispatch => {
-    return request
-      .get(`/votes/${billNumber}/${user_id}`)
-      .end((err, res) => {
-        if (err) {
-          return console.error(err.message, 'Toggle Vote failed')
+    request
+      .get('https://billsworld.au.auth0.com/authorize')
+      .query({
+        audience: 'http://www.billsworld.co.nz',
+        response_type: 'token',
+        prompt: 'none',
+        client_id: '-zHN7yxG__Z4IN8lE86JwIgHXJMjpIPN'
+      })
+      .end((error, response) => {
+        if (error) {
+          return console.error(error.message)
         }
-        dispatch(showUserVote(res.body))
+        console.log(response.body)
+        return request
+          .get(`/votes/${billNumber}/${user_id}`)
+          .end((err, res) => {
+            if (err) {
+              return console.error(err.message, 'Toggle Vote failed')
+            }
+            dispatch(showUserVote(res.body))
+          })
       })
   }
 }

@@ -9,6 +9,10 @@ export function checkLogin (history) {
   return (dispatch) => {
     // Add callback for lock's `authenticated` event
     authService.lock.on('authenticated', (authResult) => {
+      authService.lock.getUserInfo(authResult.accessToken, (err, profile) => {
+        console.log(profile)
+      })
+      console.log(authResult.accessToken)
       authService.lock.getProfile(authResult.idToken, (error, profile) => {
         if (error) { return dispatch(loginError(error)) }
         AuthService.setToken(authResult.idToken) // static method

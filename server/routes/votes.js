@@ -1,5 +1,20 @@
 const bodyParser = require('body-parser')
 const express = require('express')
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
+
+var jwtCheck = jwt({
+    secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: "https://billsworld.au.auth0.com/.well-known/jwks.json"
+    }),
+    audience: 'http://www.billsworld.co.nz',
+    issuer: "https://billsworld.au.auth0.com/",
+    algorithms: ['RS256']
+});
+
 const bill = require('../lib/bill')
 const votes = require('../lib/votes')
 const users = require('../lib/users')
@@ -42,6 +57,8 @@ router.get('/:bill_number', (req, res) => {
       }
     })
 })
+
+router.use(jwtCheck);
 
 router.get('/:bill_number/:user_id', (req, res) => {
   votes.getVotesByUserIdAndBillId(req.params.bill_number, req.params.user_id)
