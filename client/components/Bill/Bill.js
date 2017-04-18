@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import CommentCount from '../CommentCount/CommentCount'
 
 import './bill.css'
+import Vote from '../Vote/Vote.js'
 
 const Bill = (props) => {
   let title = props.title
@@ -22,6 +23,7 @@ const Bill = (props) => {
       <div className='comment-count'>
         <CommentCount billNumber={props.billNumber} comments={props.comments} />
       </div>
+      <Vote billNumber={props.billNumber} />
     </div>
   )
 }
