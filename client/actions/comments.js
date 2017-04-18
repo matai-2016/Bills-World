@@ -56,3 +56,24 @@ export function createReply (parentId) {
     parentId
   }
 }
+
+export function updateReplyForm (name, value) {
+  return {
+    type: 'UPDATE_REPLY_FORM',
+    name,
+    value
+  }
+}
+
+export function saveReply (replyDetails) {
+  console.log(replyDetails)
+  return dispatch => {
+    return request
+      .post('/comments/reply/save')
+      .set({ 'Content-Type': 'application/json' })
+      .send(replyDetails)
+      .catch(err => {
+        return console.error(err.response.body)
+      })
+  }
+}

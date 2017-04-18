@@ -1,3 +1,11 @@
+/** {
+  border: 1px solid black;
+}*/
+
+.comment-container {
+  border-bottom: 1px solid gray;
+  padding-bottom: 1rem;
+}
 
 .input-box {
   min-height: 10rem;
@@ -24,6 +32,18 @@
 }
 
 .submit-button:hover {
+  opacity: .7;
+}
+
+.reply-button {
+  color: white;
+  float: right;
+  opacity: 1;
+  background-color: rgb(255, 78, 78);
+  margin-top: 1rem;
+}
+
+.reply-button:hover {
   opacity: .7;
 }
 

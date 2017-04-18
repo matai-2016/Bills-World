@@ -1,0 +1,23 @@
+.edit-comment-button {
+  color: white;
+  float: right;
+  opacity: 1;
+  background-color: rgb(255, 78, 78);
+  margin-top: 1rem;
+}
+
+.edit-button:hover  {
+  opacity: .7;
+}
+
+.delete-comment-button {
+  color: white;
+  float: right;
+  opacity: 1;
+  background-color: rgb(255, 78, 78);
+  margin-top: 1rem;
+}
+
+.delete-comment-button:hover {
+  opacity: .7;
+}

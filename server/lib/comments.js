@@ -6,6 +6,7 @@ module.exports = {
   getComments,
   getAllComments,
   editComment,
+  saveReply,
   deleteComment
 }
 
@@ -17,6 +18,23 @@ function saveComment (user_id, billNumber, comment, username, date) {
       comment: comment,
       username: username,
       date: date
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+}
+
+function saveReply (user_id, billNumber, comment, username, date, parentId) {
+  return knex('comments')
+    .insert({
+      user_id: user_id,
+      bill_number: billNumber,
+      comment: comment,
+      username: username,
+      date: date,
+      parent_id: parentId
     })
     .catch((err) => {
       if (err) {

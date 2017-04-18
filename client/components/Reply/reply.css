@@ -14,7 +14,7 @@
   border: 1px solid #58595C;
 }
 
-.submit-button {
+.reply-submit-button {
   color: white;
   float: right;
   opacity: 1;
@@ -22,7 +22,7 @@
   margin-top: 1rem;
 }
 
-.submit-button:hover {
+.reply-submit-button:hover {
   opacity: .7;
 }
 

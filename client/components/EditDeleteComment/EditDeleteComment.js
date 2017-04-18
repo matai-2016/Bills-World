@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 import { updateCommentForm, saveComment, clearInputBox, deleteComment } from '../../actions/comments.js'
@@ -6,12 +6,12 @@ import { updateCommentForm, saveComment, clearInputBox, deleteComment } from '..
 
 import './editdeletecomment.css'
 
-class EditDeleteComment extends React.Component {
+class EditDeleteComment extends Component {
   render () {
     return (
       <div>
-        <button>Edit</button>
-        <button className='delete-comment-btn'
+        <button className='edit-comment-button btn'>Edit</button>
+        <button className='delete-comment-button btn'
         onClick={(e) => this.handleSubmit(e)}>Delete</button>
       </div>
     )

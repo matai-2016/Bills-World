@@ -43,7 +43,7 @@ class Discussion extends Component {
           {
           this.props.comments.map((item) => {
             return (
-              <div key={item.id} className='comment'>
+              <div key={item.id} className='comment-container'>
                 <div>
                   <p className='comment-text'>{item.comment}</p>
                 </div>
@@ -51,7 +51,7 @@ class Discussion extends Component {
                   <div className='metadata col-md-offset-2'>
                     <p className='username'>{item.username}</p>
                     <p>{item.date}</p>
-                    <button name={item.id} onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
+                      <button name={item.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
                     {
                       this.props.isAuthenticated
                       && (this.props.user_id === item.user_id)
@@ -61,9 +61,13 @@ class Discussion extends Component {
                         getBillInfo={this.props.getBillInfo}/>
                     }
                   </div>
-                  <Reply parentId={item.id}/>
                 </div>
-                <hr/>
+                  <Reply
+                  parentId={item.id}
+                  billNumber={this.props.billNumber}
+                  getBillInfo={this.props.getBillInfo}
+                  clearInputBox={this.props.clearInputBox}
+                  />
               </div>
             )
           })
@@ -104,7 +108,7 @@ const mapStateToProps = (state) => {
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
     replying: state.activeReply.replying,
-    parentId: state.activeReply.parentId,
+    activeParentId: state.activeReply.parentId,
     isAuthenticated: state.auth.isAuthenticated
   }
 }
