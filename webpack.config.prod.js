@@ -23,6 +23,11 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN']),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
