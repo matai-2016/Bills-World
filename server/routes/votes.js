@@ -21,14 +21,14 @@ router.use(bodyParser.json())
 router.get('/:bill_number', (req, res) => {
   Promise.all([bill.getBill(req.params.bill_number), votes.getVotes()])
     .then(([bill, votes]) => {
-      const curBill = bill[0]
+      const currentBill = bill[0]
       const votesFor = votes
-      .filter(vote => vote.bill_number === curBill.bill_number)
+      .filter(vote => vote.bill_number === currentBill.bill_number)
       .reduce(function (total, vote) {
         return vote.voted_for ? total + 1 : total
       }, 0)
       const votesAgainst = votes
-      .filter(vote => vote.bill_number === curBill.bill_number)
+      .filter(vote => vote.bill_number === currentBill.bill_number)
       .reduce(function (total, vote) {
         return vote.voted_against ? total + 1 : total
       }, 0)
@@ -38,7 +38,7 @@ router.get('/:bill_number', (req, res) => {
       const percentageAgainst = Number(votesAgainst / total) * 100
       const roundedAgainst = percentageAgainst.toFixed(0)
       const result = {
-        bill_number: curBill.bill_number,
+        bill_number: currentBill.bill_number,
         votes_for: votesFor,
         votes_against: votesAgainst,
         percentage_for: roundedFor,

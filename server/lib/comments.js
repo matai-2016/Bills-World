@@ -4,7 +4,9 @@ const knex = require('knex')(config)
 module.exports = {
   saveComment,
   getComments,
-  getAllComments
+  getAllComments,
+  editComment,
+  deleteComment
 }
 
 function saveComment (user_id, billNumber, comment, username, date) {
@@ -16,6 +18,32 @@ function saveComment (user_id, billNumber, comment, username, date) {
       username: username,
       date: date
     })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+}
+
+function editComment (user_id, comment_id, comment) {
+  return knex('comments')
+    .where('comments.user_id', user_id)
+    .where('comments.id', comment_id)
+    .update({
+      comment: comment
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+}
+
+function deleteComment (user_id, comment_id) {
+  return knex('comments')
+    .where('user_id', user_id)
+    .where('id', comment_id)
+    .del()
     .catch((err) => {
       if (err) {
         console.error(err.message)

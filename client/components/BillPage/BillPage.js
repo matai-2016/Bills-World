@@ -44,7 +44,7 @@ class BillPage extends React.Component {
             />
         </div>
         <Footer />
-    </div>
+      </div>
     )
   }
 }

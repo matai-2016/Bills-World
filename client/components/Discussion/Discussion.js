@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
+import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
 import './discussion.css'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
@@ -14,9 +15,19 @@ class Discussion extends Component {
           this.props.auth.isAuthenticated &&
           <span>
             <div className='form-group row'>
-              <textarea type='text' className='input-box form-control' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
+              <textarea
+                type='text'
+                className='input-box form-control'
+                name='comment'
+                placeholder='Share your views here'
+                value={this.props.activeComment}
+                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
               </textarea>
-              <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              {
+                this.props.activeComment
+                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+                : <button disabled className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              }
             </div>
           </span>
         }
@@ -38,6 +49,14 @@ class Discussion extends Component {
                   <div className='metadata col-md-offset-2'>
                     <p className='username'>{comment.username}</p>
                     <p>{comment.date}</p>
+                    {
+                      this.props.auth.isAuthenticated
+                      && (this.props.user_id === comment.user_id)
+                      && <EditDeleteComment
+                        comment_id={comment.id}
+                        bill_number={this.props.billNumber}
+                        getBillInfo={this.props.getBillInfo}/>
+                    }
                   </div>
                 </div>
                 <hr/>
@@ -57,10 +76,10 @@ class Discussion extends Component {
     const yyyy = today.getFullYear()
     const date = dd + '/' + mm + '/' + yyyy
     const username = this.props.username
-    const clientID = this.props.clientID
+    const user_id = this.props.user_id
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { date: date, username: username, clientID: clientID, billNumber: billNumber, comment: activeComment }
+    const commentDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeComment }
     this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
@@ -78,7 +97,7 @@ Discussion.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    clientID: state.auth.profile.clientID,
+    user_id: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
     auth: state.auth

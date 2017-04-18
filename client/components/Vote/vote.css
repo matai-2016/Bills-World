@@ -1,86 +1,39 @@
-.votes-container {
-  margin-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-  border-bottom: 3px solid #FF4E4E;
-  text-align: center;
-}
-
-.highlight-button {
-  opacity: .5;
-}
-
-/*
-.voting-bar {
-  bottom: 10px;
-  width: 70%;
-  display: inline;
-}*/
-
-.votes-against, .votes-for {
-  font-size: 25px;
-}
-
-.svg {
-  width: 50%;
-  display: inline;
-}
-
-.votes-for-container {
-  border-radius: 50%;
-  color: white;
-  height: 40px;
-  width: 40px;
-  background-color: #25ba68;
-  display: inline;
-  margin-right: 5%;
-  border-style: none;
-  font-weight: bold;
-}
-
-.votes-against-container {
-  border-radius: 50%;
-  color: white;
-  height: 40px;
-  width: 40px;
+.header {
+  font-family: 'Amiri', serif;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px 40px;
   background-color: #FF4E4E;
-  display: inline;
-  text-align: center;
-  margin-left: 5%;
-  border-style: none;
-  font-weight: bold;
 }
 
-.voting-button {
-  display: inline;
-  position: relative; top: 7px;
-  height: 40px;
-  width: 40px;
-  background-color: white;
-  border-style: none;
-  font-weight: bold;
-  font-size: 30px;
-  padding: 0px;
+.header div:last-child {
+  margin-left: auto;
 }
 
-.highlight-button-for {
-  color: #25ba68;
-  font-size: 30px;
-  font-weight: bold;
+.logo {
+  height: 30px;
+  width: 20px;
 }
 
-.highlight-button-against {
-  color: #FF4E4E;
-  font-size: 30px;
-  font-weight: bold;
+.header-title {
+  font-size: 28px;
+  margin-left: 15px;
+  margin-top: 20px;
+  /*align-self: flex-start;*/
+  color: white;
 }
 
-.button-for {
-  float: left;
-  margin-left: 10%;
+a:hover {
+  text-decoration: none;
 }
 
-.button-against {
-  float: right;
-  margin-right: 10%;
+.header-title:hover {
+  text-decoration: none;
 }
+
+
+/*gray: #58595C*/

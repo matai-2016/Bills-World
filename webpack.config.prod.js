@@ -21,7 +21,7 @@ module.exports = {
       loader: 'style!css?importLoaders=1!postcss'
     }]
   },
-  plugins:[
+  plugins: [
     new env(['AUTH0_CLIENT_ID', 'AUTH0_DOMAIN'])
   ],
   postcss: [
