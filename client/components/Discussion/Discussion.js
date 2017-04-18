@@ -13,7 +13,7 @@ class Discussion extends Component {
   render () {
     return (
       <div>
-        <h3 className='comments-title'>Comments</h3>
+        <h3 className='comments-title'>Comments<i className="fa fa-camera-retro fa-3x"></i></h3>
         {
           this.props.isAuthenticated &&
           <span>
@@ -71,7 +71,7 @@ class Discussion extends Component {
                     this.props.replies.map((reply) => {
                       if (comment.id === reply.parent_id) {
                         return (
-                          <div>
+                          <div key={reply.id}>
                             <div>
                               <p className='comment-text'>{reply.reply}</p>
                             </div>
