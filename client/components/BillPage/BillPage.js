@@ -10,7 +10,7 @@ import Share from '../Share/Share'
 import BillInfo from '../BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
-import './billPage.css'
+import './billpage.css'
 
 class BillPage extends React.Component {
   componentDidMount () {
@@ -45,6 +45,7 @@ class BillPage extends React.Component {
           <Discussion
             billNumber={this.props.billInfo.bill_number}
             comments={this.props.billInfo.comments}
+            replies={this.props.billInfo.replies}
             getBillInfo={this.props.getBillInfo}
             />
         </div>

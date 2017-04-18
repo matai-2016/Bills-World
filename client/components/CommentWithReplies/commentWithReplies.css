@@ -1,0 +1,16 @@
+.comment-container {
+  border-bottom: 1px solid gray;
+  padding-bottom: 1rem;
+}
+
+.metadata {
+  display: flex;
+  float: right;
+  margin-right: 2.5rem;
+  margin-bottom: -1rem;
+}
+
+.comment-text {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

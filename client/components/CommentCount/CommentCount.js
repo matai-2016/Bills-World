@@ -8,7 +8,7 @@ class CommentCount extends React.Component {
     const comments = this.props.comments
     const numberOfComments = comments.length
     return (
-      <div className='container-fluid'>
+      <div>
         <img className='speech-bubble' src='/img/speech-bubble.jpg' /> {numberOfComments}
       </div>
     )

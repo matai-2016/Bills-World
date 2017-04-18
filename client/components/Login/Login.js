@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { checkLogin, createLoginRequest, registerLogoutSuccess } from '../../actions/auth.js'
 import { clearUserVote } from '../../actions/userVote'
 
@@ -66,7 +65,6 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(createLoginRequest())
     },
     onLogoutClick: (history) => {
-      return dispatch(registerLogoutSuccess(history))
       return dispatch(registerLogoutSuccess(history))
     },
     clearUserVote: () => {

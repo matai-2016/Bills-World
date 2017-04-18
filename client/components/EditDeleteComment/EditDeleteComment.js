@@ -1,12 +1,11 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 import { updateEditForm, deleteComment, toggleEditCommentBox } from '../../actions/comments.js'
 
-
 import './editdeletecomment.css'
 
-class EditDeleteComment extends React.Component {
+class EditDeleteComment extends Component {
   render () {
     return (
       <div>
@@ -14,9 +13,9 @@ class EditDeleteComment extends React.Component {
           this.props.auth.isAuthenticated
           && (this.props.comment.user_id === this.props.userId)
           && <div>
-            <button onClick={(e) => this.handleEdit(e)}>Edit</button>
-            <button className='delete-comment-btn'
-              onClick={(e) => this.handleDelete(e)}>Delete
+            <button className='edit-comment-button btn' onClick={(e) => this.handleEdit(e)}><i className='fa fa-pencil fa-lg' aria-hidden='true'></i></button>
+            <button className='delete-comment-button btn'
+              onClick={(e) => this.handleDelete(e)}><i className='fa fa-trash-o fa-lg' aria-hidden='true'></i>
             </button>
           </div>
         }

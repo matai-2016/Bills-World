@@ -1,9 +1,12 @@
 import request from 'superagent'
 
+import AuthService from '../utils/AuthService'
+
 export function saveComment (commentDetails) {
   return dispatch => {
     return request
       .post('/comments/save')
+      .set('Authorization', `Bearer ${AuthService.getToken()}`)
       .set({ 'Content-Type': 'application/json' })
       .send(commentDetails)
       .catch(err => {
