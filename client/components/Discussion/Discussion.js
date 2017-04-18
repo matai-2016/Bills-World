@@ -23,10 +23,11 @@ class Discussion extends Component {
                 value={this.props.activeComment}
                 onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
               </textarea>
-              <button>
-                className='submit-button btn'
-                onClick={(event) => this.handleSubmit(event)}>Submit
-              </button>
+              {
+                this.props.activeComment
+                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+                : <button disabled className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              }
             </div>
           </span>
         }
