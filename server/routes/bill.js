@@ -12,14 +12,14 @@ router.use(bodyParser.json())
 router.get('/:bill_number', (req, res) => {
   Promise.all([bill.getBill(req.params.bill_number), comments.getComments(req.params.bill_number)])
     .then(([bill, comments]) => {
-      const curBill = bill[0]
+      const currentBill = bill[0]
       const result = {
-        bill_number: curBill.bill_number,
-        title: curBill.title,
-        summary: curBill.summary,
-        type: curBill.type,
-        member_in_charge: curBill.member_in_charge,
-        introduction_date: curBill.introduction_date,
+        bill_number: currentBill.bill_number,
+        title: currentBill.title,
+        summary: currentBill.summary,
+        type: currentBill.type,
+        member_in_charge: currentBill.member_in_charge,
+        introduction_date: currentBill.introduction_date,
         comments: comments
       }
       res.send(result)

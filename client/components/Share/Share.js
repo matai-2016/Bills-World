@@ -1,7 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share'
-
 
 const Share = (props) => {
   const { FacebookShareButton, TwitterShareButton } = ShareButtons
@@ -13,25 +11,25 @@ const Share = (props) => {
   const summary = props.summary
   return (
     <div>
-      <div className="share-container">
+      <div className='share-container'>
         <FacebookShareButton
           url={shareUrl}
           title={title}
           description={summary}
           picture={`http://hotelwaterloo.co.nz/wp-content/uploads/The-Beehive.jpg`}
-          className="facebook-share">
+          className='facebook-share'>
           <FacebookIcon
             size={32}
             round />
         </FacebookShareButton>
         <FacebookShareCount
           url={shareUrl}
-          className="share-count">
+          className='share-count'>
           {count => count}
         </FacebookShareCount>
       </div>
 
-      <div className="share-container">
+      <div className='share-container'>
         <TwitterShareButton
           url={shareUrl}
           title={title}
@@ -39,7 +37,7 @@ const Share = (props) => {
           <TwitterIcon
             size={32}
             round />
-          </TwitterShareButton>
+        </TwitterShareButton>
       </div>
     </div>
   )

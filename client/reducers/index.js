@@ -13,8 +13,7 @@ const reducers = combineReducers({
   billInfo,
   votes,
   userVote,
-  activeComment,
-  billInfo
+  activeComment
 })
 
 export default reducers

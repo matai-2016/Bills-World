@@ -14,12 +14,12 @@ router.get('/:comment_id', (req, res) => {
     .then(([comments, commentVotes]) => {
       const currentComments = comments[0]
       const votesFor = votes
-      .filter(vote => vote.bill_number === curBill.bill_number)
+      .filter(vote => vote.bill_number === currentBill.bill_number)
       .reduce(function (total, vote) {
         return vote.voted_for ? total + 1 : total
       }, 0)
       // const votesAgainst = votes
-      // .filter(vote => vote.bill_number === curBill.bill_number)
+      // .filter(vote => vote.bill_number === currentBill.bill_number)
       // .reduce(function (total, vote) {
       //   return vote.voted_against ? total + 1 : total
       // }, 0)
@@ -29,7 +29,7 @@ router.get('/:comment_id', (req, res) => {
       // const percentageAgainst = Number(votesAgainst / total) * 100
       // const roundedAgainst = percentageAgainst.toFixed(0)
       // const result = {
-      //   bill_number: curBill.bill_number,
+      //   bill_number: currentBill.bill_number,
       //   votes_for: votesFor,
       //   votes_against: votesAgainst,
       //   percentage_for: roundedFor,

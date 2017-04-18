@@ -65,11 +65,11 @@ const mapDispatchToProps = dispatch => {
     getVotes: (billNumber) => {
       dispatch(getVotes(billNumber))
     },
-    toggleVote: (voteType, user_id, billNumber) => {
-      dispatch(toggleVote(voteType, user_id, billNumber))
+    toggleVote: (voteType, userId, billNumber) => {
+      dispatch(toggleVote(voteType, userId, billNumber))
     },
-    checkUserVote: (user_id, billNumber) => {
-      dispatch(checkUserVote(user_id, billNumber))
+    checkUserVote: (userId, billNumber) => {
+      dispatch(checkUserVote(userId, billNumber))
     }
   }
 }
