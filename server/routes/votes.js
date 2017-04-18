@@ -55,8 +55,8 @@ router.get('/:bill_number', (req, res) => {
 
 router.use(authenticate)
 
-router.get('/:bill_number/:user_id', (req, res) => {
-  votes.getVotesByUserIdAndBillId(req.params.bill_number, req.params.user_id)
+router.get('/:billNumber/:userId', (req, res) => {
+  votes.getVotesByUserIdAndBillId(req.params.billNumber, req.params.userId)
     .then((vote) => {
       let result = {}
       if (vote.length > 0) {
@@ -79,9 +79,9 @@ router.get('/:bill_number/:user_id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const { billNumber, user_id, voteType } = req.body
+  const { billNumber, userId, voteType } = req.body
   // get user ID from users table
-  return users.getByUserId(user_id)
+  return users.getByUserId(userId)
     .then((userResult) => {
       const user = userResult[0]
       return votes.getExistingVote(billNumber, user.user_id)
