@@ -29,6 +29,10 @@
   color: white;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .header-title:hover {
   text-decoration: none;
 }
