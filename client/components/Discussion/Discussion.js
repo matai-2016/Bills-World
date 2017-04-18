@@ -5,6 +5,7 @@ import './discussion.css'
 import Reply from '../Reply/Reply'
 
 import { updateCommentForm, saveComment, clearInputBox, createReply } from '../../actions/comments.js'
+import moment from 'moment'
 
 class Discussion extends Component {
   render () {
@@ -12,7 +13,7 @@ class Discussion extends Component {
       <div>
         <h3 className='comments-title'>Comments</h3>
         {
-          this.props.auth.isAuthenticated &&
+          this.props.isAuthenticated &&
           <span>
             <div className='form-group row'>
               <textarea type='text' className='input-box form-control' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
@@ -22,7 +23,7 @@ class Discussion extends Component {
           </span>
         }
         {
-          !this.props.auth.isAuthenticated &&
+          !this.props.isAuthenticated &&
           <span>
             <p className='login-prompt'>Please login or register to comment on this thread</p>
           </span>
@@ -40,7 +41,7 @@ class Discussion extends Component {
                     <p className='username'>{item.username}</p>
                     <p>{item.date}</p>
                     <button name={item.id} onClick={(e) => this.reply(e.target.name)}>Reply</button>
-                    
+
                   </div>
                 </div>
                 <hr/>
@@ -54,16 +55,12 @@ class Discussion extends Component {
     )
   }
   handleSubmit () {
-    const today = new Date()
-    const dd = today.getDate()
-    const mm = today.getMonth() + 1
-    const yyyy = today.getFullYear()
-    const date = dd + '/' + mm + '/' + yyyy
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
-    const clientID = this.props.clientID
+    const user_id = this.props.user_id
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { date: date, username: username, clientID: clientID, billNumber: billNumber, comment: activeComment }
+    const commentDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeComment }
     this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
@@ -84,12 +81,12 @@ Discussion.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    clientID: state.auth.profile.clientID,
+    user_id: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
     replying: state.activeReply.replying,
     parentId: state.activeReply.parentId,
-    auth: state.auth
+    isAuthenticated: state.auth.isAuthenticated
   }
 }
 
