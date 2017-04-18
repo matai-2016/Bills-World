@@ -27,8 +27,8 @@ function saveComment (user_id, billNumber, comment, username, date) {
 
 function editComment (user_id, comment_id, comment) {
   return knex('comments')
-    .where('comments.user_id', user_id)
-    .where('comments.id', comment_id)
+    .where('user_id', user_id)
+    .where('id', comment_id)
     .update({
       comment: comment
     })
