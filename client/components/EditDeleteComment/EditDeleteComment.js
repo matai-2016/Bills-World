@@ -1,18 +1,17 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 import { updateCommentForm, saveComment, clearInputBox, deleteComment } from '../../actions/comments.js'
 
-
 import './editdeletecomment.css'
 
-class EditDeleteComment extends React.Component {
+class EditDeleteComment extends Component {
   render () {
     return (
       <div>
-        <button>Edit</button>
-        <button className='delete-comment-btn'
-        onClick={(e) => this.handleSubmit(e)}>Delete</button>
+        <button className='edit-comment-button btn'><i className='fa fa-pencil fa-lg' aria-hidden='true'></i></button>
+        <button className='delete-comment-button btn'
+          onClick={(e) => this.handleSubmit(e)}><i className='fa fa-trash-o fa-lg' aria-hidden='true'></i></button>
       </div>
     )
   }
@@ -21,7 +20,11 @@ class EditDeleteComment extends React.Component {
     const user_id = this.props.user_id
     const comment_id = this.props.comment_id
     const bill_number = this.props.bill_number
-    const commentDetails = { user_id: user_id, comment_id: comment_id, bill_number: bill_number }
+    const commentDetails = {
+      user_id: user_id,
+      comment_id: comment_id,
+      bill_number: bill_number
+    }
     this.props.deleteComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, bill_number))
     .catch((err) => {

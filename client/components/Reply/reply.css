@@ -1,7 +1,3 @@
-/** {
-  border: 1px solid black;
-}*/
-
 .input-box {
   min-height: 10rem;
   margin-top: 1.5rem;
@@ -18,7 +14,7 @@
   border: 1px solid #58595C;
 }
 
-.submit-button {
+.reply-submit-button {
   color: white;
   float: right;
   opacity: 1;
@@ -26,11 +22,11 @@
   margin-top: 1rem;
 }
 
-.submit-button:hover {
+.reply-submit-button:hover {
   opacity: .7;
 }
 
-.reply-button {
+.reply-discard-button {
   color: white;
   float: right;
   opacity: 1;
@@ -38,7 +34,7 @@
   margin-top: 1rem;
 }
 
-.reply-button:hover {
+.reply-discard-button:hover {
   opacity: .7;
 }
 
@@ -47,6 +43,17 @@
   padding-bottom: 1rem;
 }
 
+.metadata {
+  display: flex;
+  float: right;
+  margin-right: 2.5rem;
+  margin-bottom: -1rem;
+}
+
+.comment-text {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 
 .username {
   color: #58595C;

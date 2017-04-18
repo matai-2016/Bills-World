@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
-import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
 import './discussion.css'
+import CommentWithReplies from '../CommentWithReplies/CommentWithReplies'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
+import { saveReply } from '../../actions/replies.js'
+import moment from 'moment'
 
 class Discussion extends Component {
   render () {
@@ -12,7 +14,7 @@ class Discussion extends Component {
       <div>
         <h3 className='comments-title'>Comments</h3>
         {
-          this.props.auth.isAuthenticated &&
+          this.props.isAuthenticated &&
           <span>
             <div className='form-group row'>
               <textarea
@@ -21,66 +23,68 @@ class Discussion extends Component {
                 name='comment'
                 placeholder='Share your views here'
                 value={this.props.activeComment}
-                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
-              </textarea>
+                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
               {
                 this.props.activeComment
-                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
-                : <button disabled className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(this.props.activeComment)}>Submit</button>
+                : <button disabled className='submit-button btn'>Submit</button>
               }
             </div>
           </span>
         }
         {
-          !this.props.auth.isAuthenticated &&
+          !this.props.isAuthenticated &&
           <span>
             <p className='login-prompt'>Please login or register to comment on this thread</p>
           </span>
         }
         <div>
           {
-          this.props.comments.map((comment, i) => {
-            return (
-              <div key={i} className='comment'>
-                <div>
-                  <p className='comment-text'>{comment.comment}</p>
-                </div>
-                <div className='row'>
-                  <div className='metadata col-md-offset-2'>
-                    <p className='username'>{comment.username}</p>
-                    <p>{comment.date}</p>
-                    {
-                      this.props.auth.isAuthenticated
-                      && (this.props.user_id === comment.user_id)
-                      && <EditDeleteComment
-                        comment_id={comment.id}
-                        bill_number={this.props.billNumber}
-                        getBillInfo={this.props.getBillInfo}/>
-                    }
-                  </div>
-                </div>
-                <hr/>
-              </div>
-            )
-          })
-        }
+            this.props.comments.map((comment) => {
+              const replies = this.props.replies.filter(reply => reply.parent_id === comment.id)
+              return (
+                <CommentWithReplies
+                  key={comment.id}
+                  comment={comment}
+                  replies={replies}
+                  user_id={this.props.user_id}
+                  billNumber={this.props.billNumber}
+                  isAuthenticated={this.props.isAuthenticated}
+                  getBillInfo={this.props.getBillInfo}
+                  handleReplySubmit={(id, val) => this.handleSubmit(val, id)}
+                />
+              )
+            })
+          }
         </div>
         <ReportAbuse />
       </div>
     )
   }
-  handleSubmit (event) {
-    const today = new Date()
-    const dd = today.getDate()
-    const mm = today.getMonth() + 1
-    const yyyy = today.getFullYear()
-    const date = dd + '/' + mm + '/' + yyyy
+
+  handleSubmit (value, parentId) {
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
     const user_id = this.props.user_id
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeComment }
-    this.props.saveComment(commentDetails)
+    let commentDetails = {
+      date: date,
+      username: username,
+      user_id: user_id,
+      billNumber: billNumber
+    }
+
+    if (parentId) {
+      commentDetails.parentId = parentId,
+      commentDetails.reply = value
+    } else {
+      commentDetails.comment = value
+    }
+
+    return parentId
+      ? this.props.saveReply(commentDetails)
+      : this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
     .catch((err) => {
@@ -100,7 +104,9 @@ const mapStateToProps = (state) => {
     user_id: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
-    auth: state.auth
+    replying: state.activeReply.replying,
+    activeParentId: state.activeReply.parentId,
+    isAuthenticated: state.auth.isAuthenticated
   }
 }
 
@@ -114,6 +120,15 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearInputBox: () => {
       return dispatch(clearInputBox())
+    },
+    saveReply: (replyDetails) => {
+      return dispatch(saveReply(replyDetails))
+    },
+    createReply: (parentId) => {
+      return dispatch(createReply(parentId))
+    },
+    clearReplyBox: () => {
+      return dispatch(clearReplyBox())
     }
   }
 }

@@ -23,10 +23,8 @@ router.get('/:user_id', (req, res) => {
   users.exists(req.params.user_id)
     .then(exists => {
       if (exists) {
-        console.log('User exists')
         res.send({message: 'User exists'})
       } else {
-        console.log('User does not exist')
         res.send({message: 'User does not exist'})
       }
     })
@@ -46,7 +44,6 @@ function register (req, res, next) {
   users.exists(req.body.user_id)
     .then(exists => {
       if (exists) {
-        console.log('USER EXISTS')
         next()
         return
       }
