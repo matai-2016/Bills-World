@@ -101,7 +101,6 @@ const mapStateToProps = (state) => {
     user_id: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
-    activeEditComment: state.activeEditComment,
     auth: state.auth
   }
 }

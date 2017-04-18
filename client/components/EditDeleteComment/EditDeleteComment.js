@@ -13,21 +13,13 @@ class EditDeleteComment extends React.Component {
         {
           this.props.auth.isAuthenticated
           && (this.props.comment.user_id === this.props.userId)
-          && (this.props.activeEditCommentId !== this.props.comment.id)
           && <div>
             <button onClick={(e) => this.handleEdit(e)}>Edit</button>
-          </div>
-        }
-        {
-          this.props.auth.isAuthenticated
-          && (this.props.comment.user_id === this.props.userId)
-          && <div>
             <button className='delete-comment-btn'
               onClick={(e) => this.handleDelete(e)}>Delete
             </button>
           </div>
         }
-
       </div>
     )
   }

@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import { connect } from 'react-redux'
 
 import { clearEditForm, updateEditForm, editComment, toggleEditCommentBox } from '../../actions/comments.js'
@@ -30,7 +29,6 @@ class EditCommentInputBox extends React.Component {
             </textarea>
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
             <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}>Cancel</button>
-
           </span>
         }
       </div>
