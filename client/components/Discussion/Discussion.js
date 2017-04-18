@@ -6,7 +6,7 @@ import './discussion.css'
 import Reply from '../Reply/Reply'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
-import { createReply } from '../../actions/replies.js'
+import { createReply, clearReplyBox } from '../../actions/replies.js'
 import moment from 'moment'
 
 class Discussion extends Component {
@@ -41,50 +41,51 @@ class Discussion extends Component {
         }
         <div>
           {
-          this.props.comments.map((comment) => {
-            return (
-              <div key={comment.id} className='comment-container'>
-                <div>
-                  <p className='comment-text'>{comment.comment}</p>
-                </div>
-                <div className='row'>
-                  <div className='metadata col-md-offset-2'>
-                    <p className='username'>{comment.username}</p>
-                    <p>{comment.date}</p>
-                    <button name={comment.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
-                    {
-                      this.props.isAuthenticated &&
-                      (this.props.user_id === comment.user_id) &&
-                      <EditDeleteComment
-                        comment_id={comment.id}
-                        bill_number={this.props.billNumber}
-                        getBillInfo={this.props.getBillInfo} />
-                    }
+            this.props.comments.map((comment) => {
+              return (
+                <div key={comment.id} className='comment-container'>
+                  <div>
+                    <p className='comment-text'>{comment.comment}</p>
                   </div>
-                </div>
-                <Reply
-                  parentId={comment.id}
-                  billNumber={this.props.billNumber}
-                  getBillInfo={this.props.getBillInfo}
-                  />
-                {this.props.replies.map((reply) => {
-                  if (comment.id === reply.parent_id) {
-                    return (
-                      <div>
-                        <div>
-                          <p className='comment-text'>{reply.reply}</p>
-                        </div>
-                        <div className='row'>
-                          <div className='metadata col-md-offset-2'>
-                            <p className='username'>{reply.username}</p>
-                            <p>{reply.date}</p>
+                  <div className='row'>
+                    <div className='metadata col-md-offset-2'>
+                      <p className='username'>{comment.username}</p>
+                      <p>{comment.date}</p>
+                      <button name={comment.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
+                      {
+                        this.props.isAuthenticated &&
+                        (this.props.user_id === comment.user_id) &&
+                        <EditDeleteComment
+                          comment_id={comment.id}
+                          bill_number={this.props.billNumber}
+                          getBillInfo={this.props.getBillInfo} />
+                      }
+                    </div>
+                  </div>
+                  <Reply
+                    parentId={comment.id}
+                    billNumber={this.props.billNumber}
+                    getBillInfo={this.props.getBillInfo}
+                    />
+                  {
+                    this.props.replies.map((reply) => {
+                      if (comment.id === reply.parent_id) {
+                        return (
+                          <div>
+                            <div>
+                              <p className='comment-text'>{reply.reply}</p>
+                            </div>
+                            <div className='row'>
+                              <div className='metadata col-md-offset-2'>
+                                <p className='username'>{reply.username}</p>
+                                <p>{reply.date}</p>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    )
+                        )
+                      }
+                    })
                   }
-                })
-              }
               </div>
             )
           })
@@ -111,7 +112,13 @@ class Discussion extends Component {
     })
   }
   handleReplyClick (parentId) {
-    this.props.createReply(parentId)
+    this.props.clearReplyBox()
+    .then(this.props.createReply(parentId))
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
   }
 }
 
@@ -143,6 +150,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     createReply: (parentId) => {
       return dispatch(createReply(parentId))
+    },
+    clearReplyBox: () => {
+      return dispatch(clearReplyBox())
     }
   }
 }

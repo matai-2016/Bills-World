@@ -26,6 +26,18 @@
   opacity: .7;
 }
 
+.reply-discard-button {
+  color: white;
+  float: right;
+  opacity: 1;
+  background-color: rgb(255, 78, 78);
+  margin-top: 1rem;
+}
+
+.reply-discard-button:hover {
+  opacity: .7;
+}
+
 .comments-title {
   border-bottom: 3px solid #FF4E4E;
   padding-bottom: 1rem;

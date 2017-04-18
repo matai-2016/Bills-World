@@ -17,6 +17,12 @@ export default function activeComment (state = initialState, action) {
         parentId: action.parentId,
         replying: true
       }
+    case 'CLEAR_REPLY_BOX':
+      return {
+        ...state,
+        activeReply: '',
+        replying: false
+      }
     default:
       return state
   }

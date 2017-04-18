@@ -15,6 +15,12 @@ export function updateReplyForm (name, value) {
   }
 }
 
+export function clearReplyBox () {
+  return {
+    type: 'CLEAR_REPLY_BOX'
+  }
+}
+
 export function saveReply (replyDetails) {
   return dispatch => {
     return request

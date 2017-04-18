@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import './reply.css'
 import moment from 'moment'
 
-import { updateReplyForm, saveReply} from '../../actions/replies.js'
+import { updateReplyForm, saveReply, clearReplyBox } from '../../actions/replies.js'
+import { clearInputBox } from '../../actions/comments.js'
 
 class Reply extends Component {
   render () {
@@ -11,14 +12,16 @@ class Reply extends Component {
       <div>
         {
         this.props.parentId === Number(this.props.activeParentId) &&
+        this.props.replying &&
         <div className='reply-container'>
           <textarea type='text' className='input-box form-control' name='activeReply' placeholder='Reply here' value={this.props.activeReply}
             onChange={(e) => this.props.updateReplyForm(e.target.name, e.target.value)} />
           {
             this.props.activeReply
-            ? <button className='reply-submit-button btn' onClick={(props) => this.handleSubmit(props)}>Submit</button>
+            ? <button className='reply-submit-button btn' onClick={() => this.handleSubmit()}>Submit</button>
             : <button disabled className='reply-submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
           }
+          <button className='reply-discard-button btn' onClick={(props) => this.handleDiscard(props)}>Discard</button>
         </div>
       }
       </div>
@@ -34,11 +37,15 @@ class Reply extends Component {
     const replyDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, reply: activeReply, parentId: parentId }
     this.props.saveReply(replyDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
+    .then(this.props.clearReplyBox)
     .catch((err) => {
       if (err) {
         console.error(err.message)
       }
     })
+  }
+  handleDiscard () {
+    this.props.clearReplyBox()
   }
 }
 
@@ -60,8 +67,8 @@ const mapDispatchToProps = (dispatch) => {
     saveReply: (replyDetails) => {
       return dispatch(saveReply(replyDetails))
     },
-    clearInputBox: () => {
-      return dispatch(clearInputBox())
+    clearReplyBox: () => {
+      return dispatch(clearReplyBox())
     }
   }
 }
