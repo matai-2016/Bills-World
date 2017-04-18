@@ -74,8 +74,8 @@ function updateUserCommentVote (existingVote, voteType) {
     })
 }
 
-function getCommentVoteResult(vote, type) {
-  switch(type) {
+function getCommentVoteResult (vote, type) {
+  switch (type) {
     case 'vote-for':
       return {
         voted_for: !vote.voted_for,

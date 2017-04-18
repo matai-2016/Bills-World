@@ -44,7 +44,7 @@ class Discussion extends Component {
                     <p>{comment.date}</p>
                   </div>
                 </div>
-                <hr/>
+                <hr />
               </div>
             )
           })
@@ -61,10 +61,10 @@ class Discussion extends Component {
     const yyyy = today.getFullYear()
     const date = dd + '/' + mm + '/' + yyyy
     const username = this.props.username
-    const user_id = this.props.user_id
+    const userId = this.props.userId
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeComment }
+    const commentDetails = { date: date, username: username, user_id: userId, billNumber: billNumber, comment: activeComment }
     this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
@@ -82,7 +82,7 @@ Discussion.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    user_id: state.auth.profile.user_id,
+    userId: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
     auth: state.auth

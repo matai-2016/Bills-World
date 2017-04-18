@@ -2,9 +2,9 @@ import request from 'superagent'
 
 export function checkUserInDatabase (profile) {
   return dispatch => {
-    const user_id = profile.user_id
+    const userId = profile.user_id
     return request
-    .get(`/auth/${user_id}`)
+    .get(`/auth/${userId}`)
     .end((err, res) => {
       if (err) {
         console.error(err.message)
@@ -25,7 +25,6 @@ export function addUserToDatabase (profile) {
     .end((err, res) => {
       if (err) {
         console.error(err.message)
-        return
       }
     })
   }
