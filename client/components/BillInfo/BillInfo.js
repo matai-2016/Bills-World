@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-import './billInfo.css'
+import './billinfo.css'
 
 const BillInfo = (props) => {
   return (
