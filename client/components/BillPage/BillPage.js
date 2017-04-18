@@ -28,6 +28,11 @@ class BillPage extends React.Component {
         <BillTitle
           title={this.props.billInfo.title}
         />
+        <Share
+          billNumber={this.props.billInfo.bill_number}
+          title={this.props.billInfo.title}
+          summary={this.props.billInfo.summary}
+        />
         <div className='container'>
           <BillInfo
             title={this.props.billInfo.title}
@@ -41,6 +46,7 @@ class BillPage extends React.Component {
           <Discussion
             billNumber={this.props.billInfo.bill_number}
             comments={this.props.billInfo.comments}
+            replies={this.props.billInfo.replies}
             getBillInfo={this.props.getBillInfo}
             />
         </div>

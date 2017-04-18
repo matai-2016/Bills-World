@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import CommentCount from '../CommentCount/CommentCount'
 
 import './bill.css'
+import Vote from '../Vote/Vote.js'
 
 const Bill = (props) => {
   let title = props.title
@@ -13,11 +14,16 @@ const Bill = (props) => {
   }
   return (
     <div className='bill-container'>
-      <Link id='bill-name' to={`./${props.billNumber}`}>{title}</Link>
+      <div className='bill-name-container'>
+        <Link id='bill-name' to={`./${props.billNumber}`}>{title}</Link>
+      </div>
       <div className='detail-container-small'>
         <p id='member-in-charge'><img className='member-img' src='/img/member.png' />{props.memberInCharge}</p>
       </div>
-      <CommentCount billNumber={props.billNumber} comments={props.comments} />
+      <div className='comment-count'>
+        <CommentCount billNumber={props.billNumber} comments={props.comments} />
+      </div>
+      <Vote billNumber={props.billNumber} />
     </div>
   )
 }

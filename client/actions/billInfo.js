@@ -5,12 +5,7 @@ export function getBillInfo (billNumber) {
   return dispatch => {
     return request
       .get(`bill/${billNumber}`)
-      .end((err, res) => {
-        if (err) {
-          return console.error(err.message, 'Receive BillInfo failed')
-        }
-        dispatch(receiveBillInfo(res.body))
-      })
+      .then((res) => dispatch(receiveBillInfo(res.body)))
   }
 }
 

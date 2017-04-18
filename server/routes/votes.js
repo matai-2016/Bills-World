@@ -1,5 +1,15 @@
 const bodyParser = require('body-parser')
 const express = require('express')
+const jwt = require('express-jwt')
+const dotenv = require('dotenv')
+
+dotenv.load()
+
+const authenticate = jwt({
+  secret: process.env.AUTH0_CLIENT_SECRET,
+  audience: process.env.AUTH0_CLIENT_ID
+})
+
 const bill = require('../lib/bill')
 const votes = require('../lib/votes')
 const users = require('../lib/users')
@@ -43,8 +53,10 @@ router.get('/:bill_number', (req, res) => {
     })
 })
 
-router.get('/:bill_number/:user_id', (req, res) => {
-  votes.getVotesByUserIdAndBillId(req.params.bill_number, req.params.user_id)
+router.use(authenticate)
+
+router.get('/:billNumber/:userId', (req, res) => {
+  votes.getVotesByUserIdAndBillId(req.params.billNumber, req.params.userId)
     .then((vote) => {
       let result = {}
       if (vote.length > 0) {
@@ -67,9 +79,9 @@ router.get('/:bill_number/:user_id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const { billNumber, user_id, voteType } = req.body
+  const { billNumber, userId, voteType } = req.body
   // get user ID from users table
-  return users.getByUserId(user_id)
+  return users.getByUserId(userId)
     .then((userResult) => {
       const user = userResult[0]
       return votes.getExistingVote(billNumber, user.user_id)

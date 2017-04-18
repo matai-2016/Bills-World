@@ -18,6 +18,7 @@
   "author": "matai-2016",
   "license": "ISC",
   "dependencies": {
+    "auth0-js": "^8.5.0",
     "auth0-lock": "^10.14.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -29,6 +30,8 @@
     "css-loader": "^0.28.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
+    "express-jwt": "^5.3.0",
+    "jwks-rsa": "^1.1.1",
     "jwt-decode": "^2.2.0",
     "knex": "^0.12.9",
     "moment": "^2.18.1",
