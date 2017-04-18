@@ -8,11 +8,6 @@ const app = express()
 const webScraper = require('./web-scraper')
 const writeScrapedDataToDb = require('./save-scrape')
 
-
-// app.get('/authorized', function (req, res) {
-//   res.send('Secured Resource');
-// });
-
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../public')))
 

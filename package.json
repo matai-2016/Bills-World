@@ -19,6 +19,7 @@
   "author": "matai-2016",
   "license": "ISC",
   "dependencies": {
+    "auth0-js": "^8.5.0",
     "auth0-lock": "^10.14.0",
     "ava": "^0.19.1",
     "babel-core": "^6.21.0",

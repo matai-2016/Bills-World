@@ -1,18 +1,13 @@
 const bodyParser = require('body-parser')
 const express = require('express')
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
+var jwt = require('express-jwt');
+var dotenv = require('dotenv');
 
-var jwtCheck = jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: "https://billsworld.au.auth0.com/.well-known/jwks.json"
-    }),
-    audience: 'http://www.billsworld.co.nz',
-    issuer: "https://billsworld.au.auth0.com/",
-    algorithms: ['RS256']
+dotenv.load();
+
+var authenticate = jwt({
+  secret: process.env.AUTH0_CLIENT_SECRET,
+  audience: process.env.AUTH0_CLIENT_ID
 });
 
 const bill = require('../lib/bill')
@@ -58,7 +53,7 @@ router.get('/:bill_number', (req, res) => {
     })
 })
 
-router.use(jwtCheck);
+router.use(authenticate);
 
 router.get('/:bill_number/:user_id', (req, res) => {
   votes.getVotesByUserIdAndBillId(req.params.bill_number, req.params.user_id)

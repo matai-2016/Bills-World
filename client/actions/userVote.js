@@ -1,29 +1,18 @@
 import request from 'superagent'
 import { getVotes } from './votes'
+import AuthService from '../utils/AuthService'
+
 
 export function checkUserVote (user_id, billNumber) {
   return dispatch => {
-    request
-      .get('https://billsworld.au.auth0.com/authorize')
-      .query({
-        audience: 'http://www.billsworld.co.nz',
-        response_type: 'token',
-        prompt: 'none',
-        client_id: '-zHN7yxG__Z4IN8lE86JwIgHXJMjpIPN'
-      })
-      .end((error, response) => {
-        if (error) {
-          return console.error(error.message)
+    return request
+      .get(`/votes/${billNumber}/${user_id}`)
+      .set('Authorization', `Bearer ${AuthService.getToken()}`)
+      .end((err, res) => {
+        if (err) {
+          return console.error(err.message, 'Toggle Vote failed')
         }
-        console.log(response.body)
-        return request
-          .get(`/votes/${billNumber}/${user_id}`)
-          .end((err, res) => {
-            if (err) {
-              return console.error(err.message, 'Toggle Vote failed')
-            }
-            dispatch(showUserVote(res.body))
-          })
+        dispatch(showUserVote(res.body))
       })
   }
 }
@@ -45,6 +34,7 @@ export function toggleVote (voteType, user_id, billNumber) {
   return dispatch => {
     return request
       .post('/votes')
+      .set('Authorization', `Bearer ${AuthService.getToken()}`)
       .send({
         voteType: voteType,
         user_id: user_id,
