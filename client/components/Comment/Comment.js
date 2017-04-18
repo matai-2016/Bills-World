@@ -2,6 +2,7 @@ import React from 'react'
 import './comment.css'
 
 import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
+import EditCommentInputBox from '../EditCommentInputBox/EditCommentInputBox'
 
 const Comment = props => {
   const {
@@ -25,10 +26,18 @@ const Comment = props => {
           {
             isAuthenticated &&
             (user_id === comment.user_id) &&
-            <EditDeleteComment
-              comment_id={comment.id}
-              bill_number={billNumber}
-              getBillInfo={getBillInfo} />
+            <span>
+              <EditDeleteComment
+                comment={comment}
+                billNumber={props.billNumber}
+                getBillInfo={props.getBillInfo}/>
+            {
+              <EditCommentInputBox
+                comment={comment}
+                billNumber={props.billNumber}
+                getBillInfo={props.getBillInfo}/>
+            }
+            </span>
           }
           {
             isAuthenticated &&

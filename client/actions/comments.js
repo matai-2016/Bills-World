@@ -19,6 +19,7 @@ export function editComment (commentDetails) {
   return dispatch => {
     return request
       .put('/comments/edit')
+      .set('Authorization', `Bearer ${AuthService.getToken()}`)
       .set({ 'Content-Type': 'application/json' })
       .send(commentDetails)
       .catch(err => {
@@ -31,6 +32,7 @@ export function deleteComment (commentDetails) {
   return dispatch => {
     return request
     .delete('/comments/delete')
+    .set('Authorization', `Bearer ${AuthService.getToken()}`)
     .set({ 'Content-Type': 'application/json' })
     .send(commentDetails)
     .catch(err => {
