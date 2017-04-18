@@ -1,14 +1,14 @@
 const bodyParser = require('body-parser')
 const express = require('express')
-var jwt = require('express-jwt');
-var dotenv = require('dotenv');
+const jwt = require('express-jwt')
+const dotenv = require('dotenv')
 
-dotenv.load();
+dotenv.load()
 
-var authenticate = jwt({
+const authenticate = jwt({
   secret: process.env.AUTH0_CLIENT_SECRET,
   audience: process.env.AUTH0_CLIENT_ID
-});
+})
 
 const bill = require('../lib/bill')
 const votes = require('../lib/votes')
@@ -53,7 +53,7 @@ router.get('/:bill_number', (req, res) => {
     })
 })
 
-router.use(authenticate);
+router.use(authenticate)
 
 router.get('/:bill_number/:user_id', (req, res) => {
   votes.getVotesByUserIdAndBillId(req.params.bill_number, req.params.user_id)
