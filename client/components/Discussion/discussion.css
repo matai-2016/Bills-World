@@ -2,11 +2,6 @@
   border: 1px solid black;
 }*/
 
-.comment-container {
-  border-bottom: 1px solid gray;
-  padding-bottom: 1rem;
-}
-
 .input-box {
   min-height: 10rem;
   margin-top: 1.5rem;
@@ -52,17 +47,6 @@
   padding-bottom: 1rem;
 }
 
-.metadata {
-  display: flex;
-  float: right;
-  margin-right: 2.5rem;
-  margin-bottom: -1rem;
-}
-
-.comment-text {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
 
 .username {
   color: #58595C;

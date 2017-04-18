@@ -20,7 +20,11 @@ class EditDeleteComment extends Component {
     const user_id = this.props.user_id
     const comment_id = this.props.comment_id
     const bill_number = this.props.bill_number
-    const commentDetails = { user_id: user_id, comment_id: comment_id, bill_number: bill_number }
+    const commentDetails = {
+      user_id: user_id,
+      comment_id: comment_id,
+      bill_number: bill_number
+    }
     this.props.deleteComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, bill_number))
     .catch((err) => {

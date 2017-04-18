@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
-import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
 import './discussion.css'
-import Reply from '../Reply/Reply'
+import CommentWithReplies from '../CommentWithReplies/'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
-import { createReply, clearReplyBox } from '../../actions/replies.js'
+import { saveReply } from '../../actions/replies.js'
 import moment from 'moment'
 
 class Discussion extends Component {
@@ -27,8 +26,8 @@ class Discussion extends Component {
                 onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
               {
                 this.props.activeComment
-                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
-                : <button disabled className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(this.props.activeComment)}>Submit</button>
+                : <button disabled className='submit-button btn'>Submit</button>
               }
             </div>
           </span>
@@ -42,71 +41,50 @@ class Discussion extends Component {
         <div>
           {
             this.props.comments.map((comment) => {
+              const replies = this.props.replies.filter(r => r.parent_id === comment.id)
               return (
-                <div key={comment.id} className='comment-container'>
-                  <div>
-                    <p className='comment-text'>{comment.comment}</p>
-                  </div>
-                  <div className='row'>
-                    <div className='metadata col-md-offset-2'>
-                      <p className='username'>{comment.username}</p>
-                      <p>{comment.date}</p>
-                      {
-                        this.props.isAuthenticated &&
-                        (this.props.user_id === comment.user_id) &&
-                        <EditDeleteComment
-                          comment_id={comment.id}
-                          bill_number={this.props.billNumber}
-                          getBillInfo={this.props.getBillInfo} />
-                      }
-                      {
-                        this.props.isAuthenticated &&
-                        <button name={comment.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}><i className='fa fa-reply fa-lg' aria-hidden='true'></i></button>
-                      }
-                    </div>
-                  </div>
-                  <Reply
-                    parentId={comment.id}
-                    isAuthenticated={this.props.isAuthenticated}
-                    billNumber={this.props.billNumber}
-                    getBillInfo={this.props.getBillInfo}
-                    />
-                  {
-                    this.props.replies.map((reply) => {
-                      if (comment.id === reply.parent_id) {
-                        return (
-                          <div key={reply.id}>
-                            <div>
-                              <p className='comment-text'>{reply.reply}</p>
-                            </div>
-                            <div className='row'>
-                              <div className='metadata col-md-offset-2'>
-                                <p className='username'>{reply.username}</p>
-                                <p>{reply.date}</p>
-                              </div>
-                            </div>
-                          </div>
-                        )
-                      }
-                    })
-                  }
-              </div>
-            )
-          })
-        }
+                <CommentWithReplies
+                  key={comment.id}
+                  comment={comment}
+                  replies={replies}
+                  user_id={this.props.user_id}
+                  billNumber={this.props.billNumber}
+                  isAuthenticated={this.props.isAuthenticated}
+                  getBillInfo={this.props.getBillInfo}
+                  handleReplySubmit={(id, val) => this.handleSubmit(val, id)}
+                />
+              )
+            })
+          }
         </div>
         <ReportAbuse />
       </div>
     )
   }
-  handleSubmit () {
+
+  handleSubmit (value, parentId) {
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
     const user_id = this.props.user_id
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeComment }
-    this.props.saveComment(commentDetails)
+    let commentDetails = {
+      date: date,
+      username: username,
+      user_id: user_id,
+      billNumber: billNumber
+    }
+
+    if (parentId) {
+      commentDetails.parentId = parentId,
+      commentDetails.reply = value
+    } else {
+      commentDetails.comment = value
+    }
+
+    return parentId
+      ? this.props.saveReply(commentDetails)
+      : this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
     .catch((err) => {
@@ -114,9 +92,6 @@ class Discussion extends Component {
         console.error(err.message)
       }
     })
-  }
-  handleReplyClick (parentId) {
-    this.props.createReply(parentId)
   }
 }
 
@@ -145,6 +120,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearInputBox: () => {
       return dispatch(clearInputBox())
+    },
+    saveReply: (replyDetails) => {
+      return dispatch(saveReply(replyDetails))
     },
     createReply: (parentId) => {
       return dispatch(createReply(parentId))
