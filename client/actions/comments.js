@@ -42,7 +42,7 @@ export function clearInputBox () {
   }
 }
 
-export function updateCommentForm (name, value) {
+export function updateCommentForm (name, value, commentId) {
   return {
     type: 'UPDATE_COMMENT_FORM',
     name,
@@ -50,11 +50,12 @@ export function updateCommentForm (name, value) {
   }
 }
 
-export function updateEditForm (name, value) {
+export function updateEditForm (name, value, commentId) {
   return {
     type: 'UPDATE_EDIT_FORM',
     name,
-    value
+    value,
+    commentId
   }
 }
 
@@ -64,14 +65,9 @@ export function clearEditForm () {
   }
 }
 
-export function toggleEditCommentBox (commentDetails) {
-  return dispatch => {
-    return request
-    .put('/comments/editbox')
-    .set({ 'Content-Type': 'application/json' })
-    .send(commentDetails)
-    .catch(err => {
-      return console.error(err.response.body)
-    })
+export function toggleEditCommentBox (commentId) {
+  return {
+    type: 'TOGGLE_EDIT_COMMENT_BOX',
+    commentId
   }
 }

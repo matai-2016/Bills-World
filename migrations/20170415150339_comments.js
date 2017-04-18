@@ -5,7 +5,6 @@ exports.up = knex => knex.schema.createTable('comments', table => {
   table.string('bill_number').references('bills.bill_number')
   table.string('user_id').references('users.user_id')
   table.string('username').references('users.username')
-  table.boolean('edit').defaultTo(false)
   table.text('comment')
 })
 
