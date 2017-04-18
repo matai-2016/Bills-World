@@ -1,5 +1,7 @@
 import React from 'react'
-import moment from 'moment'
+import { Link } from 'react-router-dom'
+
+import CommentCount from '../CommentCount/CommentCount'
 
 import './bill.css'
 
@@ -10,11 +12,12 @@ const Bill = (props) => {
     title = title + '...'
   }
   return (
-    <div>
-      <h3>{title}</h3>
-      <p>Introduction date: {moment(props.introductionDate).format('D MMM YYYY')}</p>
-      <p>Member in charge: {props.memberInCharge}</p>
-      <p>Type: {props.type}</p>
+    <div className='bill-container'>
+      <Link id='bill-name' to={`./${props.billNumber}`}>{title}</Link>
+      <div className='detail-container-small'>
+        <p id='member-in-charge'><img className='member-img' src='/img/member.png' />{props.memberInCharge}</p>
+      </div>
+      <CommentCount billNumber={props.billNumber} comments={props.comments} />
     </div>
   )
 }
