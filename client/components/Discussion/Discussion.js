@@ -40,9 +40,9 @@ class Discussion extends Component {
                   <div className='metadata col-md-offset-2'>
                     <p className='username'>{item.username}</p>
                     <p>{item.date}</p>
-                    <button name={item.id} onClick={(e) => this.reply(e.target.name)}>Reply</button>
-
+                    <button name={item.id} onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
                   </div>
+                  <Reply parentId={item.id}/>
                 </div>
                 <hr/>
               </div>
@@ -70,7 +70,7 @@ class Discussion extends Component {
       }
     })
   }
-  reply (parentId) {
+  handleReplyClick (parentId) {
     this.props.createReply(parentId)
   }
 }

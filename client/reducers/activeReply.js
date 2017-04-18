@@ -1,7 +1,7 @@
 const initialState = {
   replying: false,
   activeReply: '',
-  parentId: ''
+  parentId: 0
 }
 
 export default function activeComment (state = initialState, action) {
@@ -9,7 +9,7 @@ export default function activeComment (state = initialState, action) {
     case 'CREATE_REPLY':
       return {
         ...state,
-        parentId: action.commentId,
+        parentId: action.parentId,
         replying: true
       }
     default:
