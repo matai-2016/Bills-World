@@ -11,6 +11,39 @@
   position: absolute;
   font-family: 'Amiri', serif;
   color: white;
-  font-size: 30px;
+  font-size: 25px;
   bottom: 0;
+  padding-right: 10px;
+}
+
+.back {
+  width: 50px;
+  height: 50px;
+  opacity: 0.8;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.back:hover {
+  opacity: 1;
+}
+
+@media (min-width: 320px) {
+  .back {
+    width: 60px;
+    height: 60px;
+  }
+  .title-text {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 400px) {
+  .back {
+    width: 70px;
+    height: 70px;
+  }
+  .title-text {
+    font-size: 31px;
+  }
 }
