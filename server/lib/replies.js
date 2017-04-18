@@ -18,7 +18,6 @@ function getReplies (billNumber) {
 }
 
 function saveReply (user_id, billNumber, reply, username, date, parentId) {
-  console.log(parentId)
   return knex('replies')
     .insert({
       user_id: user_id,
