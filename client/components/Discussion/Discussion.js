@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
+import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
 import './discussion.css'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
@@ -14,9 +15,18 @@ class Discussion extends Component {
           this.props.auth.isAuthenticated &&
           <span>
             <div className='form-group row'>
-              <textarea type='text' className='input-box form-control' name='comment' placeholder='Share your views here' value={this.props.activeComment} onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
+              <textarea
+                type='text'
+                className='input-box form-control'
+                name='comment'
+                placeholder='Share your views here'
+                value={this.props.activeComment}
+                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
               </textarea>
-              <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              <button
+                className='submit-button btn'
+                onClick={(event) => this.handleSubmit(event)}>Submit
+              </button>
             </div>
           </span>
         }
@@ -38,6 +48,14 @@ class Discussion extends Component {
                   <div className='metadata col-md-offset-2'>
                     <p className='username'>{comment.username}</p>
                     <p>{comment.date}</p>
+                    {
+                      this.props.auth.isAuthenticated
+                      && (this.props.user_id === comment.user_id)
+                      && <EditDeleteComment
+                        comment_id={comment.id}
+                        bill_number={this.props.billNumber}
+                        getBillInfo={this.props.getBillInfo}/>
+                    }
                   </div>
                 </div>
                 <hr/>
