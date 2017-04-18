@@ -40,14 +40,6 @@ class Discussion extends Component {
             <p className='login-prompt'>Please login or register to comment on this thread</p>
           </span>
         }
-                      <EditDeleteComment
-                        comment={comment}
-                        billNumber={this.props.billNumber}
-                        getBillInfo={this.props.getBillInfo}/>
-                      <EditCommentInputBox
-                        comment={comment}
-                        billNumber={this.props.billNumber}
-                        getBillInfo={this.props.getBillInfo}/>
         <div>
           {
             this.props.comments.map((comment) => {
