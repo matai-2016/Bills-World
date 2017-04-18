@@ -89,7 +89,6 @@ router.post('/', (req, res) => {
         if (voteArr.length === 0) {
           return votes.saveUserVote(user.id, billNumber, voteType === 'vote-for', voteType === 'vote-against')
         } else {
-          console.log('UPDATING VOTE')
           const existingVote = voteArr[0]
           return votes.updateUserVote(existingVote, voteType)
         }
