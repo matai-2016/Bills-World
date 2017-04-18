@@ -10,6 +10,7 @@ import Share from '../Share/Share'
 import BillInfo from '../BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
+
 import './billpage.css'
 
 class BillPage extends React.Component {
