@@ -41,8 +41,8 @@ function editComment (user_id, comment_id, comment) {
 
 function deleteComment (user_id, comment_id) {
   return knex('comments')
-    .where('comments.user_id', user_id)
-    .where('comments.id', comment_id)
+    .where('user_id', user_id)
+    .where('id', comment_id)
     .del()
     .catch((err) => {
       if (err) {

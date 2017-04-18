@@ -44,8 +44,8 @@ router.put('/edit', (req, res) => {
 })
 
 router.delete('/delete', (req, res) => {
-  comments.deleteComment(req.body.user_id, req.body.comment_id, req.body.comment)
-    .then(() => comments.getComments(req.body.billNumber))
+  comments.deleteComment(req.body.user_id, req.body.comment_id)
+    .then(() => comments.getComments(req.body.bill_number))
     .then(function (result) {
       res.send(result)
     })
