@@ -9,9 +9,9 @@ class EditDeleteComment extends Component {
   render () {
     return (
       <div>
-        <button className='edit-comment-button btn'>Edit</button>
+        <button className='edit-comment-button btn'><i className='fa fa-pencil fa-lg' aria-hidden='true'></i></button>
         <button className='delete-comment-button btn'
-          onClick={(e) => this.handleSubmit(e)}>Delete</button>
+          onClick={(e) => this.handleSubmit(e)}><i className='fa fa-trash-o fa-lg' aria-hidden='true'></i></button>
       </div>
     )
   }

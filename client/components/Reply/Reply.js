@@ -11,19 +11,20 @@ class Reply extends Component {
     return (
       <div>
         {
-        this.props.parentId === Number(this.props.activeParentId) &&
-        this.props.replying &&
-        <div className='reply-container'>
-          <textarea type='text' className='input-box form-control' name='activeReply' placeholder='Reply here' value={this.props.activeReply}
-            onChange={(e) => this.props.updateReplyForm(e.target.name, e.target.value)} />
-          {
-            this.props.activeReply
-            ? <button className='reply-submit-button btn' onClick={() => this.handleSubmit()}>Submit</button>
-            : <button disabled className='reply-submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
-          }
-          <button className='reply-discard-button btn' onClick={(props) => this.handleDiscard(props)}>Discard</button>
-        </div>
-      }
+          this.props.isAuthenticated &&
+          this.props.parentId === Number(this.props.activeParentId) &&
+          this.props.replying &&
+          <div className='reply-container'>
+            <textarea type='text' className='input-box form-control' name='activeReply' placeholder='Reply here' value={this.props.activeReply}
+              onChange={(e) => this.props.updateReplyForm(e.target.name, e.target.value)} />
+            {
+              this.props.activeReply
+              ? <button className='reply-submit-button btn' onClick={() => this.handleSubmit()}>Submit</button>
+              : <button disabled className='reply-submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+            }
+            <button className='reply-discard-button btn' onClick={(props) => this.handleDiscard(props)}><i className='fa fa-times fa-lg' aria-hidden='true'></i></button>
+          </div>
+        }
       </div>
     )
   }

@@ -21,7 +21,8 @@ export default function activeComment (state = initialState, action) {
       return {
         ...state,
         activeReply: '',
-        replying: false
+        replying: false,
+        parentId: 0
       }
     default:
       return state

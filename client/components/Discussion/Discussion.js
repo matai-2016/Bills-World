@@ -13,7 +13,7 @@ class Discussion extends Component {
   render () {
     return (
       <div>
-        <h3 className='comments-title'>Comments<i className="fa fa-camera-retro fa-3x"></i></h3>
+        <h3 className='comments-title'>Comments</h3>
         {
           this.props.isAuthenticated &&
           <span>
@@ -51,7 +51,6 @@ class Discussion extends Component {
                     <div className='metadata col-md-offset-2'>
                       <p className='username'>{comment.username}</p>
                       <p>{comment.date}</p>
-                      <button name={comment.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}>Reply</button>
                       {
                         this.props.isAuthenticated &&
                         (this.props.user_id === comment.user_id) &&
@@ -60,10 +59,15 @@ class Discussion extends Component {
                           bill_number={this.props.billNumber}
                           getBillInfo={this.props.getBillInfo} />
                       }
+                      {
+                        this.props.isAuthenticated &&
+                        <button name={comment.id} className='reply-button btn' onClick={(e) => this.handleReplyClick(e.target.name)}><i className='fa fa-reply fa-lg' aria-hidden='true'></i></button>
+                      }
                     </div>
                   </div>
                   <Reply
                     parentId={comment.id}
+                    isAuthenticated={this.props.isAuthenticated}
                     billNumber={this.props.billNumber}
                     getBillInfo={this.props.getBillInfo}
                     />
@@ -112,13 +116,7 @@ class Discussion extends Component {
     })
   }
   handleReplyClick (parentId) {
-    this.props.clearReplyBox()
-    .then(this.props.createReply(parentId))
-    .catch((err) => {
-      if (err) {
-        console.error(err.message)
-      }
-    })
+    this.props.createReply(parentId)
   }
 }
 
