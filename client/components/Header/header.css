@@ -1,6 +1,7 @@
 .header {
   font-family: 'Amiri', serif;
   height: auto;
+  max-height: 44px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
