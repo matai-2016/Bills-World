@@ -36,7 +36,7 @@ export function toggleVote (voteType, userId, billNumber) {
       .set('Authorization', `Bearer ${AuthService.getToken()}`)
       .send({
         voteType: voteType,
-        user_id: userId,
+        userId: userId,
         billNumber: billNumber
       })
       .end((err, res) => {
