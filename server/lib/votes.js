@@ -74,8 +74,8 @@ function updateUserVote (existingVote, voteType) {
     })
 }
 
-function getVoteResult(vote, type) {
-  switch(type) {
+function getVoteResult (vote, type) {
+  switch (type) {
     case 'vote-for':
       return {
         voted_for: !vote.voted_for,

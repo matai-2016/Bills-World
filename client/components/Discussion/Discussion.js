@@ -23,10 +23,11 @@ class Discussion extends Component {
                 value={this.props.activeComment}
                 onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)}>
               </textarea>
-              <button
-                className='submit-button btn'
-                onClick={(event) => this.handleSubmit(event)}>Submit
-              </button>
+              {
+                this.props.activeComment
+                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+                : <button disabled className='submit-button btn' onClick={(event) => this.handleSubmit(event)}>Submit</button>
+              }
             </div>
           </span>
         }
@@ -58,7 +59,7 @@ class Discussion extends Component {
                     }
                   </div>
                 </div>
-                <hr/>
+                <hr />
               </div>
             )
           })
@@ -75,10 +76,10 @@ class Discussion extends Component {
     const yyyy = today.getFullYear()
     const date = dd + '/' + mm + '/' + yyyy
     const username = this.props.username
-    const user_id = this.props.user_id
+    const userId = this.props.userId
     const billNumber = this.props.billNumber
     const activeComment = this.props.activeComment
-    const commentDetails = { date: date, username: username, user_id: user_id, billNumber: billNumber, comment: activeComment }
+    const commentDetails = { date: date, username: username, user_id: userId, billNumber: billNumber, comment: activeComment }
     this.props.saveComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
@@ -96,7 +97,7 @@ Discussion.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    user_id: state.auth.profile.user_id,
+    userId: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
     auth: state.auth
