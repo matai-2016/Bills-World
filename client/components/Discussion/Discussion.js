@@ -67,6 +67,24 @@ class Discussion extends Component {
                   billNumber={this.props.billNumber}
                   getBillInfo={this.props.getBillInfo}
                   />
+                {this.props.replies.map((reply) => {
+                  if (comment.id === reply.parent_id) {
+                    return (
+                      <div>
+                        <div>
+                          <p className='comment-text'>{reply.reply}</p>
+                        </div>
+                        <div className='row'>
+                          <div className='metadata col-md-offset-2'>
+                            <p className='username'>{reply.username}</p>
+                            <p>{reply.date}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+                })
+              }
               </div>
             )
           })

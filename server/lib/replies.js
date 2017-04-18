@@ -3,7 +3,7 @@ const knex = require('knex')(config)
 
 module.exports = {
   getReplies,
-  saveReply,
+  saveReply
 }
 
 function getReplies (billNumber) {

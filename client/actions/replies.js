@@ -16,7 +16,6 @@ export function updateReplyForm (name, value) {
 }
 
 export function saveReply (replyDetails) {
-  console.log(replyDetails)
   return dispatch => {
     return request
       .post('/replies/save')
