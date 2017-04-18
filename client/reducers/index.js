@@ -6,6 +6,7 @@ import activeComment from './activeComment'
 import billInfo from './billInfo'
 import votes from './votes'
 import userVote from './userVote'
+import activeEditComment from './activeEditComment'
 
 const reducers = combineReducers({
   auth,
@@ -13,7 +14,8 @@ const reducers = combineReducers({
   billInfo,
   votes,
   userVote,
-  activeComment
+  activeComment,
+  activeEditComment
 })
 
 export default reducers

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
 import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
+import EditCommentInputBox from '../EditCommentInputBox/EditCommentInputBox'
 import './discussion.css'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
@@ -49,14 +50,14 @@ class Discussion extends Component {
                   <div className='metadata col-md-offset-2'>
                     <p className='username'>{comment.username}</p>
                     <p>{comment.date}</p>
-                    {
-                      this.props.auth.isAuthenticated
-                      && (this.props.user_id === comment.user_id)
-                      && <EditDeleteComment
-                        comment_id={comment.id}
-                        bill_number={this.props.billNumber}
+                      <EditDeleteComment
+                        comment={comment}
+                        billNumber={this.props.billNumber}
                         getBillInfo={this.props.getBillInfo}/>
-                    }
+                      <EditCommentInputBox
+                        comment={comment}
+                        billNumber={this.props.billNumber}
+                        getBillInfo={this.props.getBillInfo}/>
                   </div>
                 </div>
                 <hr/>
@@ -100,6 +101,7 @@ const mapStateToProps = (state) => {
     user_id: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
+    activeEditComment: state.activeEditComment,
     auth: state.auth
   }
 }

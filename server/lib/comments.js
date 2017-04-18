@@ -6,7 +6,8 @@ module.exports = {
   getComments,
   getAllComments,
   editComment,
-  deleteComment
+  deleteComment,
+  toggleEdit
 }
 
 function saveComment (user_id, billNumber, comment, username, date) {
@@ -27,8 +28,8 @@ function saveComment (user_id, billNumber, comment, username, date) {
 
 function editComment (user_id, comment_id, comment) {
   return knex('comments')
-    .where('comments.user_id', user_id)
-    .where('comments.id', comment_id)
+    .where('user_id', user_id)
+    .where('id', comment_id)
     .update({
       comment: comment
     })
@@ -70,4 +71,18 @@ function getAllComments () {
         console.error(err.message)
       }
     })
+}
+
+function toggleEdit (user_id, comment_id, bool) {
+  return knex('comments')
+  .where('user_id', user_id)
+  .where('id', comment_id)
+  .update({
+    edit: bool
+  })
+  .catch((err) => {
+    if (err) {
+      console.error(err.message)
+    }
+  })
 }
