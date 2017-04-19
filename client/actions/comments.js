@@ -9,9 +9,6 @@ export function saveComment (commentDetails) {
       .set('Authorization', `Bearer ${AuthService.getToken()}`)
       .set({ 'Content-Type': 'application/json' })
       .send(commentDetails)
-      .then(() => {
-        dispatch(toggleEditCommentBox (null))
-      })
       .catch(err => {
         return console.error(err.response.body)
       })
@@ -50,10 +47,9 @@ export function clearInputBox () {
   }
 }
 
-export function updateCommentForm (name, value, commentId) {
+export function updateCommentForm (value) {
   return {
     type: 'UPDATE_COMMENT_FORM',
-    name,
     value
   }
 }
