@@ -56,8 +56,8 @@ class CommentWithReplies extends Component {
         {
           replies.map((reply) => {
             return (
-              <div className='reply-section' key={'reply' + reply.id}>
-                <div className='col-md-12 reply-text'>
+              <div className='row reply-section' key={'reply' + reply.id}>
+                <div className='reply-text'>
                   <span className='username'>{reply.username}</span>
                   <span className='date'>{reply.date}</span>
                   <p>{reply.reply}</p>
