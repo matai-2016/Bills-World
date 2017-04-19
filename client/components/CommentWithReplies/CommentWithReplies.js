@@ -3,6 +3,8 @@ import './commentWithReplies.css'
 
 import Comment from '../Comment/Comment'
 import Reply from '../Reply/Reply'
+import DeleteReply from '../DeleteReply/DeleteReply'
+
 
 class CommentWithReplies extends Component {
   constructor (props) {
@@ -62,6 +64,14 @@ class CommentWithReplies extends Component {
                     <p>{reply.date}</p>
                   </div>
                 </div>
+                {
+                  isAuthenticated
+                  && (user_id === comment.user_id)
+                  && <DeleteReply
+                    reply={reply}
+                    billNumber={billNumber}
+                    getBillInfo={getBillInfo}/>
+                }
               </div>
             )
           })

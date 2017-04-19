@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
-import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
-import EditCommentInputBox from '../EditCommentInputBox/EditCommentInputBox'
 import './discussion.css'
 import CommentWithReplies from '../CommentWithReplies/CommentWithReplies'
 
