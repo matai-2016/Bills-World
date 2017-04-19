@@ -32,11 +32,9 @@ class Vote extends React.Component {
               }
             </span>
           }
-          <div className='voting-button' style={{width: '150px'}}>
-            <button className='votes-for votes-for-container'>{this.props.votes.votes_for}</button>
-            <Line className='svg' percent={this.props.votes.percentage_for} strokeWidth='5' trailWidth='5' strokeLinecap='square' strokeColor={'#25ba68'} trailColor={'#FF4E4E'} />
-            <button className='votes-against votes-against-container'>{this.props.votes.votes_against}</button>
-          </div>
+          <button className='votes-for votes-for-container'>{this.props.votes.votes_for}</button>
+          <Line className='voting-bar' percent={this.props.votes.percentage_for} strokeWidth='5' trailWidth='5' strokeLinecap='square' strokeColor={'#25ba68'} trailColor={'#FF4E4E'} />
+          <button className='votes-against votes-against-container'>{this.props.votes.votes_against}</button>
           {this.props.auth.isAuthenticated &&
             <span>
               {this.props.userVote.votes_against
