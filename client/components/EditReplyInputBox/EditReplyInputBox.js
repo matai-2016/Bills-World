@@ -13,7 +13,7 @@ class EditReplyInputBox extends React.Component {
           (this.props.activeEditReplyId === this.props.reply.id)
           && !!this.props.auth.isAuthenticated
           && (this.props.userId === this.props.user_id)
-          && <span>
+          && <div className='row'>
             <textarea
               type='text'
               className='input-box form-control'
@@ -21,8 +21,8 @@ class EditReplyInputBox extends React.Component {
               value={this.props.activeEditReply}
               onChange={(e) => this.props.updateEditReplyForm(e.target.name, e.target.value, this.props.reply.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
-            <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}>Cancel</button>
-          </span>
+            <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}><i className='fa fa-times fa-lg' aria-hidden='true' /></button>
+          </div>
         }
       </div>
     )

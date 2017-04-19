@@ -23,7 +23,7 @@ class Reply extends Component {
   render () {
     const { handleDiscard, handleSubmit } = this.props
     return (
-        <div className='reply-container'>
+        <div className='row'>
           <textarea
             type='text'
             className='input-box form-control'
