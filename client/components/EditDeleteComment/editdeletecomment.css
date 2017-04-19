@@ -4,6 +4,7 @@
   opacity: 1;
   background-color: rgb(255, 78, 78);
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .edit-comment-button:hover  {
@@ -16,6 +17,7 @@
   opacity: 1;
   background-color: rgb(255, 78, 78);
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .delete-comment-button:hover {

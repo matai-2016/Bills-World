@@ -16,12 +16,12 @@ class EditCommentInputBox extends React.Component {
           && <span>
             <textarea
               type='text'
-              className='input-box form-control'
+              className='edit-box form-control'
               name='editcomment'
               value={this.props.activeEditComment}
               onChange={(e) => this.props.updateEditCommentForm(e.target.name, e.target.value, this.props.comment.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
-            <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}>Cancel</button>
+            <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}><i className='fa fa-times fa-lg' aria-hidden='true' /></button>
           </span>
         }
       </div>
