@@ -18,22 +18,22 @@ class About extends Component {
         <div className='features-container container'>
           <div className='compressor row'>
             <div className='feature feature-1 col-xs-12 col-sm-6 col-md-4'>
-              <h3 id='feature-text'>View Current Bills</h3>
+              <h3 id='feature-text'>View Bills</h3>
               <img className='feature-img' src='/img/rma.png' />
             </div>
             <div className='feature feature-2 col-xs-12 col-sm-6 col-md-4'>
-              <h3 id='feature-text'>Join the Polls</h3>
+              <h3 id='feature-text'>Track the Polls</h3>
               <img className='feature-img' src='/img/poll_360.png' />
             </div>
             <div className='feature feature-2 col-xs-12 col-sm-6 col-md-4'>
-              <h3 id='feature-text'>Debate the Something</h3>
+              <h3 id='feature-text'>Join the Debate</h3>
               <img className='feature-img' src='/img/parliament.png' />
             </div>
           </div>
         </div>
         <div className='description'>
           <div className='description-text'>
-            <p>Bills World is a place to learn, support and converse about proposed changes to New Zealand law. </p>
+            <p>Bill's World is a place to learn, discuss and support proposed changes to New Zealand law. </p>
           </div>
           <div className='sign-up-text'>
             <div>
