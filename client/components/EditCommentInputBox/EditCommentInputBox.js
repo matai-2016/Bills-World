@@ -9,10 +9,9 @@ class EditCommentInputBox extends React.Component {
   componentDidMount () {
     const comment = this.props.comment.comment
     const commentId = this.props.comment.id
-    this.props.updateEditForm('comment', comment, commentId)
+    this.props.updateEditForm('editcomment', comment, commentId)
   }
   render () {
-    console.log(this.props.activeEditCommentId, this.props.comment.id)
     return (
       <div>
         {
@@ -23,7 +22,7 @@ class EditCommentInputBox extends React.Component {
             <textarea
               type='text'
               className='input-box form-control'
-              name='comment'
+              name='editcomment'
               value={this.props.activeEditComment}
               onChange={(e) => this.props.updateEditForm(e.target.name, e.target.value, this.props.comment.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
@@ -59,7 +58,7 @@ class EditCommentInputBox extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.profile.user_id,
-    activeEditComment: state.activeEditComment.comment,
+    activeEditComment: state.activeEditComment.editcomment,
     activeEditCommentId: state.activeEditComment.commentId,
     auth: state.auth
   }
@@ -68,7 +67,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateEditForm: (name, value, commentId) => {
-      console.log(name, value, commentId)
       return dispatch(updateEditForm(name, value, commentId))
     },
     editComment: (commentDetails) => {

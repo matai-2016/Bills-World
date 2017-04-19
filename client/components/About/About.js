@@ -15,17 +15,17 @@ class About extends Component {
         <div className='logo-container'>
           <img className='logo-img' src='/img/logo.png' />
         </div>
-        <div className='features-container'>
-          <div className='compressor'>
-            <div className='feature feature-1'>
+        <div className='features-container container'>
+          <div className='compressor row'>
+            <div className='feature feature-1 col-xs-12 col-sm-6 col-md-4'>
               <h3 id='feature-text'>View Current Bills</h3>
               <img className='feature-img' src='/img/rma.png' />
             </div>
-            <div className='feature feature-2'>
+            <div className='feature feature-2 col-xs-12 col-sm-6 col-md-4'>
               <h3 id='feature-text'>Join the Polls</h3>
               <img className='feature-img' src='/img/poll_360.png' />
             </div>
-            <div className='feature feature-2'>
+            <div className='feature feature-2 col-xs-12 col-sm-6 col-md-4'>
               <h3 id='feature-text'>Debate the Something</h3>
               <img className='feature-img' src='/img/parliament.png' />
             </div>
