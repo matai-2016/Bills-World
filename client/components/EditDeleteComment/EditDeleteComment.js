@@ -26,7 +26,7 @@ class EditDeleteComment extends Component {
   handleEdit (e) {
     const commentId = this.props.comment.id
     const comment = this.props.comment.comment
-    this.props.updateEditForm('comment', comment, commentId)
+    this.props.updateEditForm('editcomment', comment, commentId)
     this.props.toggleEditCommentBox(commentId)
   }
 
