@@ -1,5 +1,5 @@
 const initialState = {
-  comment: '',
+  editcomment: '',
   commentId: null
 }
 
@@ -14,7 +14,7 @@ export default function activeEditComment (state = initialState, action) {
       case 'CLEAR_EDIT_BOX':
         return {
           ...state,
-          comment: ''
+          editcomment: ''
         }
       case 'TOGGLE_EDIT_COMMENT_BOX':
         return {

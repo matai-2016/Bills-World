@@ -9,6 +9,9 @@ export function saveComment (commentDetails) {
       .set('Authorization', `Bearer ${AuthService.getToken()}`)
       .set({ 'Content-Type': 'application/json' })
       .send(commentDetails)
+      .then(() => {
+        dispatch(toggleEditCommentBox (null))
+      })
       .catch(err => {
         return console.error(err.response.body)
       })
