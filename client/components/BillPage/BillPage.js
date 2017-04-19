@@ -6,7 +6,6 @@ import { getBillInfo } from '../../actions/billInfo'
 import Header from '../Header/Header'
 import BillTitle from '../BillTitle/BillTitle'
 import Vote from '../Vote/Vote'
-import Share from '../Share/Share'
 import BillInfo from '../BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../Footer/Footer'
@@ -26,11 +25,6 @@ class BillPage extends React.Component {
         <Header />
         <BillTitle
           title={this.props.billInfo.title}
-        />
-        <Share
-          billNumber={this.props.billInfo.bill_number}
-          title={this.props.billInfo.title}
-          summary={this.props.billInfo.summary}
         />
         <div className='container'>
           <BillInfo

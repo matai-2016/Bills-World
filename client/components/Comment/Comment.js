@@ -30,13 +30,13 @@ const Comment = props => {
               <EditDeleteComment
                 comment={comment}
                 billNumber={billNumber}
-                getBillInfo={getBillInfo}/>
+                getBillInfo={getBillInfo} />
             {
               <EditCommentInputBox
                 comment={comment}
                 user_id={comment.user_id}
                 billNumber={billNumber}
-                getBillInfo={getBillInfo}/>
+                getBillInfo={getBillInfo} />
             }
             </span>
           }

@@ -1,6 +1,8 @@
 import React from 'react'
 import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share'
 
+import './share.css'
+
 const Share = (props) => {
   const { FacebookShareButton, TwitterShareButton } = ShareButtons
   const { FacebookShareCount } = ShareCounts
@@ -16,7 +18,7 @@ const Share = (props) => {
         title={title}
         description={summary}
         picture={`http://hotelwaterloo.co.nz/wp-content/uploads/The-Beehive.jpg`}
-        className='facebook-share'>
+        className='share-button'>
         <FacebookIcon
           size={32}
           round />
