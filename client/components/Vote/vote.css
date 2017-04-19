@@ -1,7 +1,45 @@
 .votes-container {
-  text-align: center;
+  margin-top: 30px;
+  margin-right: 10px;
 }
 
 .voting-bar {
-  width: 150px;
+  width: 180px;
+  border-radius: 5px;
 }
+
+.votes-for {
+  font-size: 20px;
+  border: none;
+  background-color: #13B240;
+  border-radius: 10px;
+  height: 25px;
+  width: 40px;
+  margin: auto;
+  color: white
+}
+
+.votes-against {
+  font-size: 20px;
+  border: none;
+  background-color: #FF4E4E;
+  border-radius: 10px;
+  height: 25px;
+  width: 40px;
+  margin: auto;
+  color: white
+}
+
+.line-and-total {
+  text-align: center;
+}
+
+.buttons {
+  border: none;
+  border-radius: 10px;
+  color: green
+}
+
+/*
+<i className='fa fa-arrow-circle-o-up fa-lg' />
+<i className='fa fa-arrow-circle-up fa-lg' />*/
