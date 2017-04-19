@@ -26,7 +26,7 @@ class EditDeleteReply extends Component {
   handleEdit (e) {
     const replyId = this.props.reply.id
     const reply = this.props.reply.reply
-    this.props.updateEditReplyForm('editreply', reply, replyId)
+    this.props.updateEditReplyForm(reply, replyId)
     this.props.toggleEditReplyBox(replyId)
   }
 
@@ -61,8 +61,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleEditReplyBox: (replyId) => {
       return dispatch(toggleEditReplyBox(replyId))
     },
-    updateEditReplyForm: (name, value, replyId) => {
-      return dispatch(updateEditReplyForm(name, value, replyId))
+    updateEditReplyForm: (value, replyId) => {
+      return dispatch(updateEditReplyForm(value, replyId))
     }
   }
 }

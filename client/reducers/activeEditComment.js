@@ -8,10 +8,10 @@ export default function activeEditComment (state = initialState, action) {
     case 'UPDATE_EDIT_COMMENT_FORM':
       return {
         ...state,
-        [action.name]: action.value,
+        editcomment: action.value,
         commentId: action.commentId
       }
-      case 'CLEAR_EDIT_COMMENT_BOX':
+      case 'CLEAR_EDIT_COMMENT_FORM':
         return {
           ...state,
           editcomment: '',

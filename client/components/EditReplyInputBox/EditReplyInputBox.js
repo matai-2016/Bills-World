@@ -19,7 +19,7 @@ class EditReplyInputBox extends React.Component {
               className='input-box form-control'
               name='editreply'
               value={this.props.activeEditReply}
-              onChange={(e) => this.props.updateEditReplyForm(e.target.name, e.target.value, this.props.reply.id)} />
+              onChange={(e) => this.props.updateEditReplyForm(e.target.value, this.props.reply.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
             <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}>Cancel</button>
           </span>
@@ -61,8 +61,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateEditReplyForm: (name, value, replyId) => {
-      return dispatch(updateEditReplyForm(name, value, replyId))
+    updateEditReplyForm: (value, replyId) => {
+      return dispatch(updateEditReplyForm(value, replyId))
     },
     editReply: (replyDetails) => {
       return dispatch(editReply(replyDetails))
