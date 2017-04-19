@@ -33,7 +33,7 @@ class About extends Component {
         </div>
         <div className='description'>
           <div className='description-text'>
-            <p>Bills world lets you lorem ipsum dolor sit amet, consectetur adipiscing elit donec placerat.</p>
+            <p>Bills World is a place to learn, support and converse about proposed changes to New Zealand law. </p>
           </div>
           <div className='sign-up-text'>
             <div>
