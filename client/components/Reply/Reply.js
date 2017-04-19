@@ -23,26 +23,26 @@ class Reply extends Component {
   render () {
     const { handleDiscard, handleSubmit } = this.props
     return (
-      <div className='reply-container'>
-        <textarea
-          type='text'
-          className='input-box form-control'
-          name='activeReply'
-          placeholder='Reply here'
-          value={this.state.value}
-          onChange={(e) => this.handleOnChange(e.target.value)}
-        />
-        {
-          this.state.value
-            ? <button className='reply-submit-button btn' onClick={() => handleSubmit(this.state.value)}>Submit</button>
-            : <button disabled className='reply-submit-button btn'>Submit</button>
-        }
-        <button
-          className='reply-discard-button btn'
-          onClick={() => handleDiscard()}>
-          <i className='fa fa-times fa-lg' aria-hidden='true' />
-        </button>
-      </div>
+        <div className='reply-container'>
+          <textarea
+            type='text'
+            className='input-box form-control'
+            name='activeReply'
+            placeholder='Reply here'
+            value={this.state.value}
+            onChange={(e) => this.handleOnChange(e.target.value)}
+          />
+          {
+            this.state.value
+              ? <button className='reply-submit-button btn' onClick={() => handleSubmit(this.state.value)}>Submit</button>
+              : <button disabled className='reply-submit-button btn'>Submit</button>
+          }
+          <button
+            className='reply-discard-button btn'
+            onClick={() => handleDiscard()}>
+            <i className='fa fa-times fa-lg' aria-hidden='true' />
+          </button>
+        </div>
     )
   }
 }
