@@ -9,7 +9,7 @@
   border: 1px solid;
 }
 
-.input-box:focus {
+.edit-box:focus {
   box-shadow: 0 0 5px #58595C;
   border: 1px solid #58595C;
 }
