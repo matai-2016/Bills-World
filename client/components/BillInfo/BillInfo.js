@@ -1,6 +1,8 @@
 import React from 'react'
 import moment from 'moment'
 
+import Share from '../Share/Share'
+
 import './billinfo.css'
 
 const BillInfo = (props) => {
@@ -19,6 +21,11 @@ const BillInfo = (props) => {
           <p id='member-in-charge'><img className='member-img' src='/img/member.png' />{props.memberInCharge}</p>
         </div>
         <a className='parliament-link' href='https://www.parliament.nz/en/pb/bills-and-laws/proposed-members-bills/'>View on Parliament Website</a>
+        <Share
+          billNumber={props.billNumber}
+          title={props.title}
+          summary={props.summary}
+        />
       </div>
     </div>
   )
