@@ -24,7 +24,7 @@ class Vote extends React.Component {
     return (
       <div className='votes-container container'>
         <div className='row'>
-          <div className='buttons col-xs-3'>
+          <div className='buttons col-xs-3 col-sm-3 col-md-3'>
             {this.props.auth.isAuthenticated &&
               <span>
                 {this.props.userVote.voted_for
@@ -42,7 +42,7 @@ class Vote extends React.Component {
               </span>
             }
           </div>
-          <div className='line-and-total col-xs-9'>
+          <div className='line-and-total col-xs-9 col-sm-9 col-md-9'>
             <p className='votes-for votes-for-container'>{this.props.votes.votes_for}</p>
             <Line className='voting-bar' percent={this.props.votes.percentage_for} strokeWidth='4' trailWidth='4' strokeLinecap='square' strokeColor={'#13B240'} trailColor={'#FF4E4E'} />
             <p className='votes-against votes-against-container'>{this.props.votes.votes_against}</p>

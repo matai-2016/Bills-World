@@ -42,7 +42,9 @@
   position: relative;
   top: 50%;
   height: 100px;
-  max-width: 80px;
+  max-width: 50px;
+  width: 100%;
+  padding: 0px;
 }
 
 .voting-button {
@@ -52,6 +54,7 @@
   background: none;
   width: 30px;
   font-size: 40px;
+  padding: 0px;
 }
 
 .button-for {
@@ -65,15 +68,21 @@
 
 @media (min-width: 320px) {
   .voting-bar {
-    width: 80%;
+    width: 100%;
   }
 }
 
 @media (min-width: 750px) {
+  .voting-bar {
+    /*margin-left: 50px;*/
+  }
   .votes-for {
     margin-bottom: 5px;
   }
   .votes-against {
     margin-top: 5px;
+  }
+  .line-and-total {
+    margin-left: 25px
   }
 }
