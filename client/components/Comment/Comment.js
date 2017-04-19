@@ -9,8 +9,6 @@ const Comment = props => {
     comment,
     isAuthenticated,
     user_id,
-    billNumber,
-    getBillInfo,
     handleReplyClick
   } = props
 
@@ -30,6 +28,7 @@ const Comment = props => {
               <EditDeleteComment
                 comment={comment}
                 billNumber={props.billNumber}
+<<<<<<< HEAD
                 getBillInfo={props.getBillInfo}/>
             {
               <EditCommentInputBox
@@ -37,6 +36,14 @@ const Comment = props => {
                 user_id={comment.user_id}
                 billNumber={billNumber}
                 getBillInfo={getBillInfo}/>
+=======
+                getBillInfo={props.getBillInfo} />
+              {
+                <EditCommentInputBox
+                  comment={comment}
+                  billNumber={props.billNumber}
+                  getBillInfo={props.getBillInfo} />
+>>>>>>> 613169635915d8130b421e8ad622cb97a82b8e46
             }
             </span>
           }
@@ -45,7 +52,7 @@ const Comment = props => {
             <button
               className='reply-button btn'
               onClick={() => handleReplyClick()}>
-              <i className='fa fa-reply fa-lg' aria-hidden='true'></i>
+              <i className='fa fa-reply fa-lg' aria-hidden='true' />
             </button>
           }
         </div>

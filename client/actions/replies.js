@@ -1,6 +1,22 @@
 import request from 'superagent'
 import { getBillInfo } from './billInfo'
 
+import AuthService from '../utils/AuthService'
+
+export function saveReply (replyDetails) {
+  return dispatch => {
+    return request
+      .post('/replies/save')
+      .set({ 'Content-Type': 'application/json' })
+      .set('Authorization', `Bearer ${AuthService.getToken()}`)
+      .send(replyDetails)
+      .then(() => dispatch(getBillInfo(replyDetails.billNumber)))
+      .catch(err => {
+        return console.error(err.response.body)
+      })
+  }
+}
+
 export function createReply (parentId) {
   return {
     type: 'CREATE_REPLY',

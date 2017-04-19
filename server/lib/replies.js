@@ -3,7 +3,9 @@ const knex = require('knex')(config)
 
 module.exports = {
   getReplies,
-  saveReply
+  saveReply,
+  deleteReply,
+  editReply
 }
 
 function getReplies (billNumber) {
@@ -26,6 +28,32 @@ function saveReply (user_id, billNumber, reply, username, date, parentId) {
       username: username,
       date: date,
       parent_id: parentId
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+}
+
+function deleteReply (user_id, reply_id) {
+  return knex('replies')
+    .where('user_id', user_id)
+    .where('id', reply_id)
+    .del()
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+}
+
+function editReply (user_id, reply_id, reply) {
+  return knex('replies')
+    .where('user_id', user_id)
+    .where('id', reply_id)
+    .update({
+      reply: reply
     })
     .catch((err) => {
       if (err) {
