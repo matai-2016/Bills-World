@@ -2,19 +2,27 @@ import test from 'ava'
 import { loginRequest, loginSuccess, loginError, logoutSuccess } from '../../client/actions/index.js'
 
 test('loginRequest returns object with type LOGIN_REQUEST', t => {
-  t.deepEqual(loginRequest(), { type: 'LOGIN_REQUEST' })
+  const actual = loginRequest()
+  const expected = { type: 'LOGIN_REQUEST' }
+  t.deepEqual(actual, expected)
 })
 
 test('loginSuccess returns object with type LOGIN_SUCCESS', t => {
   const profile = 'profile'
-  t.deepEqual(loginSuccess(profile), { type: 'LOGIN_SUCCESS', profile })
+  const actual = loginSuccess(profile)
+  const expected = { type: 'LOGIN_SUCCESS', profile }
+  t.deepEqual(actual, expected)
 })
 
 test('loginError returns object with type LOGIN_ERROR', t => {
   const error = 'error'
-  t.deepEqual(loginError(error), { type: 'LOGIN_ERROR', error })
+  const actual = loginError(error)
+  const expected = { type: 'LOGIN_ERROR', error }
+  t.deepEqual(actual, expected)
 })
 
 test('logoutSuccess returns object with type LOGOUT_SUCCESS', t => {
-  t.deepEqual(logoutSuccess(), { type: 'LOGOUT_SUCCESS' })
+  const actual = logoutSuccess()
+  const expected = { type: 'LOGOUT_SUCCESS' }
+  t.deepEqual(actual, expected)
 })
