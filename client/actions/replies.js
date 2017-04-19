@@ -34,3 +34,16 @@ export function saveReply (replyDetails) {
       })
   }
 }
+
+export function deleteReply (replyDetails) {
+  return dispatch => {
+    return request
+    .delete('/replies/delete')
+    .set('Authorization', `Bearer ${AuthService.getToken()}`)
+    .set({ 'Content-Type': 'application/json' })
+    .send(replyDetails)
+    .catch(err => {
+      return console.error(err.response.body)
+    })
+  }
+}

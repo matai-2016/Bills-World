@@ -34,8 +34,9 @@ const Comment = props => {
             {
               <EditCommentInputBox
                 comment={comment}
-                billNumber={props.billNumber}
-                getBillInfo={props.getBillInfo}/>
+                user_id={comment.user_id}
+                billNumber={billNumber}
+                getBillInfo={getBillInfo}/>
             }
             </span>
           }

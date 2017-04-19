@@ -17,7 +17,7 @@ class EditCommentInputBox extends React.Component {
         {
           (this.props.activeEditCommentId === this.props.comment.id)
           && !!this.props.auth.isAuthenticated
-          && (this.props.userId === this.props.comment.user_id)
+          && (this.props.userId === this.props.user_id)
           && <span>
             <textarea
               type='text'
