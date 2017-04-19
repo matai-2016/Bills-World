@@ -24,14 +24,6 @@ export function createReply (parentId) {
   }
 }
 
-export function updateReplyForm (name, value) {
-  return {
-    type: 'UPDATE_REPLY_FORM',
-    name,
-    value
-  }
-}
-
 export function clearReplyBox () {
   return {
     type: 'CLEAR_REPLY_BOX'
@@ -64,10 +56,9 @@ export function editReply (replyDetails) {
   }
 }
 
-export function updateEditReplyForm (name, value, replyId) {
+export function updateEditReplyForm (value, replyId) {
   return {
     type: 'UPDATE_EDIT_REPLY_FORM',
-    name,
     value,
     replyId
   }
@@ -75,13 +66,13 @@ export function updateEditReplyForm (name, value, replyId) {
 
 export function toggleEditReplyBox (replyId) {
   return {
-    type: 'TOGGLE_EDIT_REPLY_BOX',
+    type: 'TOGGLE_EDIT_REPLY_FORM',
     replyId
   }
 }
 
 export function clearEditReplyForm () {
   return {
-    type: 'CLEAR_EDIT_REPLY_BOX'
+    type: 'CLEAR_EDIT_REPLY_FORM'
   }
 }

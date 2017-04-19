@@ -64,7 +64,7 @@ class CommentWithReplies extends Component {
                 </div>
                 {
                   isAuthenticated
-                  && (user_id === comment.user_id)
+                  && (user_id === reply.user_id)
                   && <span>
                     <EditDeleteReply
                       reply={reply}

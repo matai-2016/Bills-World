@@ -8,15 +8,16 @@ export default function activeEditReply (state = initialState, action) {
     case 'UPDATE_EDIT_REPLY_FORM':
       return {
         ...state,
-        [action.name]: action.value,
+        editreply: action.value,
         replyId: action.replyId
       }
-      case 'CLEAR_EDIT_REPLY_BOX':
+      case 'CLEAR_EDIT_REPLY_FORM':
         return {
           ...state,
-          editreply: ''
+          editreply: '',
+          replyId: null
         }
-      case 'TOGGLE_EDIT_REPLY_BOX':
+      case 'TOGGLE_EDIT_REPLY_FORM':
         return {
           ...state,
           replyId: action.replyId

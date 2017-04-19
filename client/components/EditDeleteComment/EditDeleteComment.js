@@ -26,7 +26,7 @@ class EditDeleteComment extends Component {
   handleEdit (e) {
     const commentId = this.props.comment.id
     const comment = this.props.comment.comment
-    this.props.updateEditCommentForm('editcomment', comment, commentId)
+    this.props.updateEditCommentForm(comment, commentId)
     this.props.toggleEditCommentBox(commentId)
   }
 
@@ -61,8 +61,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleEditCommentBox: (commentId) => {
       return dispatch(toggleEditCommentBox(commentId))
     },
-    updateEditCommentForm: (name, value, commentId) => {
-      return dispatch(updateEditCommentForm(name, value, commentId))
+    updateEditCommentForm: (value, commentId) => {
+      return dispatch(updateEditCommentForm(value, commentId))
     }
   }
 }

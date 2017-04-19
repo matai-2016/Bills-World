@@ -54,10 +54,9 @@ export function updateCommentForm (value) {
   }
 }
 
-export function updateEditCommentForm (name, value, commentId) {
+export function updateEditCommentForm (value, commentId) {
   return {
     type: 'UPDATE_EDIT_COMMENT_FORM',
-    name,
     value,
     commentId
   }
@@ -65,7 +64,7 @@ export function updateEditCommentForm (name, value, commentId) {
 
 export function clearEditCommentForm () {
   return {
-    type: 'CLEAR_EDIT_COMMENT_BOX'
+    type: 'CLEAR_EDIT_COMMENT_FORM'
   }
 }
 

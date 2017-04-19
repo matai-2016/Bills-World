@@ -19,7 +19,7 @@ class EditCommentInputBox extends React.Component {
               className='edit-box form-control'
               name='editcomment'
               value={this.props.activeEditComment}
-              onChange={(e) => this.props.updateEditCommentForm(e.target.name, e.target.value, this.props.comment.id)} />
+              onChange={(e) => this.props.updateEditCommentForm(e.target.value, this.props.comment.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
             <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}><i className='fa fa-times fa-lg' aria-hidden='true' /></button>
           </span>
@@ -61,8 +61,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateEditCommentForm: (name, value, commentId) => {
-      return dispatch(updateEditCommentForm(name, value, commentId))
+    updateEditCommentForm: (value, commentId) => {
+      return dispatch(updateEditCommentForm(value, commentId))
     },
     editComment: (commentDetails) => {
       return dispatch(editComment(commentDetails))
