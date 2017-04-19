@@ -3,7 +3,9 @@ import './commentWithReplies.css'
 
 import Comment from '../Comment/Comment'
 import Reply from '../Reply/Reply'
-import DeleteReply from '../DeleteReply/DeleteReply'
+import EditDeleteReply from '../EditDeleteReply/EditDeleteReply'
+import EditReplyInputBox from '../EditReplyInputBox/EditReplyInputBox'
+
 
 
 class CommentWithReplies extends Component {
@@ -67,10 +69,17 @@ class CommentWithReplies extends Component {
                 {
                   isAuthenticated
                   && (user_id === comment.user_id)
-                  && <DeleteReply
-                    reply={reply}
-                    billNumber={billNumber}
-                    getBillInfo={getBillInfo}/>
+                  && <span>
+                    <EditDeleteReply
+                      reply={reply}
+                      billNumber={billNumber}
+                      getBillInfo={getBillInfo}/>
+                    <EditReplyInputBox
+                      reply={reply}
+                      user_id={reply.user_id}
+                      billNumber={billNumber}
+                      getBillInfo={getBillInfo}/>
+                  </span>
                 }
               </div>
             )

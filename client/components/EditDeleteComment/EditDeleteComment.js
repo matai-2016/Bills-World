@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { updateEditForm, deleteComment, toggleEditCommentBox } from '../../actions/comments.js'
+import { updateEditCommentForm, deleteComment, toggleEditCommentBox } from '../../actions/comments.js'
 
 import './editdeletecomment.css'
 
@@ -26,7 +26,7 @@ class EditDeleteComment extends Component {
   handleEdit (e) {
     const commentId = this.props.comment.id
     const comment = this.props.comment.comment
-    this.props.updateEditForm('editcomment', comment, commentId)
+    this.props.updateEditCommentForm('editcomment', comment, commentId)
     this.props.toggleEditCommentBox(commentId)
   }
 
@@ -61,8 +61,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleEditCommentBox: (commentId) => {
       return dispatch(toggleEditCommentBox(commentId))
     },
-    updateEditForm: (name, value, commentId) => {
-      return dispatch(updateEditForm(name, value, commentId))
+    updateEditCommentForm: (name, value, commentId) => {
+      return dispatch(updateEditCommentForm(name, value, commentId))
     }
   }
 }
