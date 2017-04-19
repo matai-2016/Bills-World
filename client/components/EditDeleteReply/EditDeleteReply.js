@@ -13,7 +13,7 @@ class EditDeleteReply extends Component {
           this.props.auth.isAuthenticated
           && (this.props.reply.user_id === this.props.userId)
           && <div>
-            <button className='edit-comment-button btn' onClick={(e) => this.handleEdit(e)}><i className='fa fa-pencil fa-lg' aria-hidden='true' /></button>
+            <button className='edit-reply-button btn' onClick={(e) => this.handleEdit(e)}><i className='fa fa-pencil fa-lg' aria-hidden='true' /></button>
             <button className='delete-reply-button btn'
               onClick={(e) => this.handleDelete(e)}><i className='fa fa-trash-o fa-lg' aria-hidden='true'></i>
             </button>

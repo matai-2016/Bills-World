@@ -13,51 +13,53 @@ class Discussion extends Component {
     return (
       <div>
         <h3 className='comments-title'>Comments</h3>
-        {
-          this.props.isAuthenticated &&
-          <span>
-            <div className='form-group row'>
-              <textarea
-                type='text'
-                className='input-box form-control'
-                name='comment'
-                placeholder='Share your views here'
-                value={this.props.activeComment}
-                onChange={(e) => this.props.updateCommentForm(e.target.value)} />
-              {
-                this.props.activeComment
-                ? <button className='submit-button btn' onClick={(event) => this.handleNewCommentSubmit(this.props.activeComment)}>Submit</button>
-                : <button disabled className='submit-button btn'>Submit</button>
-              }
-            </div>
-          </span>
-        }
-        {
-          !this.props.isAuthenticated &&
-          <span>
-            <p className='login-prompt'>Please login or register to comment on this thread</p>
-          </span>
-        }
-        <div>
+        <div className='container'>
           {
-            this.props.comments.map((comment) => {
-              const replies = this.props.replies.filter(reply => reply.parent_id === comment.id)
-              return (
-                <CommentWithReplies
-                  key={comment.id}
-                  comment={comment}
-                  replies={replies}
-                  user_id={this.props.user_id}
-                  billNumber={this.props.billNumber}
-                  isAuthenticated={this.props.isAuthenticated}
-                  getBillInfo={this.props.getBillInfo}
-                  handleReplySubmit={(id, val) => this.handleSubmit(val, id)}
-                />
-              )
-            })
+            this.props.isAuthenticated &&
+            <span>
+              <div className='form-group row'>
+                <textarea
+                  type='text'
+                  className='input-box form-control'
+                  name='comment'
+                  placeholder='Share your views here'
+                  value={this.props.activeComment}
+                  onChange={(e) => this.props.updateCommentForm(e.target.value)} />
+                {
+                  this.props.activeComment
+                  ? <button className='submit-button btn' onClick={(event) => this.handleNewCommentSubmit(this.props.activeComment)}>Submit</button>
+                  : <button disabled className='submit-button btn'>Submit</button>
+                }
+              </div>
+            </span>
           }
+          {
+            !this.props.isAuthenticated &&
+            <span>
+              <p className='login-prompt'>Please login or register to comment on this thread</p>
+            </span>
+          }
+          <div>
+            {
+              this.props.comments.map((comment) => {
+                const replies = this.props.replies.filter(reply => reply.parent_id === comment.id)
+                return (
+                  <CommentWithReplies
+                    key={comment.id}
+                    comment={comment}
+                    replies={replies}
+                    user_id={this.props.user_id}
+                    billNumber={this.props.billNumber}
+                    isAuthenticated={this.props.isAuthenticated}
+                    getBillInfo={this.props.getBillInfo}
+                    handleReplySubmit={(id, val) => this.handleSubmit(val, id)}
+                  />
+                )
+              })
+            }
+          </div>
+          <ReportAbuse />
         </div>
-        <ReportAbuse />
       </div>
     )
   }

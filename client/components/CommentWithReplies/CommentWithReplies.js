@@ -56,15 +56,11 @@ class CommentWithReplies extends Component {
         {
           replies.map((reply) => {
             return (
-              <div key={'reply' + reply.id}>
-                <div>
-                  <p className='comment-text'>{reply.reply}</p>
-                </div>
-                <div className='row'>
-                  <div className='metadata col-md-offset-2'>
-                    <p className='username'>{reply.username}</p>
-                    <p>{reply.date}</p>
-                  </div>
+              <div className='reply-section' key={'reply' + reply.id}>
+                <div className='col-md-12 reply-text'>
+                  <span className='username'>{reply.username}</span>
+                  <span className='date'>{reply.date}</span>
+                  <p>{reply.reply}</p>
                 </div>
                 {
                   isAuthenticated

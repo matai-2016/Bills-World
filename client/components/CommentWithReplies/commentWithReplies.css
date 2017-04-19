@@ -1,6 +1,7 @@
 .comment-container {
   border-bottom: 1px solid gray;
   padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .metadata {
@@ -10,7 +11,12 @@
   margin-bottom: -1rem;
 }
 
-.comment-text {
+.reply-section{
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.reply-text {
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 5rem;
 }
