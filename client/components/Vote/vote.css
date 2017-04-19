@@ -32,14 +32,48 @@
 
 .line-and-total {
   text-align: center;
+  position: relative;
+  height: 100px;
+  top: 5px;
 }
 
 .buttons {
-  border: none;
-  border-radius: 10px;
-  color: green
+  text-align: center;
+  position: relative;
+  top: 50%;
+  height: 100px;
+  max-width: 80px;
 }
 
-/*
-<i className='fa fa-arrow-circle-o-up fa-lg' />
-<i className='fa fa-arrow-circle-up fa-lg' />*/
+.voting-button {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: none;
+  width: 30px;
+  font-size: 40px;
+}
+
+.button-for {
+  color: #13B240;
+}
+
+.button-against {
+  color: #FF4E4E;
+
+}
+
+@media (min-width: 320px) {
+  .voting-bar {
+    width: 80%;
+  }
+}
+
+@media (min-width: 750px) {
+  .votes-for {
+    margin-bottom: 5px;
+  }
+  .votes-against {
+    margin-top: 5px;
+  }
+}

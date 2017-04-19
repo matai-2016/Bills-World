@@ -27,24 +27,24 @@ class Vote extends React.Component {
           <div className='buttons col-xs-3'>
             {this.props.auth.isAuthenticated &&
               <span>
-                {this.props.userVote.votes_for
-                  ? <button className='voting-button button-for highlight-button-for' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>Hi</button>
-                  : <button className='voting-button button-for' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for'>Hi</button>
+                {this.props.userVote.voted_for
+                  ? <button className='voting-button button-for fa fa-arrow-circle-up' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' />
+                  : <button className='voting-button button-for fa fa-arrow-circle-o-up' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' />
                 }
               </span>
             }
             {this.props.auth.isAuthenticated &&
               <span>
-                {this.props.userVote.votes_against
-                  ? <button className='voting-button button-against highlight-button-against' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
-                  : <button className='voting-button button-against' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against'>&nabla;</button>
+                {this.props.userVote.voted_against
+                  ? <button className='voting-button button-against fa fa-arrow-circle-down' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' />
+                  : <button className='voting-button button-against fa fa-arrow-circle-o-down' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' />
                 }
               </span>
             }
           </div>
           <div className='line-and-total col-xs-9'>
             <p className='votes-for votes-for-container'>{this.props.votes.votes_for}</p>
-            <Line className='voting-bar' percent={this.props.votes.percentage_for} strokeWidth='6' trailWidth='6' strokeLinecap='square' strokeColor={'#13B240'} trailColor={'#FF4E4E'} />
+            <Line className='voting-bar' percent={this.props.votes.percentage_for} strokeWidth='4' trailWidth='4' strokeLinecap='square' strokeColor={'#13B240'} trailColor={'#FF4E4E'} />
             <p className='votes-against votes-against-container'>{this.props.votes.votes_against}</p>
           </div>
         </div>
