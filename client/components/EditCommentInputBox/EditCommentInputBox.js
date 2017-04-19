@@ -16,17 +16,16 @@ class EditCommentInputBox extends React.Component {
     return (
       <div>
         {
-          (this.props.activeEditCommentId === this.props.comment.id)
-          && !!this.props.auth.isAuthenticated
-          && (this.props.userId === this.props.comment.user_id)
-          && <span>
+          (this.props.activeEditCommentId === this.props.comment.id) &&
+          !!this.props.auth.isAuthenticated &&
+          (this.props.userId === this.props.comment.user_id) &&
+          <span>
             <textarea
               type='text'
               className='input-box form-control'
               name='comment'
               value={this.props.activeEditComment}
-              onChange={(e) => this.props.updateEditForm(e.target.name, e.target.value, this.props.comment.id)}>
-            </textarea>
+              onChange={(e) => this.props.updateEditForm(e.target.name, e.target.value, this.props.comment.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
             <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}>Cancel</button>
           </span>
