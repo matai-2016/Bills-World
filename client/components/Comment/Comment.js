@@ -9,8 +9,6 @@ const Comment = props => {
     comment,
     isAuthenticated,
     user_id,
-    billNumber,
-    getBillInfo,
     handleReplyClick
   } = props
 
@@ -30,12 +28,12 @@ const Comment = props => {
               <EditDeleteComment
                 comment={comment}
                 billNumber={props.billNumber}
-                getBillInfo={props.getBillInfo}/>
-            {
-              <EditCommentInputBox
-                comment={comment}
-                billNumber={props.billNumber}
-                getBillInfo={props.getBillInfo}/>
+                getBillInfo={props.getBillInfo} />
+              {
+                <EditCommentInputBox
+                  comment={comment}
+                  billNumber={props.billNumber}
+                  getBillInfo={props.getBillInfo} />
             }
             </span>
           }
@@ -44,7 +42,7 @@ const Comment = props => {
             <button
               className='reply-button btn'
               onClick={() => handleReplyClick()}>
-              <i className='fa fa-reply fa-lg' aria-hidden='true'></i>
+              <i className='fa fa-reply fa-lg' aria-hidden='true' />
             </button>
           }
         </div>
