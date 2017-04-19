@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { clearEditForm, updateEditForm, editComment, toggleEditCommentBox } from '../../actions/comments.js'
+import { clearEditCommentForm, updateEditCommentForm, editComment, toggleEditCommentBox } from '../../actions/comments.js'
 
 import './editcommentinputbox.css'
 
@@ -9,7 +9,7 @@ class EditCommentInputBox extends React.Component {
   componentDidMount () {
     const comment = this.props.comment.comment
     const commentId = this.props.comment.id
-    this.props.updateEditForm('editcomment', comment, commentId)
+    this.props.updateEditCommentForm('editcomment', comment, commentId)
   }
   render () {
     return (
@@ -24,7 +24,7 @@ class EditCommentInputBox extends React.Component {
               className='input-box form-control'
               name='editcomment'
               value={this.props.activeEditComment}
-              onChange={(e) => this.props.updateEditForm(e.target.name, e.target.value, this.props.comment.id)} />
+              onChange={(e) => this.props.updateEditCommentForm(e.target.name, e.target.value, this.props.comment.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
             <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}>Cancel</button>
           </span>
@@ -46,12 +46,12 @@ class EditCommentInputBox extends React.Component {
         }
       })
     this.props.toggleEditCommentBox(null)
-    this.props.clearEditForm()
+    this.props.clearEditCommentForm()
   }
 
   handleCancel (e) {
     this.props.toggleEditCommentBox(null)
-    this.props.clearEditForm()
+    this.props.clearEditCommentForm()
   }
 }
 
@@ -66,8 +66,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateEditForm: (name, value, commentId) => {
-      return dispatch(updateEditForm(name, value, commentId))
+    updateEditCommentForm: (name, value, commentId) => {
+      return dispatch(updateEditCommentForm(name, value, commentId))
     },
     editComment: (commentDetails) => {
       return dispatch(editComment(commentDetails))
@@ -75,8 +75,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleEditCommentBox: (commentId) => {
       return dispatch(toggleEditCommentBox(commentId))
     },
-    clearEditForm: () => {
-      return dispatch(clearEditForm())
+    clearEditCommentForm: () => {
+      return dispatch(clearEditCommentForm())
     }
   }
 }

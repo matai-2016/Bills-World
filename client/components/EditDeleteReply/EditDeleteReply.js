@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { deleteReply } from '../../actions/replies.js'
+import { updateEditReplyForm, deleteReply, toggleEditReplyBox } from '../../actions/replies.js'
 
-import './deletereply.css'
+import './editdeletereply.css'
 
-class DeleteReply extends Component {
+class EditDeleteReply extends Component {
   render () {
     return (
       <div>
@@ -13,6 +13,7 @@ class DeleteReply extends Component {
           this.props.auth.isAuthenticated
           && (this.props.reply.user_id === this.props.userId)
           && <div>
+            <button className='edit-comment-button btn' onClick={(e) => this.handleEdit(e)}><i className='fa fa-pencil fa-lg' aria-hidden='true' /></button>
             <button className='delete-reply-button btn'
               onClick={(e) => this.handleDelete(e)}><i className='fa fa-trash-o fa-lg' aria-hidden='true'></i>
             </button>
@@ -20,6 +21,13 @@ class DeleteReply extends Component {
         }
       </div>
     )
+  }
+
+  handleEdit (e) {
+    const replyId = this.props.reply.id
+    const reply = this.props.reply.reply
+    this.props.updateEditReplyForm('editreply', reply, replyId)
+    this.props.toggleEditReplyBox(replyId)
   }
 
   handleDelete (e) {
@@ -40,7 +48,8 @@ class DeleteReply extends Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.profile.user_id,
-    auth: state.auth
+    auth: state.auth,
+    activeEditReplyId: state.activeEditReply.replyId
   }
 }
 
@@ -48,8 +57,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteReply: (replyDetails) => {
       return dispatch(deleteReply(replyDetails))
+    },
+    toggleEditReplyBox: (replyId) => {
+      return dispatch(toggleEditReplyBox(replyId))
+    },
+    updateEditReplyForm: (name, value, replyId) => {
+      return dispatch(updateEditReplyForm(name, value, replyId))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteReply)
+export default connect(mapStateToProps, mapDispatchToProps)(EditDeleteReply)

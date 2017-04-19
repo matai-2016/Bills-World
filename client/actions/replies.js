@@ -50,3 +50,38 @@ export function deleteReply (replyDetails) {
     })
   }
 }
+
+export function editReply (replyDetails) {
+  return dispatch => {
+    return request
+      .put('/replies/edit')
+      .set('Authorization', `Bearer ${AuthService.getToken()}`)
+      .set({ 'Content-Type': 'application/json' })
+      .send(replyDetails)
+      .catch(err => {
+        return console.error(err.response.body)
+      })
+  }
+}
+
+export function updateEditReplyForm (name, value, replyId) {
+  return {
+    type: 'UPDATE_EDIT_REPLY_FORM',
+    name,
+    value,
+    replyId
+  }
+}
+
+export function toggleEditReplyBox (replyId) {
+  return {
+    type: 'TOGGLE_EDIT_REPLY_BOX',
+    replyId
+  }
+}
+
+export function clearEditReplyForm () {
+  return {
+    type: 'CLEAR_EDIT_REPLY_BOX'
+  }
+}

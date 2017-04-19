@@ -58,18 +58,18 @@ export function updateCommentForm (name, value, commentId) {
   }
 }
 
-export function updateEditForm (name, value, commentId) {
+export function updateEditCommentForm (name, value, commentId) {
   return {
-    type: 'UPDATE_EDIT_FORM',
+    type: 'UPDATE_EDIT_COMMENT_FORM',
     name,
     value,
     commentId
   }
 }
 
-export function clearEditForm () {
+export function clearEditCommentForm () {
   return {
-    type: 'CLEAR_EDIT_BOX'
+    type: 'CLEAR_EDIT_COMMENT_BOX'
   }
 }
 
