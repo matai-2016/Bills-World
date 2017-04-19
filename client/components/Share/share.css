@@ -1,0 +1,10 @@
+.share-button {
+  float: left;
+  margin-right: 10px;
+}
+
+@media (min-width: 750px) {
+  .share-container {
+    float: right;
+  }
+}
