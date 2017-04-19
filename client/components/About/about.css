@@ -12,7 +12,8 @@
 .features-container {
   background-color: #58595C;
   text-align: center;
-  width: 100%
+  width: 100%;
+  position: relative;
 }
 
 .compressor {
@@ -32,6 +33,7 @@
 .feature-img {
   width: 50px;
   border-radius: 50%;
+  bottom: 0;
 }
 
 .description {
@@ -49,7 +51,7 @@
   color: white;
   padding: 5px 8px;
   border-style: none;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .sign-up-button:hover {
@@ -77,8 +79,11 @@
     width: 33%;
     display: table-cell;
   }
+  #feature-text {
+    height: 60px;
+  }
   .feature-img {
-    width: 30%;
+    width: 50%;
   }
   .compressor {
     width: 80%;
@@ -94,9 +99,10 @@
   }
   #feature-text {
     font-size: 27px;
+    height: 80px;
   }
   .feature {
-    margin: 60px;
+    /*margin: 60px;*/
   }
   .description {
     padding: 15px;
@@ -113,5 +119,6 @@
 @media (min-width: 1000px) {
   #feature-text {
     font-size: 35px;
+    height: 100px;
   }
 }
