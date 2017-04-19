@@ -6,11 +6,6 @@ import { clearEditCommentForm, updateEditCommentForm, editComment, toggleEditCom
 import './editcommentinputbox.css'
 
 class EditCommentInputBox extends React.Component {
-  componentDidMount () {
-    const comment = this.props.comment.comment
-    const commentId = this.props.comment.id
-    this.props.updateEditCommentForm('editcomment', comment, commentId)
-  }
   render () {
     return (
       <div>

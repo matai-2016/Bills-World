@@ -7,7 +7,7 @@ export default function activeComment (state = initialState, action) {
     case 'UPDATE_COMMENT_FORM':
       return {
         ...state,
-        [action.name]: action.value
+        comment: action.value
       }
     case 'CLEAR_INPUT_BOX':
       return {

@@ -6,11 +6,6 @@ import { clearEditReplyForm, updateEditReplyForm, editReply, toggleEditReplyBox 
 import './editreplyinputbox.css'
 
 class EditReplyInputBox extends React.Component {
-  componentDidMount () {
-    const reply = this.props.reply.reply
-    const replyId = this.props.reply.id
-    this.props.updateEditReplyForm('editreply', reply, replyId)
-  }
   render () {
     return (
       <div>
