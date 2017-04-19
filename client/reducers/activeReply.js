@@ -4,13 +4,8 @@ const initialState = {
   parentId: 0
 }
 
-export default function activeComment (state = initialState, action) {
+export default function activeReply (state = initialState, action) {
   switch (action.type) {
-    case 'UPDATE_REPLY_FORM':
-      return {
-        ...state,
-        [action.name]: action.value
-      }
     case 'CREATE_REPLY':
       return {
         ...state,

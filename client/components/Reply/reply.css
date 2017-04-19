@@ -20,6 +20,7 @@
   opacity: 1;
   background-color: rgb(255, 78, 78);
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .reply-submit-button:hover {
@@ -32,6 +33,7 @@
   opacity: 1;
   background-color: rgb(255, 78, 78);
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .reply-discard-button:hover {

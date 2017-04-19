@@ -3,6 +3,10 @@ import './commentWithReplies.css'
 
 import Comment from '../Comment/Comment'
 import Reply from '../Reply/Reply'
+import EditDeleteReply from '../EditDeleteReply/EditDeleteReply'
+import EditReplyInputBox from '../EditReplyInputBox/EditReplyInputBox'
+
+
 
 class CommentWithReplies extends Component {
   constructor (props) {
@@ -52,16 +56,27 @@ class CommentWithReplies extends Component {
         {
           replies.map((reply) => {
             return (
-              <div key={'reply' + reply.id}>
-                <div>
-                  <p className='comment-text'>{reply.reply}</p>
+              <div className='row reply-section' key={'reply' + reply.id}>
+                <div className='reply-text'>
+                  <span className='username'>{reply.username}</span>
+                  <span className='date'>{reply.date}</span>
+                  <p>{reply.reply}</p>
                 </div>
-                <div className='row'>
-                  <div className='metadata col-md-offset-2'>
-                    <p className='username'>{reply.username}</p>
-                    <p>{reply.date}</p>
-                  </div>
-                </div>
+                {
+                  isAuthenticated
+                  && (user_id === reply.user_id)
+                  && <span>
+                    <EditDeleteReply
+                      reply={reply}
+                      billNumber={billNumber}
+                      getBillInfo={getBillInfo}/>
+                    <EditReplyInputBox
+                      reply={reply}
+                      user_id={reply.user_id}
+                      billNumber={billNumber}
+                      getBillInfo={getBillInfo}/>
+                  </span>
+                }
               </div>
             )
           })

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { updateEditForm, deleteComment, toggleEditCommentBox } from '../../actions/comments.js'
+import { updateEditCommentForm, deleteComment, toggleEditCommentBox } from '../../actions/comments.js'
 
 import './editdeletecomment.css'
 
@@ -10,12 +10,12 @@ class EditDeleteComment extends Component {
     return (
       <div>
         {
-          this.props.auth.isAuthenticated
-          && (this.props.comment.user_id === this.props.userId)
-          && <div>
-            <button className='edit-comment-button btn' onClick={(e) => this.handleEdit(e)}><i className='fa fa-pencil fa-lg' aria-hidden='true'></i></button>
+          this.props.auth.isAuthenticated &&
+          (this.props.comment.user_id === this.props.userId) &&
+          <div>
+            <button className='edit-comment-button btn' onClick={(e) => this.handleEdit(e)}><i className='fa fa-pencil fa-lg' aria-hidden='true' /></button>
             <button className='delete-comment-button btn'
-              onClick={(e) => this.handleDelete(e)}><i className='fa fa-trash-o fa-lg' aria-hidden='true'></i>
+              onClick={(e) => this.handleDelete(e)}><i className='fa fa-trash-o fa-lg' aria-hidden='true' />
             </button>
           </div>
         }
@@ -26,7 +26,7 @@ class EditDeleteComment extends Component {
   handleEdit (e) {
     const commentId = this.props.comment.id
     const comment = this.props.comment.comment
-    this.props.updateEditForm('comment', comment, commentId)
+    this.props.updateEditCommentForm(comment, commentId)
     this.props.toggleEditCommentBox(commentId)
   }
 
@@ -61,8 +61,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleEditCommentBox: (commentId) => {
       return dispatch(toggleEditCommentBox(commentId))
     },
-    updateEditForm: (name, value, commentId) => {
-      return dispatch(updateEditForm(name, value, commentId))
+    updateEditCommentForm: (value, commentId) => {
+      return dispatch(updateEditCommentForm(value, commentId))
     }
   }
 }

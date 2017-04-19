@@ -1,34 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { clearEditForm, updateEditForm, editComment, toggleEditCommentBox } from '../../actions/comments.js'
+import { clearEditCommentForm, updateEditCommentForm, editComment, toggleEditCommentBox } from '../../actions/comments.js'
 
 import './editcommentinputbox.css'
 
 class EditCommentInputBox extends React.Component {
-  componentDidMount () {
-    const comment = this.props.comment.comment
-    const commentId = this.props.comment.id
-    this.props.updateEditForm('comment', comment, commentId)
-  }
   render () {
-    console.log(this.props.activeEditCommentId, this.props.comment.id)
     return (
       <div>
         {
           (this.props.activeEditCommentId === this.props.comment.id)
           && !!this.props.auth.isAuthenticated
-          && (this.props.userId === this.props.comment.user_id)
+          && (this.props.userId === this.props.user_id)
           && <span>
             <textarea
               type='text'
-              className='input-box form-control'
-              name='comment'
+              className='edit-box form-control'
+              name='editcomment'
               value={this.props.activeEditComment}
-              onChange={(e) => this.props.updateEditForm(e.target.name, e.target.value, this.props.comment.id)}>
-            </textarea>
+              onChange={(e) => this.props.updateEditCommentForm(e.target.value, this.props.comment.id)} />
             <button className='submit-button btn' onClick={(e) => this.handleSubmit(e)}>Submit</button>
-            <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}>Cancel</button>
+            <button className='submit-button btn' onClick={(e) => this.handleCancel(e)}><i className='fa fa-times fa-lg' aria-hidden='true' /></button>
           </span>
         }
       </div>
@@ -48,19 +41,19 @@ class EditCommentInputBox extends React.Component {
         }
       })
     this.props.toggleEditCommentBox(null)
-    this.props.clearEditForm()
+    this.props.clearEditCommentForm()
   }
 
   handleCancel (e) {
     this.props.toggleEditCommentBox(null)
-    this.props.clearEditForm()
+    this.props.clearEditCommentForm()
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.profile.user_id,
-    activeEditComment: state.activeEditComment.comment,
+    activeEditComment: state.activeEditComment.editcomment,
     activeEditCommentId: state.activeEditComment.commentId,
     auth: state.auth
   }
@@ -68,9 +61,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateEditForm: (name, value, commentId) => {
-      console.log(name, value, commentId)
-      return dispatch(updateEditForm(name, value, commentId))
+    updateEditCommentForm: (value, commentId) => {
+      return dispatch(updateEditCommentForm(value, commentId))
     },
     editComment: (commentDetails) => {
       return dispatch(editComment(commentDetails))
@@ -78,8 +70,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleEditCommentBox: (commentId) => {
       return dispatch(toggleEditCommentBox(commentId))
     },
-    clearEditForm: () => {
-      return dispatch(clearEditForm())
+    clearEditCommentForm: () => {
+      return dispatch(clearEditCommentForm())
     }
   }
 }

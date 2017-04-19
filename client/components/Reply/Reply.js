@@ -23,8 +23,7 @@ class Reply extends Component {
   render () {
     const { handleDiscard, handleSubmit } = this.props
     return (
-      <div>
-        <div className='reply-container'>
+        <div className='row'>
           <textarea
             type='text'
             className='input-box form-control'
@@ -41,10 +40,9 @@ class Reply extends Component {
           <button
             className='reply-discard-button btn'
             onClick={() => handleDiscard()}>
-            <i className='fa fa-times fa-lg' aria-hidden='true'></i>
+            <i className='fa fa-times fa-lg' aria-hidden='true' />
           </button>
         </div>
-      </div>
     )
   }
 }

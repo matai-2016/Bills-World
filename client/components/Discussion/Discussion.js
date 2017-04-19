@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReportAbuse from '../ReportAbuse/ReportAbuse'
-import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
-import EditCommentInputBox from '../EditCommentInputBox/EditCommentInputBox'
 import './discussion.css'
 import CommentWithReplies from '../CommentWithReplies/CommentWithReplies'
 
@@ -25,10 +23,10 @@ class Discussion extends Component {
                 name='comment'
                 placeholder='Share your views here'
                 value={this.props.activeComment}
-                onChange={(e) => this.props.updateCommentForm(e.target.name, e.target.value)} />
+                onChange={(e) => this.props.updateCommentForm(e.target.value)} />
               {
                 this.props.activeComment
-                ? <button className='submit-button btn' onClick={(event) => this.handleSubmit(this.props.activeComment)}>Submit</button>
+                ? <button className='submit-button btn' onClick={(event) => this.handleNewCommentSubmit(this.props.activeComment)}>Submit</button>
                 : <button disabled className='submit-button btn'>Submit</button>
               }
             </div>
@@ -62,6 +60,23 @@ class Discussion extends Component {
         <ReportAbuse />
       </div>
     )
+  }
+
+  handleNewCommentSubmit(activeComment) {
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const username = this.props.username
+    const user_id = this.props.user_id
+    const billNumber = this.props.billNumber
+    let commentDetails = {
+      date: date,
+      username: username,
+      user_id: user_id,
+      billNumber: billNumber,
+      comment: activeComment
+    }
+    this.props.saveComment(commentDetails)
+      .then(() => this.props.getBillInfo(billNumber))
+      .then(() => this.props.clearInputBox())
   }
 
   handleSubmit (value, parentId) {
@@ -114,8 +129,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateCommentForm: (name, value) => {
-      return dispatch(updateCommentForm(name, value))
+    updateCommentForm: (value) => {
+      return dispatch(updateCommentForm(value))
     },
     saveComment: (commentDetails) => {
       return dispatch(saveComment(commentDetails))

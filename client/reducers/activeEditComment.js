@@ -1,20 +1,21 @@
 const initialState = {
-  comment: '',
+  editcomment: '',
   commentId: null
 }
 
 export default function activeEditComment (state = initialState, action) {
   switch (action.type) {
-    case 'UPDATE_EDIT_FORM':
+    case 'UPDATE_EDIT_COMMENT_FORM':
       return {
         ...state,
-        [action.name]: action.value,
+        editcomment: action.value,
         commentId: action.commentId
       }
-      case 'CLEAR_EDIT_BOX':
+      case 'CLEAR_EDIT_COMMENT_FORM':
         return {
           ...state,
-          comment: ''
+          editcomment: '',
+          commentId: null
         }
       case 'TOGGLE_EDIT_COMMENT_BOX':
         return {

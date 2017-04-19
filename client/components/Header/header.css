@@ -1,13 +1,15 @@
 .header {
   font-family: 'Amiri', serif;
   height: auto;
+  max-height: 44px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
   background-color: #FF4E4E;
+  display: flex;
+  align-items: center;
 }
 
 .header div:last-child {
@@ -17,18 +19,20 @@
 .logo {
   height: 30px;
   width: 20px;
-  margin-left: 200px;
 }
 
 .header-title {
   font-size: 19px;
   margin-left: 10px;
-  margin-top: 20px;
-  /*align-self: flex-start;*/
-  color: white;
+  margin-top: 5px;
+
 }
 
-.header-title:hover, a:hover {
+.header-title a {
+  color: white;
+}  
+
+.header-title:hover, a:hover, a {
   text-decoration: none;
 }
 

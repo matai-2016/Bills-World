@@ -9,45 +9,46 @@ const Comment = props => {
     comment,
     isAuthenticated,
     user_id,
+    handleReplyClick,
     billNumber,
-    getBillInfo,
-    handleReplyClick
+    getBillInfo
   } = props
 
   return (
-    <div>
-      <div>
-        <p className='comment-text'>{comment.comment}</p>
+    <div className='row comment-section'>
+      <div className='col-md-12'>
+        <span className='username'>{comment.username}</span>
+        <span className='date'>{comment.date}</span>
+        <p>{comment.comment}</p>
       </div>
-      <div className='row'>
-        <div className='metadata col-md-offset-2'>
-          <p className='username'>{comment.username}</p>
-          <p>{comment.date}</p>
+      <div>
+        {
+          isAuthenticated &&
+          <button
+            className='reply-button btn'
+            onClick={() => handleReplyClick()}>
+            <i className='fa fa-reply fa-lg' aria-hidden='true' />
+          </button>
+        }
+      </div>
+      <div>
+        {
+          isAuthenticated &&
+          (user_id === comment.user_id) &&
+          <span>
+            <EditDeleteComment
+              comment={comment}
+              billNumber={billNumber}
+              getBillInfo={getBillInfo}/>
           {
-            isAuthenticated &&
-            (user_id === comment.user_id) &&
-            <span>
-              <EditDeleteComment
-                comment={comment}
-                billNumber={props.billNumber}
-                getBillInfo={props.getBillInfo}/>
-            {
-              <EditCommentInputBox
-                comment={comment}
-                billNumber={props.billNumber}
-                getBillInfo={props.getBillInfo}/>
-            }
-            </span>
+            <EditCommentInputBox
+              comment={comment}
+              user_id={comment.user_id}
+              billNumber={billNumber}
+              getBillInfo={getBillInfo}/>
           }
-          {
-            isAuthenticated &&
-            <button
-              className='reply-button btn'
-              onClick={() => handleReplyClick()}>
-              <i className='fa fa-reply fa-lg' aria-hidden='true'></i>
-            </button>
-          }
-        </div>
+          </span>
+        }
       </div>
     </div>
   )

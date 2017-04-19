@@ -47,26 +47,24 @@ export function clearInputBox () {
   }
 }
 
-export function updateCommentForm (name, value, commentId) {
+export function updateCommentForm (value) {
   return {
     type: 'UPDATE_COMMENT_FORM',
-    name,
     value
   }
 }
 
-export function updateEditForm (name, value, commentId) {
+export function updateEditCommentForm (value, commentId) {
   return {
-    type: 'UPDATE_EDIT_FORM',
-    name,
+    type: 'UPDATE_EDIT_COMMENT_FORM',
     value,
     commentId
   }
 }
 
-export function clearEditForm () {
+export function clearEditCommentForm () {
   return {
-    type: 'CLEAR_EDIT_BOX'
+    type: 'CLEAR_EDIT_COMMENT_FORM'
   }
 }
 

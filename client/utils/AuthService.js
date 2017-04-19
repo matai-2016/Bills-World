@@ -14,7 +14,8 @@ export default class AuthService {
         responseType: 'token'
       },
       theme: {
-        logo: '/img/beehive-red.png'
+        logo: '/img/beehive-red.png',
+        primaryColor: '#FF4E4E'
       },
       languageDictionary: {
         title: 'Bill\'s World'

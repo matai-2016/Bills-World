@@ -1,0 +1,19 @@
+.edit-reply-button {
+  color: white;
+  opacity: 1;
+  background-color: #58595C;
+}
+
+.edit-reply-button:hover  {
+  opacity: .7;
+}
+
+.delete-reply-button {
+  color: white;
+  opacity: 1;
+  background-color: #58595C;
+}
+
+.delete-reply-button:hover {
+  opacity: .7;
+}
