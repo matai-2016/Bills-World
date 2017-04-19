@@ -15,17 +15,10 @@ class EditCommentInputBox extends React.Component {
     return (
       <div>
         {
-<<<<<<< HEAD
           (this.props.activeEditCommentId === this.props.comment.id)
           && !!this.props.auth.isAuthenticated
           && (this.props.userId === this.props.user_id)
           && <span>
-=======
-          (this.props.activeEditCommentId === this.props.comment.id) &&
-          !!this.props.auth.isAuthenticated &&
-          (this.props.userId === this.props.comment.user_id) &&
-          <span>
->>>>>>> 613169635915d8130b421e8ad622cb97a82b8e46
             <textarea
               type='text'
               className='input-box form-control'

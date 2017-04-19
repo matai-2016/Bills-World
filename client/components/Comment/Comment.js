@@ -9,7 +9,9 @@ const Comment = props => {
     comment,
     isAuthenticated,
     user_id,
-    handleReplyClick
+    handleReplyClick,
+    billNumber,
+    getBillInfo
   } = props
 
   return (
@@ -27,23 +29,14 @@ const Comment = props => {
             <span>
               <EditDeleteComment
                 comment={comment}
-                billNumber={props.billNumber}
-<<<<<<< HEAD
-                getBillInfo={props.getBillInfo}/>
+                billNumber={billNumber}
+                getBillInfo={getBillInfo}/>
             {
               <EditCommentInputBox
                 comment={comment}
                 user_id={comment.user_id}
                 billNumber={billNumber}
                 getBillInfo={getBillInfo}/>
-=======
-                getBillInfo={props.getBillInfo} />
-              {
-                <EditCommentInputBox
-                  comment={comment}
-                  billNumber={props.billNumber}
-                  getBillInfo={props.getBillInfo} />
->>>>>>> 613169635915d8130b421e8ad622cb97a82b8e46
             }
             </span>
           }

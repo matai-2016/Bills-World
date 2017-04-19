@@ -38,19 +38,6 @@ export function clearReplyBox () {
   }
 }
 
-export function saveReply (replyDetails) {
-  return dispatch => {
-    return request
-      .post('/replies/save')
-      .set({ 'Content-Type': 'application/json' })
-      .send(replyDetails)
-      .then(() => dispatch(getBillInfo(replyDetails.billNumber)))
-      .catch(err => {
-        return console.error(err.response.body)
-      })
-  }
-}
-
 export function deleteReply (replyDetails) {
   return dispatch => {
     return request
