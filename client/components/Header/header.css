@@ -29,7 +29,7 @@
   color: white;
 }
 
-.header-title:hover, a:hover {
+.header-title:hover, a:hover, a {
   text-decoration: none;
 }
 
