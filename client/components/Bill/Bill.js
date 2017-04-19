@@ -23,7 +23,6 @@ const Bill = (props) => {
       <div className='comment-count'>
         <CommentCount billNumber={props.billNumber} comments={props.comments} />
       </div>
-      <Vote billNumber={props.billNumber} />
     </div>
   )
 }
