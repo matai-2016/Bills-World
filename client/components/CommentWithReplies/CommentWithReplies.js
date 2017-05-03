@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import './commentWithReplies.css'
 
 import Comment from '../Comment/Comment'
-import Reply from '../Reply/Reply'
-import EditDeleteReply from '../EditDeleteReply/EditDeleteReply'
-import EditReplyInputBox from '../EditReplyInputBox/EditReplyInputBox'
+import Reply from '../../containers/Reply/Reply'
+import EditDeleteReply from '../../containers/EditDeleteReply/EditDeleteReply'
+import EditReplyInputBox from '../../containers/EditReplyInputBox/EditReplyInputBox'
 
 
 
