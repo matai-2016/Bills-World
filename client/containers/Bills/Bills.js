@@ -1,5 +1,5 @@
 import React from 'react'
-import Bill from '../Bill/Bill'
+import Bill from '../../components/Bill/Bill'
 
 import { connect } from 'react-redux'
 
