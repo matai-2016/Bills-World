@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import ReportAbuse from '../ReportAbuse/ReportAbuse'
+import ReportAbuse from '../../components/ReportAbuse/ReportAbuse'
 import './discussion.css'
-import CommentWithReplies from '../CommentWithReplies/CommentWithReplies'
+import CommentWithReplies from '../../components/CommentWithReplies/CommentWithReplies'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
 import { saveReply } from '../../actions/replies.js'

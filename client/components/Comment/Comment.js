@@ -1,8 +1,8 @@
 import React from 'react'
 import './comment.css'
 
-import EditDeleteComment from '../EditDeleteComment/EditDeleteComment'
-import EditCommentInputBox from '../EditCommentInputBox/EditCommentInputBox'
+import EditDeleteComment from '../../containers/EditDeleteComment/EditDeleteComment'
+import EditCommentInputBox from '../../containers/EditCommentInputBox/EditCommentInputBox'
 
 const Comment = props => {
   const {

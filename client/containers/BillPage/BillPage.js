@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 
 import { getBillInfo } from '../../actions/billInfo'
 
-import Header from '../Header/Header'
-import BillTitle from '../BillTitle/BillTitle'
+import Header from '../../components/Header/Header'
+import BillTitle from '../../components/BillTitle/BillTitle'
 import Vote from '../Vote/Vote'
-import BillInfo from '../BillInfo/BillInfo'
+import BillInfo from '../../components/BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
-import Footer from '../Footer/Footer'
-
+import Footer from '../../components/Footer/Footer'
 import './billpage.css'
 
 class BillPage extends React.Component {

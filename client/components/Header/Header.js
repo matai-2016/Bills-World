@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Login from '../Login/Login'
+import Login from '../../containers/Login/Login'
 import './header.css'
 
 const Header = () => {
