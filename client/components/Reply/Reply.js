@@ -1,9 +1,5 @@
 import React, {Component} from 'react'
 import './reply.css'
-import moment from 'moment'
-
-import { updateReplyForm, saveReply, clearReplyBox } from '../../actions/replies.js'
-import { clearInputBox } from '../../actions/comments.js'
 
 class Reply extends Component {
   constructor (props) {
