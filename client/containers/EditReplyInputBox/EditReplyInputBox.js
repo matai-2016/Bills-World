@@ -10,10 +10,10 @@ class EditReplyInputBox extends React.Component {
     return (
       <div>
         {
-          (this.props.activeEditReplyId === this.props.reply.id)
-          && !!this.props.auth.isAuthenticated
-          && (this.props.userId === this.props.user_id)
-          && <div className='row'>
+          (this.props.activeEditReplyId === this.props.reply.id) &&
+          !!this.props.auth.isAuthenticated &&
+          (this.props.userId === this.props.user_id) &&
+          <div className='row'>
             <textarea
               type='text'
               className='input-box form-control'

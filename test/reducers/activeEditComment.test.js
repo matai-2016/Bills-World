@@ -4,7 +4,6 @@ import activeEditComment from '../../client/reducers/activeEditComment.js'
 import { updateEditCommentForm, clearEditCommentForm, toggleEditCommentBox } from '../../client/actions/comments.js'
 //
 test('activeEditComment is updated when updateEditCommentForm action is run', t => {
-
   const beforeState = {
     editcomment: 'Please edit me...',
     commentId: 5

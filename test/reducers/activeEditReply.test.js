@@ -4,7 +4,6 @@ import activeEditReply from '../../client/reducers/activeEditReply.js'
 import { updateEditReplyForm, clearEditReplyForm, toggleEditReplyBox } from '../../client/actions/replies.js'
 //
 test('activeEditReply is updated when updateEditReplyForm action is run', t => {
-
   const beforeState = {
     editreply: 'Please edit me...',
     replyId: 5

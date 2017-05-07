@@ -6,8 +6,6 @@ import Reply from '../../containers/Reply/Reply'
 import EditDeleteReply from '../../containers/EditDeleteReply/EditDeleteReply'
 import EditReplyInputBox from '../../containers/EditReplyInputBox/EditReplyInputBox'
 
-
-
 class CommentWithReplies extends Component {
   constructor (props) {
     super(props)
@@ -63,18 +61,18 @@ class CommentWithReplies extends Component {
                   <p>{reply.reply}</p>
                 </div>
                 {
-                  isAuthenticated
-                  && (user_id === reply.user_id)
-                  && <span>
+                  isAuthenticated &&
+                  (user_id === reply.user_id) &&
+                  <span>
                     <EditDeleteReply
                       reply={reply}
                       billNumber={billNumber}
-                      getBillInfo={getBillInfo}/>
+                      getBillInfo={getBillInfo} />
                     <EditReplyInputBox
                       reply={reply}
                       user_id={reply.user_id}
                       billNumber={billNumber}
-                      getBillInfo={getBillInfo}/>
+                      getBillInfo={getBillInfo} />
                   </span>
                 }
               </div>

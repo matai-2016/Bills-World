@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import CommentCount from '../CommentCount/CommentCount'
 
 import './bill.css'
-import Vote from '../../containers/Vote/Vote'
 
 const Bill = (props) => {
   let title = props.title

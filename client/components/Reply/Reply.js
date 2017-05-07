@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
 import './reply.css'
 import moment from 'moment'
 
@@ -23,26 +22,26 @@ class Reply extends Component {
   render () {
     const { handleDiscard, handleSubmit } = this.props
     return (
-        <div className='row'>
-          <textarea
-            type='text'
-            className='input-box form-control'
-            name='activeReply'
-            placeholder='Reply here'
-            value={this.state.value}
-            onChange={(e) => this.handleOnChange(e.target.value)}
+      <div className='row'>
+        <textarea
+          type='text'
+          className='input-box form-control'
+          name='activeReply'
+          placeholder='Reply here'
+          value={this.state.value}
+          onChange={(e) => this.handleOnChange(e.target.value)}
           />
-          {
+        {
             this.state.value
               ? <button className='reply-submit-button btn' onClick={() => handleSubmit(this.state.value)}>Submit</button>
               : <button disabled className='reply-submit-button btn'>Submit</button>
           }
-          <button
-            className='reply-discard-button btn'
-            onClick={() => handleDiscard()}>
-            <i className='fa fa-times fa-lg' aria-hidden='true' />
-          </button>
-        </div>
+        <button
+          className='reply-discard-button btn'
+          onClick={() => handleDiscard()}>
+          <i className='fa fa-times fa-lg' aria-hidden='true' />
+        </button>
+      </div>
     )
   }
 }

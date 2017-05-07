@@ -62,7 +62,7 @@ class Discussion extends Component {
     )
   }
 
-  handleNewCommentSubmit(activeComment) {
+  handleNewCommentSubmit (activeComment) {
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
     const user_id = this.props.user_id

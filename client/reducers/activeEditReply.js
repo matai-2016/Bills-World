@@ -11,17 +11,17 @@ export default function activeEditReply (state = initialState, action) {
         editreply: action.value,
         replyId: action.replyId
       }
-      case 'CLEAR_EDIT_REPLY_FORM':
-        return {
-          ...state,
-          editreply: '',
-          replyId: null
-        }
-      case 'TOGGLE_EDIT_REPLY_FORM':
-        return {
-          ...state,
-          replyId: action.replyId
-        }
+    case 'CLEAR_EDIT_REPLY_FORM':
+      return {
+        ...state,
+        editreply: '',
+        replyId: null
+      }
+    case 'TOGGLE_EDIT_REPLY_FORM':
+      return {
+        ...state,
+        replyId: action.replyId
+      }
     default:
       return state
   }
