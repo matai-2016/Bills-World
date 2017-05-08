@@ -47,7 +47,7 @@ class Discussion extends Component {
                   key={comment.id}
                   comment={comment}
                   replies={replies}
-                  user_id={this.props.user_id}
+                  userId={this.props.user_id}
                   billNumber={this.props.billNumber}
                   isAuthenticated={this.props.isAuthenticated}
                   getBillInfo={this.props.getBillInfo}
@@ -65,12 +65,12 @@ class Discussion extends Component {
   handleNewCommentSubmit (activeComment) {
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
-    const user_id = this.props.user_id
+    const userId = this.props.user_id
     const billNumber = this.props.billNumber
     let commentDetails = {
       date: date,
       username: username,
-      user_id: user_id,
+      user_id: userId,
       billNumber: billNumber,
       comment: activeComment
     }
@@ -82,18 +82,17 @@ class Discussion extends Component {
   handleSubmit (value, parentId) {
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
-    const user_id = this.props.user_id
+    const userId = this.props.user_id
     const billNumber = this.props.billNumber
-    const activeComment = this.props.activeComment
     let commentDetails = {
       date: date,
       username: username,
-      user_id: user_id,
+      user_id: userId,
       billNumber: billNumber
     }
 
     if (parentId) {
-      commentDetails.parentId = parentId,
+      commentDetails.parentId = parentId
       commentDetails.reply = value
     } else {
       commentDetails.comment = value
@@ -140,12 +139,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     saveReply: (replyDetails) => {
       return dispatch(saveReply(replyDetails))
-    },
-    createReply: (parentId) => {
-      return dispatch(createReply(parentId))
-    },
-    clearReplyBox: () => {
-      return dispatch(clearReplyBox())
     }
   }
 }

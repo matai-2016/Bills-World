@@ -23,7 +23,7 @@ class CommentWithReplies extends Component {
     const {
       comment,
       isAuthenticated,
-      user_id,
+      userId,
       billNumber,
       getBillInfo,
       replies,
@@ -35,7 +35,7 @@ class CommentWithReplies extends Component {
         <Comment
           comment={comment}
           isAuthenticated={isAuthenticated}
-          user_id={user_id}
+          userId={userId}
           billNumber={billNumber}
           getBillInfo={getBillInfo}
           handleReplyClick={() => this.handleReplyClick()}
@@ -62,7 +62,7 @@ class CommentWithReplies extends Component {
                 </div>
                 {
                   isAuthenticated &&
-                  (user_id === reply.user_id) &&
+                  (userId === reply.user_id) &&
                   <span>
                     <EditDeleteReply
                       reply={reply}
