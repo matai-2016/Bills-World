@@ -8,7 +8,7 @@ const Comment = props => {
   const {
     comment,
     isAuthenticated,
-    user_id,
+    userId,
     handleReplyClick,
     billNumber,
     getBillInfo
@@ -34,18 +34,18 @@ const Comment = props => {
       <div>
         {
           isAuthenticated &&
-          (user_id === comment.user_id) &&
+          (userId === comment.user_id) &&
           <span>
             <EditDeleteComment
               comment={comment}
               billNumber={billNumber}
-              getBillInfo={getBillInfo}/>
-          {
-            <EditCommentInputBox
-              comment={comment}
-              user_id={comment.user_id}
-              billNumber={billNumber}
-              getBillInfo={getBillInfo}/>
+              getBillInfo={getBillInfo} />
+            {
+              <EditCommentInputBox
+                comment={comment}
+                user_id={comment.user_id}
+                billNumber={billNumber}
+                getBillInfo={getBillInfo} />
           }
           </span>
         }

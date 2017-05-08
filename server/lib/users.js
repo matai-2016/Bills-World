@@ -18,11 +18,11 @@ function getUsers () {
   })
 }
 
-function createUser (user_id, username, email, testDb) {
+function createUser (userId, username, email, testDb) {
   const connection = testDb || knex
   return connection('users')
     .insert({
-      user_id: user_id,
+      user_id: userId,
       username: username,
       email: email
     })
@@ -33,11 +33,11 @@ function createUser (user_id, username, email, testDb) {
     })
 }
 
-function exists (user_id, testDb) {
+function exists (userId, testDb) {
   const connection = testDb || knex
   return connection('users')
     .count('id as n')
-    .where('user_id', user_id)
+    .where('user_id', userId)
     .then(count => {
       return count[0].n > 0
     })
@@ -48,10 +48,10 @@ function exists (user_id, testDb) {
     })
 }
 
-function getByUserId (user_id, testDb) {
+function getByUserId (userId, testDb) {
   const connection = testDb || knex
   return connection('users')
-    .where('user_id', user_id)
+    .where('user_id', userId)
     .select()
     .catch((err) => {
       if (err) {

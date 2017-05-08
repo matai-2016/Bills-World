@@ -11,17 +11,17 @@ export default function activeEditComment (state = initialState, action) {
         editcomment: action.value,
         commentId: action.commentId
       }
-      case 'CLEAR_EDIT_COMMENT_FORM':
-        return {
-          ...state,
-          editcomment: '',
-          commentId: null
-        }
-      case 'TOGGLE_EDIT_COMMENT_BOX':
-        return {
-          ...state,
-          commentId: action.commentId
-        }
+    case 'CLEAR_EDIT_COMMENT_FORM':
+      return {
+        ...state,
+        editcomment: '',
+        commentId: null
+      }
+    case 'TOGGLE_EDIT_COMMENT_BOX':
+      return {
+        ...state,
+        commentId: action.commentId
+      }
     default:
       return state
   }

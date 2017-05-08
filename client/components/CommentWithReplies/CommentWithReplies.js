@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import './commentWithReplies.css'
 
 import Comment from '../Comment/Comment'
-import Reply from '../../containers/Reply/Reply'
+import Reply from '../Reply/Reply'
 import EditDeleteReply from '../../containers/EditDeleteReply/EditDeleteReply'
 import EditReplyInputBox from '../../containers/EditReplyInputBox/EditReplyInputBox'
-
-
 
 class CommentWithReplies extends Component {
   constructor (props) {
@@ -25,7 +23,7 @@ class CommentWithReplies extends Component {
     const {
       comment,
       isAuthenticated,
-      user_id,
+      userId,
       billNumber,
       getBillInfo,
       replies,
@@ -37,7 +35,7 @@ class CommentWithReplies extends Component {
         <Comment
           comment={comment}
           isAuthenticated={isAuthenticated}
-          user_id={user_id}
+          userId={userId}
           billNumber={billNumber}
           getBillInfo={getBillInfo}
           handleReplyClick={() => this.handleReplyClick()}
@@ -63,18 +61,18 @@ class CommentWithReplies extends Component {
                   <p>{reply.reply}</p>
                 </div>
                 {
-                  isAuthenticated
-                  && (user_id === reply.user_id)
-                  && <span>
+                  isAuthenticated &&
+                  (userId === reply.user_id) &&
+                  <span>
                     <EditDeleteReply
                       reply={reply}
                       billNumber={billNumber}
-                      getBillInfo={getBillInfo}/>
+                      getBillInfo={getBillInfo} />
                     <EditReplyInputBox
                       reply={reply}
                       user_id={reply.user_id}
                       billNumber={billNumber}
-                      getBillInfo={getBillInfo}/>
+                      getBillInfo={getBillInfo} />
                   </span>
                 }
               </div>

@@ -9,10 +9,10 @@ module.exports = {
   deleteComment
 }
 
-function saveComment (user_id, billNumber, comment, username, date) {
+function saveComment (userId, billNumber, comment, username, date) {
   return knex('comments')
     .insert({
-      user_id: user_id,
+      user_id: userId,
       bill_number: billNumber,
       comment: comment,
       username: username,
@@ -25,10 +25,10 @@ function saveComment (user_id, billNumber, comment, username, date) {
     })
 }
 
-function editComment (user_id, comment_id, comment) {
+function editComment (userId, commentId, comment) {
   return knex('comments')
-    .where('user_id', user_id)
-    .where('id', comment_id)
+    .where('user_id', userId)
+    .where('id', commentId)
     .update({
       comment: comment
     })
@@ -39,10 +39,10 @@ function editComment (user_id, comment_id, comment) {
     })
 }
 
-function deleteComment (user_id, comment_id) {
+function deleteComment (userId, commentId) {
   return knex('comments')
-    .where('user_id', user_id)
-    .where('id', comment_id)
+    .where('user_id', userId)
+    .where('id', commentId)
     .del()
     .catch((err) => {
       if (err) {
