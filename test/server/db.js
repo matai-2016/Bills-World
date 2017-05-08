@@ -69,20 +69,20 @@ function getVotesByUserIdAndBillId (billNumber, userId, testDb) {
   .select()
 }
 
-function getExistingVote (billNumber, user_id, testDb) {
+function getExistingVote (billNumber, userId, testDb) {
   const db = testDb || connection
   return db('votes')
   .join('users', 'users.id', 'votes.user_id')
   .select('votes.id', 'votes.voted_for', 'votes.voted_against')
-  .where('users.user_id', user_id)
+  .where('users.user_id', userId)
   .where('votes.bill_number', billNumber)
 }
 
-function saveUserVote (user_id, billNumber, voteFor, voteAgainst, testDb) {
+function saveUserVote (userId, billNumber, voteFor, voteAgainst, testDb) {
   const db = testDb || connection
   return db('votes')
     .insert({
-      user_id: user_id,
+      user_id: userId,
       bill_number: billNumber,
       voted_for: voteFor,
       voted_against: voteAgainst
@@ -90,7 +90,7 @@ function saveUserVote (user_id, billNumber, voteFor, voteAgainst, testDb) {
     .then(() => {
       return db('votes')
       .where({
-        user_id: user_id,
+        user_id: userId,
         bill_number: billNumber
       })
     })

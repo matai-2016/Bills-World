@@ -19,11 +19,11 @@ function getVotes () {
   })
 }
 
-function getVotesByUserIdAndBillId (billNumber, user_id) {
+function getVotesByUserIdAndBillId (billNumber, userId) {
   return knex('votes')
   .join('users', 'votes.user_id', '=', 'users.id')
   .join('bills', 'bills.bill_number', '=', 'votes.bill_number')
-  .where('users.user_id', user_id)
+  .where('users.user_id', userId)
   .where('bills.bill_number', billNumber)
   .select()
   .catch((err) => {
@@ -33,18 +33,18 @@ function getVotesByUserIdAndBillId (billNumber, user_id) {
   })
 }
 
-function getExistingVote (billNumber, user_id) {
+function getExistingVote (billNumber, userId) {
   return knex('votes')
   .join('users', 'users.id', 'votes.user_id')
   .select('votes.id', 'votes.voted_for', 'votes.voted_against')
-  .where('users.user_id', user_id)
+  .where('users.user_id', userId)
   .where('votes.bill_number', billNumber)
 }
 
-function saveUserVote (user_id, billNumber, voteFor, voteAgainst) {
+function saveUserVote (userId, billNumber, voteFor, voteAgainst) {
   return knex('votes')
     .insert({
-      user_id: user_id,
+      user_id: userId,
       bill_number: billNumber,
       voted_for: voteFor,
       voted_against: voteAgainst
@@ -52,7 +52,7 @@ function saveUserVote (user_id, billNumber, voteFor, voteAgainst) {
     .then(() => {
       return knex('votes')
       .where({
-        user_id: user_id,
+        user_id: userId,
         bill_number: billNumber
       })
     })

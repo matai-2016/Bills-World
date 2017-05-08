@@ -19,10 +19,10 @@ function getReplies (billNumber) {
     })
 }
 
-function saveReply (user_id, billNumber, reply, username, date, parentId) {
+function saveReply (userId, billNumber, reply, username, date, parentId) {
   return knex('replies')
     .insert({
-      user_id: user_id,
+      user_id: userId,
       bill_number: billNumber,
       reply: reply,
       username: username,
@@ -36,10 +36,10 @@ function saveReply (user_id, billNumber, reply, username, date, parentId) {
     })
 }
 
-function deleteReply (user_id, reply_id) {
+function deleteReply (userId, replyId) {
   return knex('replies')
-    .where('user_id', user_id)
-    .where('id', reply_id)
+    .where('user_id', userId)
+    .where('id', replyId)
     .del()
     .catch((err) => {
       if (err) {
@@ -48,10 +48,10 @@ function deleteReply (user_id, reply_id) {
     })
 }
 
-function editReply (user_id, reply_id, reply) {
+function editReply (userId, replyId, reply) {
   return knex('replies')
-    .where('user_id', user_id)
-    .where('id', reply_id)
+    .where('user_id', userId)
+    .where('id', replyId)
     .update({
       reply: reply
     })
