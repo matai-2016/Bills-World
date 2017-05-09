@@ -11,8 +11,8 @@ router.use(bodyParser.json())
 // get single bill and comments
 
 router.get('/:bill_number', (req, res) => {
-  Promise.all([bill.getBill(req.params.bill_number), comments.getComments(req.params.bill_number), replies.getReplies(req.params.bill_number)])
-    .then(([bill, comments, replies]) => {
+  Promise.all([bill.getBill(req.params.bill_number), comments.getComments(req.params.bill_number), replies.getReplies(req.params.bill_number), comments.getNestedComments(req.params.bill_number)])
+    .then(([bill, comments, replies, nestedComments]) => {
       const currentBill = bill[0]
       const result = {
         bill_number: currentBill.bill_number,
@@ -22,7 +22,8 @@ router.get('/:bill_number', (req, res) => {
         member_in_charge: currentBill.member_in_charge,
         introduction_date: currentBill.introduction_date,
         comments: comments,
-        replies: replies
+        replies: replies,
+        nestedComments: nestedComments
       }
       res.send(result)
     })
