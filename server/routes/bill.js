@@ -13,10 +13,14 @@ router.use(bodyParser.json())
 router.get('/:bill_number', (req, res) => {
   Promise.all([bill.getBill(req.params.bill_number), comments.getComments(req.params.bill_number), replies.getReplies(req.params.bill_number)])
     .then(([bill, comments, replies]) => {
-      const nestedComments = comments.map(comment => {
-        return {
-          
-        }
+      const nestedComments = []
+      const parentComments = comments.filter(comment => comment.parent_id == null)
+      parentComments.map(parentComment => {
+        const nestedComment = {}
+        const replies = comments.filter(comment => comment.parent_id === parentComment.id)
+        nestedComment.parentComment = parentComment
+        nestedComment.replies = replies
+        nestedComments.push(nestedComment)
       })
       const currentBill = bill[0]
       const result = {

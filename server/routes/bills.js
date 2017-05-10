@@ -42,16 +42,3 @@ router.get('/', (req, res) => {
 })
 
 module.exports = router
-
-const comments = [{id: 1, comment: comment1, parent_id: null}, {id: 2, comment:comment2, parent_id: null}, {id:3, comment: reply1, parent_id: 1}, {id:4, comment: reply2, parent_id: 2}]
-
-const parentComments = comments.filter(comment => comment.parent_id == null)
-const nestedComments = []
-
-parentComments.map(parentComment => {
-  const nestedComment = {}
-  nestedComment.comment = parentComment
-  const replies = comments.filter(comment => comment.parent_id === parentComment.id)
-  nestedComment.replies = replies
-  nestedComments.push(nestedComment)
-})
