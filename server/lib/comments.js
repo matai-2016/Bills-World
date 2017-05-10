@@ -25,6 +25,23 @@ function saveComment (userId, billNumber, comment, username, date) {
     })
 }
 
+function saveReply (userId, billNumber, comment, username, date, parentId) {
+  return knex('comments')
+    .insert({
+      user_id: userId,
+      bill_number: billNumber,
+      comment: comment,
+      username: username,
+      date: date,
+      parent_id: parentId
+    })
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+}
+
 function editComment (userId, commentId, comment) {
   return knex('comments')
     .where('user_id', userId)
@@ -39,11 +56,13 @@ function editComment (userId, commentId, comment) {
     })
 }
 
-function deleteComment (userId, commentId) {
+function deleteComment (userId, commentId, deleteDate) {
   return knex('comments')
     .where('user_id', userId)
     .where('id', commentId)
-    .del()
+    .update({
+      deleted: deleteDate
+    })
     .catch((err) => {
       if (err) {
         console.error(err.message)
