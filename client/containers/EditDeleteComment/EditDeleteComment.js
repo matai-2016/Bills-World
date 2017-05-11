@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { updateEditCommentForm, deleteComment, toggleEditCommentBox } from '../../actions/comments.js'
 
 import './editdeletecomment.css'
+import moment from 'moment'
 
 class EditDeleteComment extends Component {
   render () {
@@ -34,7 +35,13 @@ class EditDeleteComment extends Component {
     const billNumber = this.props.billNumber
     const userId = this.props.userId
     const commentId = this.props.comment.id
-    const commentDetails = { user_id: userId, comment_id: commentId, billNumber: billNumber }
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const commentDetails = {
+      user_id: userId,
+      comment_id: commentId,
+      billNumber: billNumber,
+      deleteDate: date
+    }
     this.props.deleteComment(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .catch((err) => {

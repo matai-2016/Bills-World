@@ -5,7 +5,7 @@ import './discussion.css'
 import CommentWithReplies from '../../components/CommentWithReplies/CommentWithReplies'
 
 import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
-import { saveReply } from '../../actions/replies.js'
+import { saveReply } from '../../actions/comments.js'
 import moment from 'moment'
 
 class Discussion extends Component {

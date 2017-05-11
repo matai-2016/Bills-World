@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { updateEditReplyForm, deleteReply, toggleEditReplyBox } from '../../actions/replies.js'
 
 import './editdeletereply.css'
+import moment from 'moment'
 
 class EditDeleteReply extends Component {
   render () {
@@ -34,7 +35,13 @@ class EditDeleteReply extends Component {
     const billNumber = this.props.billNumber
     const userId = this.props.userId
     const replyId = this.props.reply.id
-    const replyDetails = { user_id: userId, reply_id: replyId, billNumber: billNumber }
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const replyDetails = {
+      user_id: userId,
+      reply_id: replyId,
+      billNumber: billNumber,
+      deleteDate: date
+    }
     this.props.deleteReply(replyDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .catch((err) => {
