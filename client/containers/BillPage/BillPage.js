@@ -40,6 +40,7 @@ class BillPage extends React.Component {
             billNumber={this.props.billInfo.bill_number}
             comments={this.props.billInfo.comments}
             replies={this.props.billInfo.replies}
+            nestedComments={this.props.billInfo.nestedComments}
             getBillInfo={this.props.getBillInfo}
             />
         </div>

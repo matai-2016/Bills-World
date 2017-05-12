@@ -4,8 +4,7 @@ import ReportAbuse from '../../components/ReportAbuse/ReportAbuse'
 import './discussion.css'
 import CommentWithReplies from '../../components/CommentWithReplies/CommentWithReplies'
 
-import { updateCommentForm, saveComment, clearInputBox } from '../../actions/comments.js'
-import { saveReply } from '../../actions/comments.js'
+import { updateCommentForm, saveComment, saveReply, clearInputBox } from '../../actions/comments.js'
 import moment from 'moment'
 
 class Discussion extends Component {
@@ -40,8 +39,9 @@ class Discussion extends Component {
         }
         <div>
           {
-            this.props.comments.map((comment) => {
-              const replies = this.props.replies.filter(reply => reply.parent_id === comment.id)
+            this.props.nestedComments.map((commentWithReplies) => {
+              const comment = commentWithReplies.comment
+              const replies = commentWithReplies.replies
               return (
                 <CommentWithReplies
                   key={comment.id}
@@ -120,8 +120,6 @@ const mapStateToProps = (state) => {
     user_id: state.auth.profile.user_id,
     username: state.auth.profile.username,
     activeComment: state.activeComment.comment,
-    replying: state.activeReply.replying,
-    activeParentId: state.activeReply.parentId,
     isAuthenticated: state.auth.isAuthenticated
   }
 }

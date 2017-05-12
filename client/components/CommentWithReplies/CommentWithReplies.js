@@ -58,7 +58,7 @@ class CommentWithReplies extends Component {
                 <div className='reply-text'>
                   <span className='username'>{reply.username}</span>
                   <span className='date'>{reply.date}</span>
-                  <p>{reply.reply}</p>
+                  <p>{reply.comment}</p>
                 </div>
                 {
                   isAuthenticated &&

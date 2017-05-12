@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { updateEditReplyForm, deleteReply, toggleEditReplyBox } from '../../actions/replies.js'
+import { updateEditReplyForm, toggleEditReplyBox } from '../../actions/replies.js'
+import { deleteComment } from '../../actions/comments.js'
 
 import './editdeletereply.css'
 import moment from 'moment'
@@ -26,7 +27,7 @@ class EditDeleteReply extends Component {
 
   handleEdit (e) {
     const replyId = this.props.reply.id
-    const reply = this.props.reply.reply
+    const reply = this.props.reply.comment
     this.props.updateEditReplyForm(reply, replyId)
     this.props.toggleEditReplyBox(replyId)
   }
@@ -42,7 +43,7 @@ class EditDeleteReply extends Component {
       billNumber: billNumber,
       deleteDate: date
     }
-    this.props.deleteReply(replyDetails)
+    this.props.deleteComment(replyDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .catch((err) => {
       if (err) {
@@ -62,8 +63,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteReply: (replyDetails) => {
-      return dispatch(deleteReply(replyDetails))
+    deleteComment: (commentDetails) => {
+      return dispatch(deleteComment(commentDetails))
     },
     toggleEditReplyBox: (replyId) => {
       return dispatch(toggleEditReplyBox(replyId))

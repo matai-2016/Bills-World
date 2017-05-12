@@ -17,19 +17,6 @@ export function saveReply (replyDetails) {
   }
 }
 
-export function createReply (parentId) {
-  return {
-    type: 'CREATE_REPLY',
-    parentId
-  }
-}
-
-export function clearReplyBox () {
-  return {
-    type: 'CLEAR_REPLY_BOX'
-  }
-}
-
 export function deleteReply (replyDetails) {
   return dispatch => {
     return request

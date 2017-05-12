@@ -16,11 +16,11 @@ router.get('/:bill_number', (req, res) => {
       const nestedComments = []
       const parentComments = comments.filter(comment => comment.parent_id == null)
       parentComments.map(parentComment => {
-        const nestedComment = {}
+        const commentWithReplies = {}
         const replies = comments.filter(comment => comment.parent_id === parentComment.id)
-        nestedComment.parentComment = parentComment
-        nestedComment.replies = replies
-        nestedComments.push(nestedComment)
+        commentWithReplies.comment = parentComment
+        commentWithReplies.replies = replies
+        nestedComments.push(commentWithReplies)
       })
       const currentBill = bill[0]
       const result = {
