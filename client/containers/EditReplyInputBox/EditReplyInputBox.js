@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { clearEditReplyForm, updateEditReplyForm, editReply, toggleEditReplyBox } from '../../actions/replies.js'
+import { editComment } from '../../actions/comments.js'
+import { clearEditReplyForm, updateEditReplyForm, toggleEditReplyBox } from '../../actions/replies.js'
 
 import './editreplyinputbox.css'
 
@@ -29,11 +30,11 @@ class EditReplyInputBox extends React.Component {
   }
   handleSubmit (e) {
     const userId = this.props.reply.user_id
-    const replyId = this.props.reply.id
+    const commentId = this.props.reply.id
     const billNumber = this.props.billNumber
     const activeEditReply = this.props.activeEditReply
-    const replyDetails = { user_id: userId, reply_id: replyId, reply: activeEditReply, billNumber: billNumber }
-    this.props.editReply(replyDetails)
+    const replyDetails = { user_id: userId, comment_id: commentId, comment: activeEditReply, billNumber: billNumber }
+    this.props.editComment(replyDetails)
       .then(this.props.getBillInfo.bind(null, billNumber))
       .catch((err) => {
         if (err) {
@@ -64,8 +65,8 @@ const mapDispatchToProps = (dispatch) => {
     updateEditReplyForm: (value, replyId) => {
       return dispatch(updateEditReplyForm(value, replyId))
     },
-    editReply: (replyDetails) => {
-      return dispatch(editReply(replyDetails))
+    editComment: (commentDetails) => {
+      return dispatch(editComment(commentDetails))
     },
     toggleEditReplyBox: (replyId) => {
       return dispatch(toggleEditReplyBox(replyId))

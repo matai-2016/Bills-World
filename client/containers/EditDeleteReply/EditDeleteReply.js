@@ -35,11 +35,11 @@ class EditDeleteReply extends Component {
   handleDelete (e) {
     const billNumber = this.props.billNumber
     const userId = this.props.userId
-    const replyId = this.props.reply.id
+    const commentId = this.props.reply.id
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const replyDetails = {
       user_id: userId,
-      reply_id: replyId,
+      comment_id: commentId,
       billNumber: billNumber,
       deleteDate: date
     }

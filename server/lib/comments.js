@@ -3,6 +3,7 @@ const knex = require('knex')(config)
 
 module.exports = {
   saveComment,
+  saveReply,
   getComments,
   getAllComments,
   editComment,

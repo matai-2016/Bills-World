@@ -88,16 +88,14 @@ class Discussion extends Component {
       date: date,
       username: username,
       user_id: userId,
-      billNumber: billNumber
+      billNumber: billNumber,
+      comment: value
     }
 
     if (parentId) {
       commentDetails.parentId = parentId
-      commentDetails.reply = value
-    } else {
-      commentDetails.comment = value
     }
-
+    
     return parentId
       ? this.props.saveReply(commentDetails)
       : this.props.saveComment(commentDetails)
