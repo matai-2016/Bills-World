@@ -9,7 +9,7 @@ import Vote from '../Vote/Vote'
 import BillInfo from '../../components/BillInfo/BillInfo'
 import Discussion from '../Discussion/Discussion'
 import Footer from '../../components/Footer/Footer'
-import './billpage.css'
+import './billPage.css'
 
 class BillPage extends React.Component {
   componentDidMount () {
