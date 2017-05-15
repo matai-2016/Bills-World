@@ -2,7 +2,6 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const bill = require('../lib/bill')
 const comments = require('../lib/comments')
-const replies = require('../lib/replies')
 // const votes = require('../lib/votes')
 
 const router = express.Router()
@@ -30,7 +29,6 @@ router.get('/:bill_number', (req, res) => {
         type: currentBill.type,
         member_in_charge: currentBill.member_in_charge,
         introduction_date: currentBill.introduction_date,
-        comments: comments,
         nestedComments: nestedComments
       }
       res.send(result)

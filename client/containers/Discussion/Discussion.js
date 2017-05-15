@@ -25,7 +25,7 @@ class Discussion extends Component {
                 onChange={(e) => this.props.updateCommentForm(e.target.value)} />
               {
                 this.props.activeComment
-                ? <button className='submit-button btn' onClick={(event) => this.handleNewCommentSubmit(this.props.activeComment)}>Submit</button>
+                ? <button className='submit-button btn' onClick={(event) => this.handleCommentSubmit(this.props.activeComment)}>Submit</button>
                 : <button disabled className='submit-button btn'>Submit</button>
               }
             </div>
@@ -51,7 +51,7 @@ class Discussion extends Component {
                   billNumber={this.props.billNumber}
                   isAuthenticated={this.props.isAuthenticated}
                   getBillInfo={this.props.getBillInfo}
-                  handleReplySubmit={(id, val) => this.handleSubmit(val, id)}
+                  handleReplySubmit={(id, val) => this.handleReplySubmit(val, id)}
                 />
               )
             })
@@ -62,7 +62,7 @@ class Discussion extends Component {
     )
   }
 
-  handleNewCommentSubmit (activeComment) {
+  handleCommentSubmit (activeComment) {
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
     const userId = this.props.user_id
@@ -79,7 +79,7 @@ class Discussion extends Component {
       .then(() => this.props.clearInputBox())
   }
 
-  handleSubmit (value, parentId) {
+  handleReplySubmit (value, parentId) {
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
     const userId = this.props.user_id
@@ -89,16 +89,10 @@ class Discussion extends Component {
       username: username,
       user_id: userId,
       billNumber: billNumber,
-      comment: value
+      comment: value,
+      parentId: parentId
     }
-
-    if (parentId) {
-      commentDetails.parentId = parentId
-    }
-    
-    return parentId
-      ? this.props.saveReply(commentDetails)
-      : this.props.saveComment(commentDetails)
+    this.props.saveReply(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
     .catch((err) => {
