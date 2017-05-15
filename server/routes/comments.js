@@ -14,18 +14,6 @@ const authenticate = jwt({
 const router = express.Router()
 router.use(bodyParser.json())
 
-router.get('/:bill_number', (req, res) => {
-  comments.getComments(req.params.bill_number)
-    .then(function (result) {
-      res.send(result)
-    })
-    .catch((err) => {
-      if (err) {
-        console.error(err.message)
-      }
-    })
-})
-
 router.use(authenticate)
 
 router.post('/save', (req, res) => {
