@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { updateEditReplyForm, deleteReply, toggleEditReplyBox } from '../../actions/replies.js'
+import { updateEditReplyForm, toggleEditReplyBox } from '../../actions/replies.js'
+import { deleteComment } from '../../actions/comments.js'
 
 import './editdeletereply.css'
+import moment from 'moment'
 
 class EditDeleteReply extends Component {
   render () {
@@ -25,7 +27,7 @@ class EditDeleteReply extends Component {
 
   handleEdit (e) {
     const replyId = this.props.reply.id
-    const reply = this.props.reply.reply
+    const reply = this.props.reply.comment
     this.props.updateEditReplyForm(reply, replyId)
     this.props.toggleEditReplyBox(replyId)
   }
@@ -33,9 +35,15 @@ class EditDeleteReply extends Component {
   handleDelete (e) {
     const billNumber = this.props.billNumber
     const userId = this.props.userId
-    const replyId = this.props.reply.id
-    const replyDetails = { user_id: userId, reply_id: replyId, billNumber: billNumber }
-    this.props.deleteReply(replyDetails)
+    const commentId = this.props.reply.id
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const replyDetails = {
+      user_id: userId,
+      comment_id: commentId,
+      billNumber: billNumber,
+      deleteDate: date
+    }
+    this.props.deleteComment(replyDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .catch((err) => {
       if (err) {
@@ -55,8 +63,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteReply: (replyDetails) => {
-      return dispatch(deleteReply(replyDetails))
+    deleteComment: (commentDetails) => {
+      return dispatch(deleteComment(commentDetails))
     },
     toggleEditReplyBox: (replyId) => {
       return dispatch(toggleEditReplyBox(replyId))

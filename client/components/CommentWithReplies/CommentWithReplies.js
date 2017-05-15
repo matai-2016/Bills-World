@@ -53,30 +53,41 @@ class CommentWithReplies extends Component {
         }
         {
           replies.map((reply) => {
-            return (
-              <div className='row reply-section' key={'reply' + reply.id}>
-                <div className='reply-text'>
-                  <span className='username'>{reply.username}</span>
-                  <span className='date'>{reply.date}</span>
-                  <p>{reply.reply}</p>
-                </div>
+            if (reply.deleted == null) {
+              return (
+                <div className='row reply-section' key={'reply' + reply.id}>
+                  <div className='reply-text'>
+                    <span className='username'>{reply.username}</span>
+                    <span className='date'>{reply.date}</span>
+                    <p>{reply.comment}</p>
+                  </div>
                 {
                   isAuthenticated &&
                   (userId === reply.user_id) &&
                   <span>
-                    <EditDeleteReply
-                      reply={reply}
-                      billNumber={billNumber}
-                      getBillInfo={getBillInfo} />
-                    <EditReplyInputBox
-                      reply={reply}
-                      user_id={reply.user_id}
-                      billNumber={billNumber}
-                      getBillInfo={getBillInfo} />
+                  <EditDeleteReply
+                  reply={reply}
+                  billNumber={billNumber}
+                  getBillInfo={getBillInfo} />
+                  <EditReplyInputBox
+                  reply={reply}
+                  user_id={reply.user_id}
+                  billNumber={billNumber}
+                  getBillInfo={getBillInfo} />
                   </span>
                 }
-              </div>
-            )
+                </div>
+              )
+          } else {
+              return (
+                <div className='row reply-section' key={'reply' + reply.id}>
+                  <div className='reply-text'>
+                    <span className='date'>{reply.deleted}</span>
+                    <p>Comment deleted</p>
+                  </div>
+                </div>
+              )
+            }
           })
         }
       </div>

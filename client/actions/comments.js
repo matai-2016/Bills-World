@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { getBillInfo } from './billInfo'
 
 import AuthService from '../utils/AuthService'
 
@@ -9,6 +10,20 @@ export function saveComment (commentDetails) {
       .set('Authorization', `Bearer ${AuthService.getToken()}`)
       .set({ 'Content-Type': 'application/json' })
       .send(commentDetails)
+      .catch(err => {
+        return console.error(err.response.body)
+      })
+  }
+}
+
+export function saveReply (replyDetails) {
+  return dispatch => {
+    return request
+      .post('/comments/save/reply')
+      .set('Authorization', `Bearer ${AuthService.getToken()}`)
+      .set({ 'Content-Type': 'application/json' })
+      .send(replyDetails)
+      .then(() => dispatch(getBillInfo(replyDetails.billNumber)))
       .catch(err => {
         return console.error(err.response.body)
       })
@@ -31,7 +46,7 @@ export function editComment (commentDetails) {
 export function deleteComment (commentDetails) {
   return dispatch => {
     return request
-    .delete('/comments/delete')
+    .put('/comments/delete')
     .set('Authorization', `Bearer ${AuthService.getToken()}`)
     .set({ 'Content-Type': 'application/json' })
     .send(commentDetails)
