@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { clearEditCommentForm, updateEditCommentForm, editComment, toggleEditCommentBox } from '../../actions/comments.js'
 
 import './editcommentinputbox.css'
+import moment from 'moment'
 
 class EditCommentInputBox extends React.Component {
   render () {
@@ -32,7 +33,8 @@ class EditCommentInputBox extends React.Component {
     const commentId = this.props.comment.id
     const billNumber = this.props.billNumber
     const activeEditComment = this.props.activeEditComment
-    const commentDetails = { user_id: userId, comment_id: commentId, comment: activeEditComment, billNumber: billNumber }
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const commentDetails = { user_id: userId, comment_id: commentId, comment: activeEditComment, billNumber: billNumber, editDate: date }
     this.props.editComment(commentDetails)
       .then(this.props.getBillInfo.bind(null, billNumber))
       .catch((err) => {
