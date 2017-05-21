@@ -43,7 +43,7 @@ router.post('/save/reply', (req, res) => {
 })
 
 router.put('/edit', (req, res) => {
-  comments.editComment(req.body.user_id, req.body.comment_id, req.body.comment)
+  comments.editComment(req.body.user_id, req.body.comment_id, req.body.comment, req.body.editDate)
     .then(() => comments.getComments(req.body.billNumber))
     .then(function (result) {
       res.send(result)
