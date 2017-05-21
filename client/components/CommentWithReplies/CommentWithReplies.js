@@ -61,24 +61,24 @@ class CommentWithReplies extends Component {
                     <span className='date'>{reply.date}</span>
                     <p>{reply.comment}</p>
                   </div>
-                {
+                  {
                   isAuthenticated &&
                   (userId === reply.user_id) &&
                   <span>
-                  <EditDeleteReply
-                  reply={reply}
-                  billNumber={billNumber}
-                  getBillInfo={getBillInfo} />
-                  <EditReplyInputBox
-                  reply={reply}
-                  user_id={reply.user_id}
-                  billNumber={billNumber}
-                  getBillInfo={getBillInfo} />
+                    <EditDeleteReply
+                      reply={reply}
+                      billNumber={billNumber}
+                      getBillInfo={getBillInfo} />
+                    <EditReplyInputBox
+                      reply={reply}
+                      user_id={reply.user_id}
+                      billNumber={billNumber}
+                      getBillInfo={getBillInfo} />
                   </span>
                 }
                 </div>
               )
-          } else {
+            } else {
               return (
                 <div className='row reply-section' key={'reply' + reply.id}>
                   <div className='reply-text'>
