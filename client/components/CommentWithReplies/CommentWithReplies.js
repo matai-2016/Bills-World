@@ -59,6 +59,10 @@ class CommentWithReplies extends Component {
                   <div className='reply-text'>
                     <span className='username'>{reply.username}</span>
                     <span className='date'>{reply.date}</span>
+                    {
+                      reply.edited &&
+                        <span className='date'> (edited)</span>
+                    }
                     <p>{reply.comment}</p>
                   </div>
                   {
