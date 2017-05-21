@@ -5,6 +5,7 @@ import { editComment } from '../../actions/comments.js'
 import { clearEditReplyForm, updateEditReplyForm, toggleEditReplyBox } from '../../actions/replies.js'
 
 import './editreplyinputbox.css'
+import moment from 'moment'
 
 class EditReplyInputBox extends React.Component {
   render () {
@@ -33,7 +34,8 @@ class EditReplyInputBox extends React.Component {
     const commentId = this.props.reply.id
     const billNumber = this.props.billNumber
     const activeEditReply = this.props.activeEditReply
-    const replyDetails = { user_id: userId, comment_id: commentId, comment: activeEditReply, billNumber: billNumber }
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const replyDetails = { user_id: userId, comment_id: commentId, comment: activeEditReply, billNumber: billNumber, editDate: date }
     this.props.editComment(replyDetails)
       .then(this.props.getBillInfo.bind(null, billNumber))
       .catch((err) => {

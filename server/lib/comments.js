@@ -43,12 +43,13 @@ function saveReply (userId, billNumber, comment, username, date, parentId) {
     })
 }
 
-function editComment (userId, commentId, comment) {
+function editComment (userId, commentId, comment, editDate) {
   return knex('comments')
     .where('user_id', userId)
     .where('id', commentId)
     .update({
-      comment: comment
+      comment: comment,
+      edited: editDate
     })
     .catch((err) => {
       if (err) {
