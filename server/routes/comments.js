@@ -14,18 +14,6 @@ const authenticate = jwt({
 const router = express.Router()
 router.use(bodyParser.json())
 
-router.get('/:bill_number', (req, res) => {
-  comments.getComments(req.params.bill_number)
-    .then(function (result) {
-      res.send(result)
-    })
-    .catch((err) => {
-      if (err) {
-        console.error(err.message)
-      }
-    })
-})
-
 router.use(authenticate)
 
 router.post('/save', (req, res) => {
@@ -55,7 +43,7 @@ router.post('/save/reply', (req, res) => {
 })
 
 router.put('/edit', (req, res) => {
-  comments.editComment(req.body.user_id, req.body.comment_id, req.body.comment)
+  comments.editComment(req.body.user_id, req.body.comment_id, req.body.comment, req.body.editDate)
     .then(() => comments.getComments(req.body.billNumber))
     .then(function (result) {
       res.send(result)
@@ -66,19 +54,6 @@ router.put('/edit', (req, res) => {
       }
     })
 })
-
-// router.delete('/delete', (req, res) => {
-//   comments.deleteComment(req.body.user_id, req.body.comment_id)
-//     .then(() => comments.getComments(req.body.billNumber))
-//     .then(function (result) {
-//       res.send(result)
-//     })
-//     .catch((err) => {
-//       if (err) {
-//         console.error(err.message)
-//       }
-//     })
-// })
 
 router.put('/delete', (req, res) => {
   comments.deleteComment(req.body.user_id, req.body.comment_id, req.body.deleteDate)
