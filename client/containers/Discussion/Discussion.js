@@ -105,7 +105,7 @@ class Discussion extends Component {
   }
 
   handleEditSubmit (commentId, value) {
-    const userId = this.props.comment.user_id
+    const userId = this.props.user_id
     const billNumber = this.props.billNumber
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const commentDetails = { user_id: userId, comment_id: commentId, comment: value, billNumber: billNumber, editDate: date }

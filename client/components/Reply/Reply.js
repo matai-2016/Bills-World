@@ -1,45 +1,71 @@
-import React, {Component} from 'react'
+import React from 'react'
 import './reply.css'
 
-class Reply extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      value: props.value || ''
-    }
-  }
+import EditDelete from '../../containers/EditDelete/EditDelete'
+import EditInputBox from '../../containers/EditInputBox/EditInputBox'
 
-  handleOnChange (newVal) {
-    this.setState({
-      value: newVal
-    })
-  }
+const Reply = props => {
+  const {
+    reply,
+    isAuthenticated,
+    userId,
+    billNumber,
+    getBillInfo,
+    handleEditClick,
+    handleEditSubmit,
+    handleEditDiscard,
+    handleDelete,
+    showEdit
+  } = props
 
-  render () {
-    const { handleDiscard, handleSubmit } = this.props
+  if (reply.deleted) {
     return (
-      <div className='row'>
-        <textarea
-          type='text'
-          className='input-box form-control'
-          name='activeReply'
-          placeholder='Reply here'
-          value={this.state.value}
-          onChange={(e) => this.handleOnChange(e.target.value)}
-          />
-        {
-            this.state.value
-              ? <button className='reply-submit-button btn' onClick={() => handleSubmit(this.state.value)}>Submit</button>
-              : <button disabled className='reply-submit-button btn'>Submit</button>
-          }
-        <button
-          className='reply-discard-button btn'
-          onClick={() => handleDiscard()}>
-          <i className='fa fa-times fa-lg' aria-hidden='true' />
-        </button>
+      <div className='reply-text'>
+        <span className='date'>{reply.deleted}</span>
+        <p>Comment deleted</p>
       </div>
     )
   }
+  return (
+    <div className='row reply-section' key={'reply' + reply.id}>
+      <div className='reply-text'>
+        <span className='username'>{reply.username}</span>
+        <span className='date'>{reply.date}</span>
+        {
+          reply.edited &&
+            <span className='date'> (edited)</span>
+        }
+        <p>{reply.comment}</p>
+      </div>
+      {
+        isAuthenticated &&
+        (userId === reply.user_id) &&
+        <span>
+          <EditDelete
+            comment={reply}
+            billNumber={billNumber}
+            getBillInfo={getBillInfo}
+            handleEditClick={() => handleEditClick()}
+            handleDelete={() => handleDelete(reply.id)}
+             />
+          {
+          showEdit &&
+          <EditInputBox
+            comment={reply}
+            user_id={reply.user_id}
+            billNumber={billNumber}
+            getBillInfo={getBillInfo}
+            handleEditSubmit={(val) => {
+              handleEditDiscard()
+              handleEditSubmit(reply.id, val)
+            }}
+            handleEditDiscard={() => this.handleEditDiscard()}
+             />
+           }
+        </span>
+      }
+    </div>
+  )
 }
 
 export default Reply

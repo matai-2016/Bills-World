@@ -15,7 +15,8 @@ const Comment = props => {
     handleEditClick,
     handleEditSubmit,
     handleEditDiscard,
-    handleDelete
+    handleDelete,
+    showEdit
   } = props
 
   if (comment.deleted == null) {
@@ -52,12 +53,16 @@ const Comment = props => {
                 handleEditClick={() => handleEditClick()}
                 handleDelete={() => handleDelete(comment.id)} />
               {
+                showEdit &&
                 <EditInputBox
                   comment={comment}
                   user_id={comment.user_id}
                   billNumber={billNumber}
                   getBillInfo={getBillInfo}
-                  handleEditSubmit={(val) => handleEditSubmit(comment.id, val)}
+                  handleEditSubmit={(val) => {
+                    handleEditDiscard()
+                    handleEditSubmit(comment.id, val)
+                  }}
                   handleEditDiscard={() => handleEditDiscard()} />
             }
             </span>
