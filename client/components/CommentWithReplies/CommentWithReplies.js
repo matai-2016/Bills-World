@@ -10,14 +10,21 @@ class CommentWithReplies extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      showReply: false
+      showReply: false,
+      showEdit: false
     }
   }
   handleReplyClick () {
     this.setState({ showReply: true })
   }
-  handleHideReply () {
+  handleReplyDiscard () {
     this.setState({ showReply: false })
+  }
+  handleEditClick () {
+    this.setState({ showEdit: true })
+  }
+  handleEditDiscard () {
+    this.setState({ showEdit: false })
   }
   render () {
     const {
@@ -27,7 +34,9 @@ class CommentWithReplies extends Component {
       billNumber,
       getBillInfo,
       replies,
-      handleReplySubmit
+      handleReplySubmit,
+      handleEditSubmit,
+      handleDelete
     } = this.props
 
     return (
@@ -39,14 +48,19 @@ class CommentWithReplies extends Component {
           billNumber={billNumber}
           getBillInfo={getBillInfo}
           handleReplyClick={() => this.handleReplyClick()}
+          handleEditSubmit={(id, val) => this.handleEditSubmit(id, val)}
+          handleEditClick={() => this.handleEditClick()}
+          handleEditDiscard={() => this.handleEditDiscard()}
+          handleDelete={(id) => this.handleDelete(id)}
+
         />
         {
           this.props.isAuthenticated &&
           this.state.showReply &&
           <Reply
-            handleDiscard={() => this.handleHideReply()}
+            handleDiscard={() => this.handleReplyDiscard()}
             handleSubmit={(val) => {
-              this.handleHideReply()
+              this.handleReplyDiscard()
               handleReplySubmit(comment.id, val)
             }}
           />
@@ -72,12 +86,16 @@ class CommentWithReplies extends Component {
                     <EditDeleteReply
                       reply={reply}
                       billNumber={billNumber}
-                      getBillInfo={getBillInfo} />
+                      getBillInfo={getBillInfo}
+                      handleEditClick={() => this.handleEditClick()} />
                     <EditReplyInputBox
                       reply={reply}
                       user_id={reply.user_id}
                       billNumber={billNumber}
-                      getBillInfo={getBillInfo} />
+                      getBillInfo={getBillInfo}
+                      handleEditSubmit={(id, val) => this.handleEditSubmit(id, val)}
+                      handleEditDiscard={() => this.handleEditDiscard()}
+                       />
                   </span>
                 }
                 </div>

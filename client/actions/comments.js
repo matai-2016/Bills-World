@@ -89,3 +89,24 @@ export function toggleEditCommentBox (commentId) {
     commentId
   }
 }
+
+export function updateEditForm (value, commentId) {
+  return {
+    type: 'UPDATE_EDIT_FORM',
+    value,
+    commentId
+  }
+}
+
+export function clearEditForm () {
+  return {
+    type: 'CLEAR_EDIT_FORM'
+  }
+}
+
+export function toggleEditBox (commentId) {
+  return {
+    type: 'TOGGLE_EDIT_BOX',
+    commentId
+  }
+}

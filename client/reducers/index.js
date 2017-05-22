@@ -7,6 +7,7 @@ import billInfo from './billInfo'
 import votes from './votes'
 import userVote from './userVote'
 import activeEditComment from './activeEditComment'
+import activeEdit from './activeEdit'
 import activeEditReply from './activeEditReply'
 
 const reducers = combineReducers({
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   userVote,
   activeComment,
   activeEditComment,
+  activeEdit,
   activeEditReply
 })
 

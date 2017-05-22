@@ -1,8 +1,8 @@
 import React from 'react'
 import './comment.css'
 
-import EditDeleteComment from '../../containers/EditDeleteComment/EditDeleteComment'
-import EditCommentInputBox from '../../containers/EditCommentInputBox/EditCommentInputBox'
+import EditDelete from '../../containers/EditDelete/EditDelete'
+import EditInputBox from '../../containers/EditInputBox/EditInputBox'
 
 const Comment = props => {
   const {
@@ -11,7 +11,11 @@ const Comment = props => {
     userId,
     handleReplyClick,
     billNumber,
-    getBillInfo
+    getBillInfo,
+    handleEditClick,
+    handleEditSubmit,
+    handleEditDiscard,
+    handleDelete
   } = props
 
   if (comment.deleted == null) {
@@ -41,16 +45,20 @@ const Comment = props => {
             isAuthenticated &&
             (userId === comment.user_id) &&
             <span>
-              <EditDeleteComment
+              <EditDelete
                 comment={comment}
                 billNumber={billNumber}
-                getBillInfo={getBillInfo} />
+                getBillInfo={getBillInfo}
+                handleEditClick={() => handleEditClick()}
+                handleDelete={() => handleDelete(comment.id)} />
               {
-                <EditCommentInputBox
+                <EditInputBox
                   comment={comment}
                   user_id={comment.user_id}
                   billNumber={billNumber}
-                  getBillInfo={getBillInfo} />
+                  getBillInfo={getBillInfo}
+                  handleEditSubmit={(val) => handleEditSubmit(comment.id, val)}
+                  handleEditDiscard={() => handleEditDiscard()} />
             }
             </span>
           }
