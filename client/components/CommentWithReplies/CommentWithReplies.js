@@ -67,7 +67,7 @@ class CommentWithReplies extends Component {
         {
           replies.map((reply) => {
             return (
-              <div className='row reply-section' key={'reply' + reply.id}>
+              <div className='row' key={'reply' + reply.id}>
                 <Reply
                   reply={reply}
                   isAuthenticated={isAuthenticated}
@@ -75,10 +75,7 @@ class CommentWithReplies extends Component {
                   billNumber={billNumber}
                   getBillInfo={getBillInfo}
                   handleEditSubmit={(id, val) => handleEditSubmit(id, val)}
-                  handleEditClick={() => this.handleEditClick()}
-                  handleEditDiscard={() => this.handleEditDiscard()}
                   handleDelete={(id) => handleDelete(id)}
-                  showEdit={this.state.showEdit}
                 />
               </div>
             )

@@ -1,4 +1,4 @@
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return knex.schema.table('comments', function (table) {
     table.integer('parent_id').references('comments.id')
     table.string('edited')
@@ -6,10 +6,10 @@ exports.up = function(knex, Promise) {
   })
 }
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return knex.schema.table('comments', function (table) {
-      table.dropColumn('parent_id')
-      table.dropColumn('edited')
-      table.dropColumn('deleted')
+    table.dropColumn('parent_id')
+    table.dropColumn('edited')
+    table.dropColumn('deleted')
   })
 }
