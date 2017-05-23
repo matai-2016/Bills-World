@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './reply.css'
 
-import EditDelete from '../../containers/EditDelete/EditDelete'
+import EditDeleteButtons from '../../containers/EditDeleteButtons/EditDeleteButtons'
 import EditInputBox from '../../containers/EditInputBox/EditInputBox'
 
 class Reply extends Component {
@@ -53,7 +53,7 @@ class Reply extends Component {
           isAuthenticated &&
           (userId === reply.user_id) &&
           <span>
-            <EditDelete
+            <EditDeleteButtons
               comment={reply}
               billNumber={billNumber}
               getBillInfo={getBillInfo}

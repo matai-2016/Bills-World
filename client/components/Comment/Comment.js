@@ -1,7 +1,7 @@
 import React from 'react'
 import './comment.css'
 
-import EditDelete from '../../containers/EditDelete/EditDelete'
+import EditDeleteButtons from '../../containers/EditDeleteButtons/EditDeleteButtons'
 import EditInputBox from '../../containers/EditInputBox/EditInputBox'
 
 const Comment = props => {
@@ -46,7 +46,7 @@ const Comment = props => {
             isAuthenticated &&
             (userId === comment.user_id) &&
             <span>
-              <EditDelete
+              <EditDeleteButtons
                 comment={comment}
                 billNumber={billNumber}
                 getBillInfo={getBillInfo}

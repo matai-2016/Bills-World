@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import './editdelete.css'
+import './editdeletebuttons.css'
 
-class EditDelete extends Component {
+class EditDeleteButtons extends Component {
   render () {
     const { handleEditClick, handleDelete } = this.props
     return (
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(EditDelete)
+export default connect(mapStateToProps)(EditDeleteButtons)
