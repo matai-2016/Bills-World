@@ -4,7 +4,7 @@ import ReportAbuse from '../../components/ReportAbuse/ReportAbuse'
 import './discussion.css'
 import CommentWithReplies from '../../components/CommentWithReplies/CommentWithReplies'
 
-import { updateCommentForm, saveComment, saveReply, clearInputBox } from '../../actions/comments.js'
+import { updateCommentForm, saveComment, saveReply, editComment, deleteComment, clearInputBox } from '../../actions/comments.js'
 import moment from 'moment'
 
 class Discussion extends Component {
@@ -51,7 +51,9 @@ class Discussion extends Component {
                   billNumber={this.props.billNumber}
                   isAuthenticated={this.props.isAuthenticated}
                   getBillInfo={this.props.getBillInfo}
-                  handleReplySubmit={(id, val) => this.handleReplySubmit(val, id)}
+                  handleReplySubmit={(id, val) => this.handleReplySubmit(id, val)}
+                  handleEditSubmit={(id, val) => this.handleEditSubmit(id, val)}
+                  handleDelete={(id) => this.handleDelete(id)}
                 />
               )
             })
@@ -79,7 +81,7 @@ class Discussion extends Component {
       .then(() => this.props.clearInputBox())
   }
 
-  handleReplySubmit (value, parentId) {
+  handleReplySubmit (parentId, value) {
     const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
     const username = this.props.username
     const userId = this.props.user_id
@@ -95,6 +97,40 @@ class Discussion extends Component {
     this.props.saveReply(commentDetails)
     .then(this.props.getBillInfo.bind(null, billNumber))
     .then(this.props.clearInputBox)
+    .catch((err) => {
+      if (err) {
+        console.error(err.message)
+      }
+    })
+  }
+
+  handleEditSubmit (commentId, value) {
+    const userId = this.props.user_id
+    const billNumber = this.props.billNumber
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const commentDetails = { user_id: userId, comment_id: commentId, comment: value, billNumber: billNumber, editDate: date }
+    this.props.editComment(commentDetails)
+      .then(this.props.getBillInfo.bind(null, billNumber))
+      .then(this.props.clearInputBox)
+      .catch((err) => {
+        if (err) {
+          console.error(err.message)
+        }
+      })
+  }
+
+  handleDelete (commentId) {
+    const billNumber = this.props.billNumber
+    const userId = this.props.user_id
+    const date = moment(new Date()).format('DD-MM-YYYY h:mm a')
+    const commentDetails = {
+      user_id: userId,
+      comment_id: commentId,
+      billNumber: billNumber,
+      deleteDate: date
+    }
+    this.props.deleteComment(commentDetails)
+    .then(this.props.getBillInfo.bind(null, billNumber))
     .catch((err) => {
       if (err) {
         console.error(err.message)
@@ -124,11 +160,17 @@ const mapDispatchToProps = (dispatch) => {
     saveComment: (commentDetails) => {
       return dispatch(saveComment(commentDetails))
     },
-    clearInputBox: () => {
-      return dispatch(clearInputBox())
-    },
     saveReply: (replyDetails) => {
       return dispatch(saveReply(replyDetails))
+    },
+    editComment: (commentDetails) => {
+      return dispatch(editComment(commentDetails))
+    },
+    deleteComment: (commentDetails) => {
+      return dispatch(deleteComment(commentDetails))
+    },
+    clearInputBox: () => {
+      return dispatch(clearInputBox())
     }
   }
 }
