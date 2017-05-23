@@ -1,64 +1,7 @@
-.input-box {
-  min-height: 10rem;
-  margin-top: 1.5rem;
-  -webkit-transition: all 0.30s ease-in-out;
-  -moz-transition: all 0.30s ease-in-out;
-  -ms-transition: all 0.30s ease-in-out;
-  -o-transition: all 0.30s ease-in-out;
-  outline: none;
-  border: 1px solid;
-}
-
-.input-box:focus {
-  box-shadow: 0 0 5px #58595C;
-  border: 1px solid #58595C;
-}
-
-.reply-submit-button {
-  color: white;
-  float: right;
-  opacity: 1;
-  background-color: rgb(255, 78, 78);
-  margin-top: 1rem;
+.reply-section{
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 1rem;
   margin-bottom: 1rem;
-}
-
-.reply-submit-button:hover {
-  opacity: .7;
-}
-
-.reply-discard-button {
-  color: white;
-  float: right;
-  opacity: 1;
-  background-color: rgb(255, 78, 78);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.reply-discard-button:hover {
-  opacity: .7;
-}
-
-.comments-title {
-  border-bottom: 3px solid #FF4E4E;
-  padding-bottom: 1rem;
-}
-
-.metadata {
-  display: flex;
-  float: right;
-  margin-right: 2.5rem;
-  margin-bottom: -1rem;
-}
-
-.comment-text {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.username {
-  color: #58595C;
-  font-weight: bold;
-  padding-right: 1.5rem;
+  margin-left: 2rem;
 }
