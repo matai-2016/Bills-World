@@ -27,7 +27,7 @@ class Vote extends React.Component {
           <div className='buttons col-xs-3 col-sm-3 col-md-3'>
             {this.props.auth.isAuthenticated &&
               <span>
-                {this.props.userVote.voted_for
+                {this.props.userVote.vote > 0
                   ? <button className='voting-button button-for fa fa-arrow-circle-up' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' />
                   : <button className='voting-button button-for fa fa-arrow-circle-o-up' onClick={(e) => this.handleClick(e)} type='submit' name='vote-for' />
                 }
@@ -35,7 +35,7 @@ class Vote extends React.Component {
             }
             {this.props.auth.isAuthenticated &&
               <span>
-                {this.props.userVote.voted_against
+                {this.props.userVote.vote < 0
                   ? <button className='voting-button button-against fa fa-arrow-circle-down' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' />
                   : <button className='voting-button button-against fa fa-arrow-circle-o-down' onClick={(e) => this.handleClick(e)} type='submit' name='vote-against' />
                 }

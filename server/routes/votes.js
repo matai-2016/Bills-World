@@ -21,24 +21,23 @@ router.use(bodyParser.json())
 router.get('/:bill_number', (req, res) => {
   Promise.all([bill.getBill(req.params.bill_number), votes.getVotes()])
     .then(([bill, votes]) => {
-      const currentBill = bill[0]
+      const bill_number = bill[0].bill_number
       const votesFor = votes
-      .filter(vote => vote.bill_number === currentBill.bill_number)
+      .filter(vote => vote.bill_number === bill_number)
       .reduce(function (total, vote) {
-        return vote.voted_for ? total + 1 : total
+        return vote.vote > 0 ? total + 1 : total
       }, 0)
       const votesAgainst = votes
-      .filter(vote => vote.bill_number === currentBill.bill_number)
+      .filter(vote => vote.bill_number === bill_number)
       .reduce(function (total, vote) {
-        return vote.voted_against ? total + 1 : total
+        return vote.vote < 0 ? total + 1 : total
       }, 0)
       const total = votesFor + votesAgainst
       const percentageFor = Number(votesFor / total * 100)
       const roundedFor = percentageFor.toFixed(0)
-      const percentageAgainst = Number(votesAgainst / total) * 100
-      const roundedAgainst = percentageAgainst.toFixed(0)
+      const roundedAgainst = 100 - roundedFor
       const result = {
-        bill_number: currentBill.bill_number,
+        bill_number: bill_number,
         votes_for: votesFor,
         votes_against: votesAgainst,
         percentage_for: roundedFor,
@@ -46,7 +45,7 @@ router.get('/:bill_number', (req, res) => {
       }
       res.send(result)
     })
-    .catch((err) => {
+      .catch((err) => {
       if (err) {
         console.error(err.message)
       }
@@ -59,12 +58,17 @@ router.get('/:billNumber/:userId', (req, res) => {
   votes.getVotesByUserIdAndBillId(req.params.billNumber, req.params.userId)
     .then((vote) => {
       let result = {}
-      if (vote.length > 0) {
+      if (vote === 1) {
         result = {
           bill_number: vote[0].bill_number,
-          voted_for: vote[0].voted_for,
-          voted_against: vote[0].voted_against,
-          message: 'already voted'
+          vote: 1,
+          message: 'voted for'
+        }
+      } else if (vote === 1) {
+        result = {
+          bill_number: vote[0].bill_number,
+          vote: -1,
+          message: 'voted against'
         }
       } else {
         result = {}
