@@ -1,11 +1,53 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import SweetAlert from 'react-bootstrap-sweetalert'
 
 import './editdeletebuttons.css'
 
 class EditDeleteButtons extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      alert: null
+    }
+  }
+
+  confirmDelete (handleDelete) {
+    const getAlert = () => (
+      <SweetAlert
+        warning
+        showCancel
+        title='Just a second...'
+        confirmBtnText='Yes, delete it!'
+        confirmBtnBsStyle='danger'
+        cancelBtnBsStyle='default'
+        onConfirm={() => this.deleteComment()}
+        onCancel={() => this.cancelDelete()}
+      >
+        Are you sure you want to delete this?
+      </SweetAlert>
+    )
+    this.setState({
+      alert: getAlert()
+    })
+  }
+
+  deleteComment () {
+    this.setState({
+      alert: null
+    })
+    this.props.handleDelete()
+  }
+
+  cancelDelete () {
+    this.setState({
+      alert: null
+    })
+  }
+
   render () {
-    const { handleEditClick, handleDelete } = this.props
+    const { handleEditClick } = this.props
     return (
       <div>
         {
@@ -16,8 +58,9 @@ class EditDeleteButtons extends Component {
               <i className='fa fa-pencil fa-lg' aria-hidden='true' />
             </button>
             <button className='delete-comment-button btn'
-              onClick={() => handleDelete()}><i className='fa fa-trash-o fa-lg' aria-hidden='true' />
+              onClick={() => this.confirmDelete()}><i className='fa fa-trash-o fa-lg' aria-hidden='true' />
             </button>
+            {this.state.alert}
           </div>
         }
       </div>
