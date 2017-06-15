@@ -1,0 +1,29 @@
+/*global styles*/
+
+.btn-default:hover {
+  background-color: white;
+  opacity: .5;
+  color: #FF4E4E;
+}
+/* Larger than mobile */
+@media (min-width: 400px) {
+  .header {
+    padding: 100px 200px 100px 400px;
+  }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  #login-welcome {
+    display: inline-block !important;
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}

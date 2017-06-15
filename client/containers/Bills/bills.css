@@ -1,0 +1,22 @@
+.bills-background {
+  background-color: #FF4E4E
+}
+
+h1 {
+  color: white;
+  font-family: 'Amiri', serif;
+  text-align: center;
+  padding-top: 20px;
+  font-weight: lighter;
+  text-decoration: underline;
+}
+
+@media (min-width: 400px) {
+  h1 {
+    text-align: left;
+    padding-top: 30px;
+    font-weight: lighter;
+    text-decoration: underline;
+    padding-left: 20px;
+  }
+}

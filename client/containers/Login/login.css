@@ -1,0 +1,47 @@
+.login-components {
+  font-family: 'Yantramanav', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.login-buttons {
+  font-family: 'Yantramanav', sans-serif;
+  background-color: white;
+  border-radius: 20px;
+  color: #FF4E4E;
+  /*padding: 5px 30px;*/
+  border-style: none;
+  font-size: 9px;
+}
+
+#login-welcome {
+  display: none;
+}
+
+.profile-pic {
+  margin: 0 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  left: inherit;
+  min-width: auto;
+}
+
+@media (min-width: 320px) {
+  .login-buttons {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 400px) {
+  .login-buttons {
+    font-size: 15px;
+  }
+}
